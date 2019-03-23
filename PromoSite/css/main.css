@@ -1,0 +1,29 @@
+.header {
+    
+}
+
+.filter {
+    margin-top: 20px;
+}
+
+.element {
+    
+}
+
+.stext {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 15px;
+    line-height: 1.2;
+    color: #333;
+    border: 2px solid transparent;
+    margin-right: 20px;
+    margin-top: 5px;
+    background-color: white;
+    
+}
+
+.active, .stext:hover {
+    color: black;
+    border-bottom: 2px solid black;
+}
+

@@ -145,18 +145,21 @@ input[type="submit"]:active {
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #twitter-button{
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #google-button{
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button.social-signin.facebook {
@@ -180,4 +183,58 @@ button.social-signin.google {
 
 .input1{
     margin-top: 60px;
+}
+
+
+/*-- promoter --*/
+
+.image{
+    margin-top: 50px;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.title{
+    position: absolute;
+    left: 38%;
+    top: 13%; 
+}
+
+.search{
+    margin-top: 5%;
+}
+
+.table{
+    margin-top: 3%;
+}
+
+.btn1{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn2{
+    background-color: deepskyblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.title2{
+    display: inline-block;
+    margin-top: 50px;
 }

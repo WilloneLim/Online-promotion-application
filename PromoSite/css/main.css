@@ -23,21 +23,29 @@
 
 /*-- register --*/
 hr{
-    border: 1px solid gray;
+    border: 0.8px solid ligthgray;
     width: 50%;
+}
+
+#slogo{
+  position: absolute;
+  margin-left: 260px;
+  margin-top: 43px
 }
 
 #login-box {
   position: relative;
   margin: 5% auto;
   width: 800px;
-  height: 700px;
+  height: 600px;
   background: #FFF;
   border-radius: 5px;
   box-shadow: 0 9px 9px rgba(0, 0, 0, 0.4);
 }
 
-
+#main{
+    background-color: #e5e5e5;
+}
 
 h1 {
   position: static;
@@ -52,7 +60,7 @@ input[type="text"],
 input[type="password"] {
   display: block;
   box-sizing: border-box;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-left: 260px;
   padding: 8px;
   width: 260px;
@@ -116,22 +124,42 @@ input[type="submit"]:active {
   
 }
 
+.seperator{
+    margin: 6px 0 6px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    color: #ccc;
+    width: 50%;
+    margin-left: 196px;
+}
+
+.seperator i{
+    padding: 0 10px;
+    background: #fff;
+    position: relative;
+    top: -11px;
+    z-index:1;
+}
+
 #facebook-button{
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #twitter-button{
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #google-button{
     color: #FFF;
     width: 228px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button.social-signin.facebook {
@@ -152,9 +180,61 @@ button.social-signin.google {
   margin-right: 12px
 }
 
-label{
-    display: block;
-    margin-left: 260px;
-    margin-top: 70px;
-    
+
+.input1{
+    margin-top: 60px;
+}
+
+
+/*-- promoter --*/
+
+.image{
+    margin-top: 50px;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.title{
+    position: absolute;
+    left: 38%;
+    top: 13%; 
+}
+
+.search{
+    margin-top: 5%;
+}
+
+.table{
+    margin-top: 3%;
+}
+
+.btn1{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn2{
+    background-color: deepskyblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.title2{
+    display: inline-block;
+    margin-top: 50px;
 }

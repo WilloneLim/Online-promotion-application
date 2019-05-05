@@ -238,3 +238,97 @@ button.social-signin.google {
     display: inline-block;
     margin-top: 50px;
 }
+
+
+/*-- promotion detail --*/
+#imginfo{
+    margin-top: 20px;
+}
+
+#promodetail{
+    margin-top: 20px;
+}
+
+p.uppercase{
+    text-transform: uppercase;
+    font-size: 40px;
+}
+
+.socialtb{
+    border: 1px dashed #046ca3;
+    border-left: 6px solid #046ca3;
+    height: 8em;
+    text-align: center;
+}
+
+
+.block{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100%;
+}
+
+.fa-facebook {
+  text-decoration: none;
+  background: #3B5998;
+  color: white;
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.fa-twitter {
+    text-decoration: none;
+  background: #55ACEE;
+  color: white;
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.fa-whatsapp {
+  text-decoration: none;
+  color: #eee;
+  display: inline-block;
+  background-color: #25d366;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.fa:hover, fa:active {
+  text-decoration: none;
+}
+
+.modal-title{
+    text-align: center;
+}
+
+.qrbtn{
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.qrbtn:hover{
+    text-decoration: none;
+    opacity: 1;
+    color: white;
+}

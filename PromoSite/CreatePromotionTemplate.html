@@ -24,8 +24,6 @@
 </head>
 
 
-
-
 <body>
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -42,32 +40,36 @@
         </nav>
     </div>
     
-<!-- Sign up form -->
-    <form method="post" name="signupform" >
-    <div id="login-box">
-        <img src="images/navlogo.png" height="60" alt="signuplogo" id="alogo">
-        <h1><b>Application For A Promoter's Account</b></h1>
-          <hr>
-        <div class="input1">
-        <input type="text" name="promotername" placeholder="Promoter's Name" required/>
-		<input type="text" name="description" placeholder="Description" required/>
-        <input type="text" name="email" placeholder="E-mail" required/>
-        <input type="password" name="password" placeholder="Password" required/>
-        <input type="password" name="password2" placeholder="Reenter password" require/>
-    </div>
-        <input type="submit" name="signup_submit" value="Submit" />
+<div class="container">
+   <!--example purposes only-->
+  <h1>Create A Promotion for TeaLive </h1>
+  </br>
+  </br>
   
-
+  <div class="row">
+  <div class="col-md-6">
+   <form>
+  <input type="file" name="pic" accept="image/*">
+  <input type="submit">
+</form> 
+ </div>
+  
+  <!-- Adding Promotion -->
+  <div class="col-md-6">
+      <form>
+	   
+		   <input type="textbox" style="width:500px;height:45px" name="PromotionTitle" placeholder="Promotion Title">
+		
+		   <input type="textbox" style="width:500px;height:100px" name="Description" placeholder="Description">
+		   
+		   <button style="width:500px">Save Promotion</button>
+	  
+	  </form>
       
-        
-    </div>    
-    
-    
-    </form>  
-       
+  </div>
   
  
- 
+
 </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

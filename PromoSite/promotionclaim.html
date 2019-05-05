@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -41,24 +45,77 @@
     
     <div class="container">
       <div class="row">
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 image">
-              <img class="img-fluid" src="images/promo5kfc.png" alt="tealiveid">
-              <p>20% off Chicken Nuggets and Tenders</p>
+          <div class="col-md-6">
+              <img class="img-fluid" src="images/promo5kfc.png" alt="tealiveid" id="imginfo">
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 title">
-              <button class="btn1">Promotion Claims</button>
-              <button class="btn2">Purchase Amount</button>
+          
+          <div class="col-md-6" id="promodetail">
+            <p class="uppercase"><b>Buy 1 Free 1</b></p>
+              
+              <table style="width:100%">
+              <tr>
+                <th>Details</th>
+              </tr>
+              <tr>
+                <td>1. Only one claim per user</td>
+              </tr>
+              <tr>
+                <td>2. Drinks selected of different prices, the higher priced item shall be bought</td>
+              </tr>
+              <tr>
+                <td>3. Promotion may be unavailable at certain branches</td>
+              </tr>
+              <tr>
+                <td><strong><i>*Terms and conditions apply*</i></strong></td>
+              </tr>
+             </table>
+              
+             <table class="socialtb" style="width: 100%">
+             <tr>
+                 <br><br><th> Share on social media for reward</th>
+             </tr> 
+             <tr>
+                 <td>
+                 <a href="#" class="fa fa-facebook"> Share on Facebook</a>
+                 <a href="#" class="fa fa-twitter"> Share on Twitter</a>
+                 <a href="#" class="fa fa-whatsapp"> Share on Whatsapp</a>
+                 </td>
+                 
+             </tr>
+             </table>
+
           </div>
       </div>
         
       <div class="row">
-        <span class="title2"><p><b>Promotion Claims in 2018</b></p></span>
+          <div class="col-md-6">
+            <br><button type="button" data-toggle="modal" data-target="#promoModal" class="block">Claim reward</button>
+          </div>
       </div>
-        
-     <div class="row">
-      <img src="images/claimgraph.PNG" alt="graph">
+      
+      <div class="modal fade" id="promoModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            
+            <div class="modal-header">
+              <h2 class="modal-title w-100">Congratulations!</h2>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+            <div class="modal-body text-center">
+                <p>Here is your redemption QR code</p>
+                
+                <img src="images/multimediaQR.png" alt="qrcode">
+                
+                <p><b><i>You can find unclaimed rewards on your profile</i></b></p>
+                
+                <a download="QRCode" href="images/multimediaQR.png" download class="qrbtn">Download</a>
+            
+            </div>
+         </div>
+        </div>
      </div>
-  
+        
     </div>
         
 

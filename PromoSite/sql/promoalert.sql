@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2019 at 04:38 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: May 12, 2019 at 02:40 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,8 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `customer` (
   `cust_id` int(5) NOT NULL,
   `cust_username` varchar(15) NOT NULL,
-  `cust_password` varchar(15) NOT NULL,
   `cust_email` varchar(254) NOT NULL,
+  `cust_password` varchar(15) NOT NULL,
   `cust_country` varchar(100) NOT NULL,
   `cust_city` varchar(100) NOT NULL,
   `cust_state` varchar(100) NOT NULL,
@@ -41,9 +43,11 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `cust_username`, `cust_password`, `cust_email`, `cust_country`, `cust_city`, `cust_state`, `cust_bday`) VALUES
-(1, 'jocelyn123', 'helloworld', 'jocelyn@gmail.com', 'Malaysia', 'Kuching', 'Sarawak', '28/08/1998'),
-(2, 'alex321', 'testtest', 'alex@hotmail.com', 'Malaysia', 'Kuching', 'Sarawak', '09/10/1993');
+INSERT INTO `customer` (`cust_id`, `cust_username`, `cust_email`, `cust_password`, `cust_country`, `cust_city`, `cust_state`, `cust_bday`) VALUES
+(1, 'jocelyn123', 'jocelyn@gmail.com', 'helloworld', 'Malaysia', 'Kuching', 'Sarawak', '1998-08-28'),
+(2, 'alex321', 'alex@hotmail.com', 'testtest', 'Malaysia', 'Kuching', 'Sarawak', '1993-10-09'),
+(5, 'Anais', 'itsbabyanais@gmail.com', '$2y$10$yRAqhKcI', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-26'),
+(6, 'Darwin', 'dwin@gmail.com', '$2y$10$0qO2TidS', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-15');
 
 -- --------------------------------------------------------
 
@@ -135,17 +139,21 @@ ALTER TABLE `promotion`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cust_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `promoter`
 --
 ALTER TABLE `promoter`
   MODIFY `promoter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
   MODIFY `promo_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

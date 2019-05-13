@@ -51,7 +51,7 @@ $chart_data = substr($chart_data, 0, -2);
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.html">Log In</a>
+              <a class="nav-link" href="signin.php">Log In</a>
             </li>
           </ul>
             </div>

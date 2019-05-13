@@ -22,159 +22,66 @@
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     
-	<style>
-	.ala {
-		display: block;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        padding: 8px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        border-bottom: 1px solid #AAA;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-	}
-	
-	
-    .apa:focus {
-       border-bottom: 2px solid #16a085;
-       color: #16a085;
-       transition: 0.2s ease;
-    }
-	
-	.apa #country {
-		display: block;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        padding: 8px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        border-bottom: 1px solid #AAA;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-	}
-	
-	
-	
-	.apa #state {
-		display: block;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        padding: 8px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        border-bottom: 1px solid #AAA;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-	}
-	
-	.apa #city {
-		display: block;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        padding: 8px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        border-bottom: 1px solid #AAA;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-	}
-	
-	</style>
-	
     
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
 </head>
-    
 <body id="main">
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="#">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-            
+              
             </li>
           </ul>
             </div>
         </nav>
     </div>
     
-    <!-- Sign up form -->
-    <form method="post"  action="includes/signupf.php">
+    <form method="post" name="loginform" >
     <div id="login-box">
+      
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
-        <h1><b>Sign up</b></h1>
+        <h1><b>Log In</b></h1>
           <hr>
+        
         <div class="input1">
-        <input type="text" name="cust_username" placeholder="Username" required/>
-		<input type="text" name="cust_email" placeholder="E-mail" required/>
-        <input type="password" name="cust_pwd" placeholder="Password" required/>
-		<div class="apa" >
-		<select id="country" name="country" required="required">
-		<option value="" selected>Please choose a Country</option>
-		<option value="Malaysia">Malaysia</option>
-		</select>
-		</div>
-		
-		<div class="apa">
-		<select id="state" name="state" required="required">
-		<option value="" selected>Please choose a State</option>
-		<option value="Sarawak">Sarawak</option>
-		</select>
-		</div>
-		
-		<div class="apa">
-		<select id="city" name="city" required="required">
-		<option value="" selected>Please choose a City</option>
-		<option value="Kuching">Kuching</option>
-		<option value="Serian">Serian</option>
-		<option value="Kota Samarahan">Kota Samarahan</option>
-		<option value="Sibu">Sibu</option>
-		</select>
-		</div>
-		
-		<input  class="ala" type="date" name="cust_bday" placeholder="Date of Birth" required/>
-        </div>
-        <input type="submit" name="signup_submit" value="Sign up" />
-  
-
-        <div class="text-center1">
-         <span class="txt1">
-            Already have an account?</span>
-            
-            <a href="signin.php" class="txt2">Log In</a>
+        <input type="text" name="username" placeholder="Username" required/> 
+        <input type="text" name="password" placeholder="password" required/>
         </div>
         
-    </div>    
-    
-    
-    </form>  
-       
-       
-       
+        <input type="submit" name="login_submit" value="Log In"/>
+ 
+        <div class="seperator"><i>OR</i></div>
+        <a id="facebook-button" class="btn btn-social btn-facebook">
+        <i class="fa fa-facebook"></i> Log in with <b>Facebook</b></a>
+        <a  id="twitter-button" class="btn btn-social btn-twitter">
+        <i class="fa fa-twitter"></i> Log in with <b>Twitter</b></a>
+        <a  id="google-button" class="btn btn-social btn-google ">
+        <i class="fa fa-google"></i> Log in with <b>Google</b></a>
+        
+        <div class="text-center2">
+         <span class="txt2">
+            Create an account?</span>
+            
+            <a href="signup.php" class="txt2">Sign Up</a>
+        </div>
+        
+    </div>
+    </form>
+
     <!--Twitter-->
     <script>
         $('#twitter-button').on('click', function() {
   // Initialize with your OAuth.io app public key
-  OAuth.initialize('YOUR_OAUTH_KEY');
+  OAuth.initialize('ATdya0ncXhQQMPaJCAgyou4wAqY');
   // Use popup for OAuth
   OAuth.popup('twitter').then(twitter => {
     console.log('twitter:', twitter);
@@ -244,5 +151,6 @@
       })
     </script>
 
+   
 </body>
 </html>

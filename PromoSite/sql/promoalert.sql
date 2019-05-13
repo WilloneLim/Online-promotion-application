@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2019 at 02:40 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: May 13, 2019 at 02:23 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -109,6 +109,31 @@ INSERT INTO `promotion` (`promo_id`, `promo_img`, `promo_title`, `promo_desc`, `
 (6, 'promo5kfc.png', '20% discount of nuggets and tenders', '20% discount at any kfc store', '25/5/19', '23/6/19', 'food', 9),
 (7, 'promo6sketchers.png', '20% off on second pair', 'At sketchers', '25/5/19', '23/6/19', 'shoes', 8);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `statistics`
+--
+
+CREATE TABLE `statistics` (
+  `id` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
+  `purchase` int(11) NOT NULL,
+  `sale` int(11) NOT NULL,
+  `profit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `statistics`
+--
+
+INSERT INTO `statistics` (`id`, `year`, `purchase`, `sale`, `profit`) VALUES
+(1, 2014, 2444, 3521, 3555),
+(2, 2015, 2111, 2345, 2545),
+(3, 2016, 2552, 1233, 757),
+(4, 2017, 6767, 5656, 7777),
+(5, 2018, 4324, 556, 442);
+
 --
 -- Indexes for dumped tables
 --
@@ -130,6 +155,12 @@ ALTER TABLE `promoter`
 --
 ALTER TABLE `promotion`
   ADD PRIMARY KEY (`promo_id`);
+
+--
+-- Indexes for table `statistics`
+--
+ALTER TABLE `statistics`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

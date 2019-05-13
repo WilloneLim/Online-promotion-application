@@ -1,3 +1,27 @@
+<?php
+
+if(isset($_POST['search']))
+{
+	
+	 $valueToSearch = $_POST['valueToSearch'];
+	 $query = "SELECT * FROM `promoter` WHERE CONCAT(`promoter_id`, `promoter_username`) LIKE '%".$valueToSearch."%'";
+     $search_result = filterTable($query);	 
+}else {
+	 $query = "SELECT * FROM `promoter`";
+	 $search_result = filterTable($query);
+}
+
+function filterTable($query)
+{
+	$connect = mysqli_connect("localhost", "root", "", "promoalert");
+	$filter_Result = mysqli_query($connect, $query);
+	return $filter_Result;
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +50,12 @@
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.html">Log In</a>
+              <a class="nav-link" href="signin.php">Log In</a>
             </li>
           </ul>
             </div>
@@ -40,17 +64,17 @@
     
 <div class="container">
   <h1>Promoter View Application</h1>
-  
+  <form action="adminindex.php" method="POST">
   <!-- Search Bar -->
   <div class="row">
       <div class="input-field col s12" >
 	   <i class="material-icons prefix">search</i>
-	   <input type="text" data-ng-model="searchOrder" data-ng-keyup="change()" 
-	   id="user" placeholder="Search for #PromoterID, or #Promotername" name="username"
+	   <input type="text" name="valueToSearch" placeholder="Search for #PromoterID, or #Promotername" name="username"
 	   >
 	   </div>
-       <div>
-	   <button><a href="PromoterAdd.html">add</button> 
+	   <div>
+	   <input type="submit" name="search" value="Search">
+	   <button><a href="PromoterAddForm.html">add</button> 
 	   </div>
   </div>
   
@@ -64,9 +88,17 @@
 				   <th>LastOnline</th>
 			   </tr>
 		   </thead>
+		   <?php while($row = mysqli_fetch_array($search_result)):?>
+		   
+		      <tr>
+			     <td><?php echo $row['promoter_id'];?></td>
+				 <td><?php echo $row['promoter_username'];?></td>
+				 <td><?php echo $row['promoter_LO'];?></td>
+			  </tr>
+		   <?php endwhile; ?>
 	   </table>
   </div>
- 
+ </form>
 </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -37,7 +37,7 @@ hr{
   position: relative;
   margin: 5% auto;
   width: 800px;
-  height: 600px;
+  height: 665px;
   background: #FFF;
   border-radius: 5px;
   box-shadow: 0 9px 9px rgba(0, 0, 0, 0.4);
@@ -110,6 +110,12 @@ input[type="submit"]:active {
   transition: 0.1s ease;
 }
 
+.text-center1 {
+  text-align: center;
+  margin-top: auto;
+  margin-right: 12px;
+}
+
 .btn{
   position: relative;
   width: 228px;
@@ -174,10 +180,10 @@ button.social-signin.google {
   background: #DD4B39;
 }
 
-.text-center{
+.text-center2{
   text-align: center;
   margin-top: 20px;
-  margin-right: 12px
+  margin-right: 12px;
 }
 
 
@@ -239,6 +245,45 @@ button.social-signin.google {
     margin-top: 50px;
 }
 
+.stat{
+    background-color: white;
+    border: 2px solid grey;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.stat:hover{
+    background-color: #efefef;
+    text-decoration: none;
+    color: black;
+}
+
+.qrcd{
+    background-color: white;
+    border: 2px solid grey;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.qrcd:hover{
+    background-color: #efefef;
+    text-decoration: none;
+    color: black;
+}
 
 /*-- promotion detail --*/
 #imginfo{
@@ -274,38 +319,40 @@ p.uppercase{
     width: 100%;
 }
 
-.fa-facebook {
-  text-decoration: none;
-  background: #3B5998;
-  color: white;
-    display: inline-block;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 3px;
-}
-
-.fa-twitter {
+.fb {
     text-decoration: none;
-  background: #55ACEE;
-  color: white;
+    background: #3B5998;
+    color: #eee;
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.tw {
+    text-decoration: none;
+    background: #55ACEE;
+    color: #eee;
     display: inline-block;
     font-weight: bold;
     padding: 10px;
     border-radius: 3px;
 }
 
-.fa-whatsapp {
-  text-decoration: none;
-  color: #eee;
-  display: inline-block;
-  background-color: #25d366;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 3px;
+.wh {
+    text-decoration: none;
+    color: #eee;
+    display: inline-block;
+    background-color: #25d366;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 3px;
 }
 
 .fa:hover, fa:active {
-  text-decoration: none;
+    text-decoration: none;
+    color: white;
 }
 
 .modal-title{

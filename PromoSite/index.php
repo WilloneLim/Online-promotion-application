@@ -1,4 +1,7 @@
-<?php include 'connect.php'; ?>
+<?php
+include 'connect.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,49 +35,53 @@
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.html">Log In</a>
+            <?php
+
+                if ( isset( $_SESSION['cust_id'] ) ) {
+                    echo'<a class="nav-link" href="myaccount.php">My Account</a>';
+                } else {
+                    echo '<a class="nav-link" href="signin.php">Log In</a>';
+                }
+
+             ?>
             </li>
           </ul>
             </div>
         </nav>
     </div>
 
-
-<div class="container">
-<div id="demo" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-
-  <!-- The slideshow -->
-  <div class="carousel-inner">
+<div id="myCarousel" class="carousel slide bg-inverse w-100 ml-auto mr-auto" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img src="images/carol1.png" alt="promoter">
+      <img class="d-block w-100" src="images/carol1.png" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img src="images/carol2.png" alt="Chicago">
+      <img class="d-block w-100" src="images/carol2.png" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img src="images/carol3.png" alt="New York">
+      <img class="d-block w-100" src="images/carol3.png" alt="Third slide">
     </div>
   </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
+  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
+  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
   </a>
-
 </div>
+<div class="container">
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
-
-  <div class="filter d-flex justify-content-center">
+<h1>Our Promotions</h1>
+    <hr/>
+  <div class="filter d-flex justify-content-center" id="mySort">
     <button data-name='*' class="stext active">All</button>
     <button data-name=".food" class="stext p-2">Food</button>
     <button data-name=".drinks" class="stext p-2">Drinks</button>
@@ -84,7 +91,6 @@
     <button data-name=".other" class="stext p-2">Other</button>
 
   </div>
-
     <br/>
   <div class="row grid">
     <?php
@@ -120,6 +126,7 @@
             echo '</div>';
             echo '</div>';
         }
+
     } else {
         echo "0 results";
     }
@@ -128,6 +135,14 @@
     ?>
 </div>
 </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 <!-- Footer -->
 <footer class="page-footer bg-secondary font-small pt-4">
   <div class="container-fluid text-center text-md-left">
@@ -162,8 +177,18 @@
 
 </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+    </script>
     <script src="js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/masonry.pkgd.min.js"></script>
@@ -198,6 +223,25 @@
         $('.sort button').removeClass('active');
         $(this).addClass('active');
       })
+    </script>
+     <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.getElementById("myBtn").style.display = "block";
+          } else {
+            document.getElementById("myBtn").style.display = "none";
+          }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+//          document.body.scrollTop = 0;
+//          document.documentElement.scrollTop = 0;
+            window.scrollTo(0, 620);
+        }
     </script>
 </body>
 </html>

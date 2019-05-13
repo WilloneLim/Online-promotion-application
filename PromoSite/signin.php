@@ -1,3 +1,26 @@
+<?php
+include 'connect.php';
+session_start();
+
+if ( ! empty( $_POST ) ) {
+    if (isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
+        // Getting submitted user data from database
+
+        $sqla = "SELECT * FROM customer WHERE cust_username ='".$_POST['username']."' AND cust_password ='".$_POST['password']."'";
+        $result = mysqli_query($conn,$sqla);
+        $row  = mysqli_fetch_array($result);
+
+        if(is_array($row)) {
+            $_SESSION["cust_id"] = $row['cust_id'];
+            header("Location:index.php");
+        } else {
+            $message = "Invalid Username or Password!";
+        }
+
+
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +29,7 @@
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0" />
     <!-- Bootstrap -->
-    
+
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -21,8 +44,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    
-    
+
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js"></script>
@@ -38,27 +61,27 @@
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              
+
             </li>
           </ul>
             </div>
         </nav>
     </div>
-    
+
     <form method="post" name="loginform" >
     <div id="login-box">
-      
+
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
         <h1><b>Log In</b></h1>
           <hr>
-        
+
         <div class="input1">
-        <input type="text" name="username" placeholder="Username" required/> 
+        <input type="text" name="username" placeholder="Username" required/>
         <input type="text" name="password" placeholder="password" required/>
         </div>
-        
+
         <input type="submit" name="login_submit" value="Log In"/>
- 
+
         <div class="seperator"><i>OR</i></div>
         <a id="facebook-button" class="btn btn-social btn-facebook">
         <i class="fa fa-facebook"></i> Log in with <b>Facebook</b></a>
@@ -66,14 +89,14 @@
         <i class="fa fa-twitter"></i> Log in with <b>Twitter</b></a>
         <a  id="google-button" class="btn btn-social btn-google ">
         <i class="fa fa-google"></i> Log in with <b>Google</b></a>
-        
+
         <div class="text-center2">
          <span class="txt2">
             Create an account?</span>
-            
+
             <a href="signup.php" class="txt2">Sign Up</a>
         </div>
-        
+
     </div>
     </form>
 
@@ -93,15 +116,15 @@
       alert('Twitter says your email is:' + data.email + ".\nView browser 'Console Log' for more details");
     });
     // Retrieves user data from OAuth provider by using #get() and
-    // OAuth provider url    
+    // OAuth provider url
     twitter.get('/1.1/account/verify_credentials.json?include_email=true').then(data => {
       console.log('self data:', data);
-    })    
+    })
   });
 })
     </script>
-        
-        
+
+
     <!--Google-->
     <script>
         $('#google-button').on('click', function() {
@@ -126,7 +149,7 @@
   });
 })
     </script>
-    
+
     <!--Facebook-->
    <script>
       $('#facebook-button').on('click', function() {
@@ -151,6 +174,6 @@
       })
     </script>
 
-   
+
 </body>
 </html>

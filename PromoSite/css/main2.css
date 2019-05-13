@@ -1,0 +1,39 @@
+/*stepper buttons*/
+.stepper {
+	display: block;
+	text-decoration: none;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 2.5em;
+	padding: 6px 4px;
+	margin: 4px;
+    border-radius: 50%;
+    padding: 0px 18px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: white;
+    color: darkslategray;
+    border: 2px solid #4CAF50;
+}
+
+.stepper:hover, .active
+{
+    background-color: #4CAF50; /* Green */
+    color: white;
+    text-decoration: none;
+}
+
+.disabled
+{
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+#JTextH {
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+#Jhr {
+    width: 50%;
+}

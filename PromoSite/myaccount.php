@@ -1,3 +1,7 @@
+<?php
+include 'connect.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,14 +30,12 @@
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.html">
-                <?php echo "USERNAME%%"; ?>
-              </a>
+              <a class="nav-link" href="logout.php">Sign Out</a>
             </li>
           </ul>
             </div>

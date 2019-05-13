@@ -2,10 +2,10 @@
 
 if(isset($_POST['search']))
 {
-	
+
 	 $valueToSearch = $_POST['valueToSearch'];
 	 $query = "SELECT * FROM `promoter` WHERE CONCAT(`promoter_id`, `promoter_username`) LIKE '%".$valueToSearch."%'";
-     $search_result = filterTable($query);	 
+     $search_result = filterTable($query);
 }else {
 	 $query = "SELECT * FROM `promoter`";
 	 $search_result = filterTable($query);
@@ -30,7 +30,7 @@ function filterTable($query)
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0" />
     <!-- Bootstrap -->
-    
+
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -61,45 +61,44 @@ function filterTable($query)
             </div>
         </nav>
     </div>
-    
-<div class="container">
-  <h1>Promoter View Application</h1>
-  <form action="adminindex.php" method="POST">
-  <!-- Search Bar -->
-  <div class="row">
-      <div class="input-field col s12" >
-	   <i class="material-icons prefix">search</i>
-	   <input type="text" name="valueToSearch" placeholder="Search for #PromoterID, or #Promotername" name="username"
-	   >
-	   </div>
-	   <div>
-	   <input type="submit" name="search" value="Search">
-	   <button><a href="PromoterAddForm.html">add</button> 
-	   </div>
-  </div>
-  
-  <!-- Table -->
-  <div class="table-responsive">
-       <table class="table table-striped table-hover">
-	       <thead>
-		       <tr>
-			       <th>PromoterID</th>
-				   <th>PromoterName</th>
-				   <th>LastOnline</th>
-			   </tr>
-		   </thead>
-		   <?php while($row = mysqli_fetch_array($search_result)):?>
-		   
-		      <tr>
-			     <td><?php echo $row['promoter_id'];?></td>
-				 <td><?php echo $row['promoter_username'];?></td>
-				 <td><?php echo $row['promoter_LO'];?></td>
-			  </tr>
-		   <?php endwhile; ?>
-	   </table>
-  </div>
- </form>
-</div>
+
+		<div class="container">
+		<hr class="w-75 mt-5 "/>
+		<h1 class="text-center mb-2">Promoter View Application</h1>
+		<hr class="w-75"/>
+
+		<form action="adminindex.php" method="POST">
+		<a href="PromoterAddForm.html" class="btn btn-primary float-right mb-3">+</a>
+
+
+		<div class="input-group mb-3">
+		  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #PromoterID, or #Promotername" aria-describedby="basic-addon2">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
+		  </div>
+		</div>
+		  <!-- Table -->
+		  <div class="table-responsive">
+		       <table class="table table-striped table-hover">
+			       <thead>
+				       <tr>
+					       <th>PromoterID</th>
+						   <th>PromoterName</th>
+						   <th>LastOnline</th>
+					   </tr>
+				   </thead>
+				   <?php while($row = mysqli_fetch_array($search_result)):?>
+
+				      <tr>
+					     <td><?php echo $row['promoter_id'];?></td>
+						 <td><?php echo $row['promoter_username'];?></td>
+						 <td>To be added</td>
+					  </tr>
+				   <?php endwhile; ?>
+			   </table>
+		  </div>
+		 </form>
+		</div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

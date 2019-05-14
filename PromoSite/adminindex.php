@@ -44,7 +44,7 @@ function filterTable($query)
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    <link rel="stylesheet" href="css/main.css">
+<!--    <link rel="stylesheet" href="css/main.css">-->
 </head>
 <body>
     <div class="header">
@@ -55,50 +55,50 @@ function filterTable($query)
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.php">Log In</a>
+              <a class="nav-link" href="signin.php">Sign Out</a>
             </li>
           </ul>
             </div>
         </nav>
     </div>
 
-		<div class="container">
-		<hr class="w-75 mt-5 "/>
-		<h1 class="text-center mb-2">Promoter View Application</h1>
-		<hr class="w-75"/>
+<div class="container">
+<hr class="w-75 mt-5 "/>
+<h1 class="text-center mb-2">Promoter View Application</h1>
+<hr class="w-75"/>
 
-		<form action="adminindex.php" method="POST">
-		<a href="PromoterAddForm.php" class="btn btn-primary float-right mb-3">+</a>
+<form action="adminindex.php" method="POST">
+<a href="PromoterAddForm.html" class="btn btn-primary float-right mb-3">+</a>
 
 
-		<div class="input-group mb-3">
-		  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #PromoterID, or #Promotername" aria-describedby="basic-addon2">
-		  <div class="input-group-append">
-		    <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
-		  </div>
-		</div>
-		  <!-- Table -->
-		  <div class="table-responsive">
-		       <table class="table table-striped table-hover">
-			       <thead>
-				       <tr>
-					       <th>PromoterID</th>
-						   <th>PromoterName</th>
-						   <th>LastOnline</th>
-					   </tr>
-				   </thead>
-				   <?php while($row = mysqli_fetch_array($search_result)):?>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #PromoterID, or #Promotername" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
+  </div>
+</div>
+  <!-- Table -->
+  <div class="table-responsive">
+       <table class="table table-striped table-hover">
+	       <thead>
+		       <tr>
+			       <th>PromoterID</th>
+				   <th>PromoterName</th>
+				   <th>LastOnline</th>
+			   </tr>
+		   </thead>
+		   <?php while($row = mysqli_fetch_array($search_result)):?>
 
-				      <tr>
-					     <td><?php echo $row['promoter_id'];?></td>
-						 <td><?php echo $row['promoter_username'];?></td>
-						 <td>To be added</td>
-					  </tr>
-				   <?php endwhile; ?>
-			   </table>
-		  </div>
-		 </form>
-		</div>
+		      <tr>
+			     <td><?php echo $row['promoter_id'];?></td>
+				 <td><?php echo $row['promoter_username'];?></td>
+				 <td>To be added</td>
+			  </tr>
+		   <?php endwhile; ?>
+	   </table>
+  </div>
+ </form>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

@@ -68,7 +68,7 @@ function filterTable($query)
 <hr class="w-75"/>
 
 <form action="adminindex.php" method="POST">
-<a href="PromoterAddForm.html" class="btn btn-primary float-right mb-3">+</a>
+<a href="addpromoteradmin.php" class="btn btn-primary float-right mb-3">+</a>
 
 
 <div class="input-group mb-3">

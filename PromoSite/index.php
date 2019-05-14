@@ -34,6 +34,9 @@ session_start();
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
+            <li class="nav-item mr-3">
+                    <a class="nav-link" href="proapplication.php">Promoter</a>
+                </li>
             <li class="nav-item">
             <?php
 

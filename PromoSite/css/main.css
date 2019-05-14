@@ -13,10 +13,10 @@
     margin-right: 20px;
     margin-top: 5px;
     background-color: white;
-    
+
 }
 
-.active, .stext:hover {
+.stext.active, .stext:hover {
     color: black;
     border-bottom: 2px solid black;
 }
@@ -127,7 +127,7 @@ input[type="submit"]:active {
   font-weight: 500;
   margin-left: 280px;
   margin-top: 5px;
-  
+
 }
 
 .seperator{
@@ -203,7 +203,7 @@ button.social-signin.google {
 .title{
     position: absolute;
     left: 38%;
-    top: 13%; 
+    top: 13%;
 }
 
 .search{
@@ -412,5 +412,5 @@ p.uppercase{
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    display: inline-block; 
+    display: inline-block;
 }

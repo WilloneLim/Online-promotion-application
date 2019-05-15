@@ -89,9 +89,9 @@ function filterTable($query)
 		   </thead>
 		   <?php while($row = mysqli_fetch_array($search_result)):?>
 
-		      <tr>
-			     <td><?php echo $row['promoter_id'];?></td>
-				 <td><?php echo $row['promoter_username'];?></td>
+		      <tr class="table-row" data-href="PromoterActivity.php">
+			      <td><a href="PromoterActivity.php"><?php echo $row['promoter_id'];?></a></td>
+				 <td><a href="PromoterActivity.php"><?php echo $row['promoter_username'];?></a></td>
 				 <td>To be added</td>
 			  </tr>
 		   <?php endwhile; ?>
@@ -130,5 +130,16 @@ function filterTable($query)
         $(this).addClass('active');
       })
     </script>
+	
+    <!-- JS script for click function-->
+	<script>
+	 $(document).ready(function($) {
+		 $(".table-row").click(function() {
+			 window.document.location = $(this).data("href");
+		 });
+		 
+	 });
+	</script>
+    
 </body>
 </html>

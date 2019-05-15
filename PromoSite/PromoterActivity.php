@@ -1,5 +1,8 @@
 <?php
 
+include 'connect.php';
+session_start();
+
 if(isset($_POST['search']))
 {
 
@@ -62,105 +65,129 @@ function filterTable($query)
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.html">Log In</a>
+              <?php
+			     if ( isset( $_SESSION['admin'])){
+					 echo '<a class="nav-link" href="myaccount.php">My Account</a>';
+				 }else{
+					 echo '<a class="nav-link" href="signin.php">Log In</a>';
+				 }
+			  ?>
             </li>
           </ul>
             </div>
         </nav>
     </div>
-    
-<div class="container">
-  <div class="container">
-	  <form action="PromoterActivity.php" method="POST">
-  <div class="row">
-  <div class="col-sm-4">
-	    <br><br>
-  <img src="images/promo5kfc.png" alt="tealiveid" id="imginfo" style="width:300px;height:200px">
-  </div>
-  <div class="col-sm-6">
-	   <hr class="w-100 mt-5" />
- <h3 class="text-center mb-2"> Kentucky Fried Chicken</h3>
-	   <hr class="w-80 mt-5" />
-	  <ul class="data">
- <li>Last Online:</li>
- <li>No. Of Promotions:</li>
- <li>Average Claims:</li>
-	  </ul>
- 
-  </div>
-  <div class="col-sm-2">
-     <a href="adminindex.php"class="btn btn-primary float-right mb-3"><<</a>
-
-  </div>
-  
-  </div>
-  </div>
-  </br>
-	  <form action="PromoterActivity.php" method="POST">
-  <!-- Search Bar -->
 	
-  <a href="CreatePromotion.php" class="btn btn-primary float-right mb-3">+</a>
+	
+<?php
+    
+     if(isset($_GET['id'])) {
+		 
+		 $sql = "SELECT * FROM promoter WHERE promoter_id = ".$_GET['id'];
+		 
+		 $result = $conn->query($sql) or die($conn->error);
+		while($row = $result->fetch_assoc()) {
+         echo '<div class="container">';
+				 echo '<div class="container">';
+				 echo '<form action="PromoterActivity.php" method="POST">';
+				 echo '<div class="row">';
+                 echo '<div class="col-sm-4">';
+                 echo '</br>';
+                 echo '</br>';
+				 echo '<img src="images/'.$row['promoter_profile'].'" alt="tealiveid" id="imginfo" style="width:300px;height:200px">';
+				 echo '</div>';
+                 echo '<div class="col-sm-6">';
+	             echo '<hr class="w-100 mt-5" />';
+                 echo '<h3 class="text-center mb-2">'.$row['promoter_username'].'</h3>';
+	             echo '<hr class="w-80 mt-5" />';
+	             echo '<ul class="data">';
+                 echo '<li>';
+                 echo 'Last Online:';
+				 echo '</li>';
+				 echo '<li>';
+				 echo 'No. Of Promotions:';
+				 echo '</li>';
+				 echo '<li>';
+				 echo 'Average Claims:';
+				 echo '</li>';
+				 echo '</ul>';
+ 
+                 echo '</div>';
+                 echo '<div class="col-sm-2">';
+                 echo  '<a href="adminindex.php"class="btn btn-primary float-right mb-3">';
+                 echo '<<';
+                 echo '</a>';
 
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #PromotionID, or #PromotionTitle" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
-  </div>
-</div>
+                 echo '</div>';
   
-  <!-- Table -->
-  <div class="table-responsive">
-       <table class="table table-striped table-hover">
-	       <thead>
-		       <tr>
-			       <th>PromotionID</th>
-				   <th>Promotion Title</th>
-				   <th>Last Claimed</th>
-			   </tr>
-		   </thead>
-	        <?php while($row = mysqli_fetch_array($search_result)):?>
+                 echo '</div>';
+                 echo '</div>';
+ echo '</br>';  
+ 
+ echo '<form action="PromoterActivity.php" method="POST">';
+ //Search Bar 
+	
+echo   '<a href="CreatePromotion.php" class="btn btn-primary float-right mb-3">';
+echo '+';
+echo '</a>';
 
-		      <tr class="table-row" data-href="">
-			     <td><a href="promoterview.php"><?php echo $row['promo_id'];?></a></td>
-				 <td><a href="promoterview.php"><?php echo $row['promo_title'];?></a></td>
-				 <td>To be added</td>
-			  </tr>
-		   <?php endwhile; ?>
-	   </table>
-  </div>
-  </form>
-</div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script>
-      var $grid = $('.grid').isotope({
-        itemSelector: '.grid-item',
-        layoutMode: 'fitRows',
-        getSortData: {
-          name: function (element) {
-            return $(element).text();
-          }
-        }
-      });
-      $('.filter button').on("click", function () {
-        var value = $(this).attr('data-name');
-          $grid.isotope({
-            filter: value
-          });
-        $('.filter button').removeClass('active');
-        $(this).addClass('active');
-      })
-      $('.sort button').on("click", function () {
-        var value = $(this).attr('data-name');
-        $grid.isotope({
-          sortBy: value
-        });
-        $('.sort button').removeClass('active');
-        $(this).addClass('active');
-      })
-    </script>
+echo '<div class="input-group mb-3">';
+echo  '<input type="text" class="form-control" name="valueToSearch" placeholder="Search for #PromotionID, or #PromotionTitle" aria-describedby="basic-addon2">';
+echo  '<div class="input-group-append">';
+echo    '<button class="btn btn-outline-secondary" type="submit" name="search" value="Search">';
+echo 'Search';
+echo '</button>';
+ echo '</div>';
+echo '</div>';
+//Table
+ echo '<div class="table-responsive">';
+   echo    '<table class="table table-striped table-hover">';
+	echo       '<thead>';
+	echo	       '<tr>';
+	echo		       '<th>PromotionID</th>';
+	echo			   '<th>Promotion Title</th>';
+	echo			   '<th>Last Claimed</th>';
+	echo		   '</tr>';
+	echo	   '</thead>';
+	echo	' <?php while($row = mysqli_fetch_array($search_result)):?>';
+
+	echo	       '<tr class="table-row" data-href="">';
+	
+	echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
+	
+	$sql1 = "SELECT * FROM promotion WHERE promoter_id =".$_GET['id'];
+	$result1 = $conn->query($sql1);
+	
+	if ($result1->num_rows > 0) {
+		while($nrow = $result1->fetch_assoc()){
+	
+	
+				 echo '<td>';
+				 echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
+				 echo $nrow['promo_id'];
+				 echo '</a>';
+				 echo '</td>';
+				 echo '<td>';
+				 echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
+				 echo $nrow['promo_title'];
+				 echo '</a>';
+				 echo '</td>';
+				 echo '<td>';
+				 echo 'To be added';
+				 echo '</td>';
+			  echo '</tr>';
+		  echo  '<?php endwhile; ?>';
+		  echo '</table>';
+		  echo '</div>';
+		  echo '</form>';
+		  echo '</div>';
+		  
+		}
+	}
+	 }
+	 }
+		 
+?>
 </body>
 </html>

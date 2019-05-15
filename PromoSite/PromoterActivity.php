@@ -89,7 +89,7 @@ function filterTable($query)
  
   </div>
   <div class="col-sm-2">
-     <button><a href="adminindex.php">back</a></button>
+     <a href="adminindex.php"class="btn btn-primary float-right mb-3"><<</a>
 
   </div>
   

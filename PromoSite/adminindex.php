@@ -89,9 +89,9 @@ function filterTable($query)
 		   </thead>
 		   <?php while($row = mysqli_fetch_array($search_result)):?>
 
-		      <tr class="table-row" data-href="PromoterActivity.php">
-			      <td><a href="PromoterActivity.php"><?php echo $row['promoter_id'];?></a></td>
-				 <td><a href="PromoterActivity.php"><?php echo $row['promoter_username'];?></a></td>
+		      <tr class="table-row" data-href="PromoterActivity.php?id=<?php echo $row['promoter_id'];?>">
+			     <td><a href="PromoterActivity.php"><?php echo $row['promoter_id'];?></a></td>
+				 <td><a href="PromoterActivity.php?id=<?php echo $row['promoter_id'];?>" ><?php echo $row['promoter_username'];?></td>
 				 <td>To be added</td>
 			  </tr>
 		   <?php endwhile; ?>

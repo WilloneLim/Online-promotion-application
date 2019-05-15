@@ -25,18 +25,16 @@
 	<style>
 	.ala {
 		display: block;
-        box-sizing: border-box;
-        margin-bottom: 20px;
+        margin-bottom: -5px;
         margin-left: 260px;
-        padding: 8px;
         width: 260px;
         height: 32px;
         border: none;
-        border-bottom: 1px solid #AAA;
         font-family: sans-serif;
         font-weight: 400;
         font-size: 15px;
         transition: 0.2s ease;
+        border: 1px solid #AAA;
 	}
 	
 	
@@ -48,52 +46,49 @@
 	
 	.apa #country {
 		display: block;
-        box-sizing: border-box;
         margin-bottom: 20px;
         margin-left: 260px;
-        padding: 8px;
         width: 260px;
         height: 32px;
         border: none;
-        border-bottom: 1px solid #AAA;
         font-family: sans-serif;
         font-weight: 400;
         font-size: 15px;
-        transition: 0.2s ease;
+        -webkit-transition: height 0.3s ease-in-out;
+        -o-transition: height 0.3s ease-in-out;
+        -moz-transition: height 0.3s ease-in-out;
+        transition: height 0.3s ease-in-out;
+        border: 1px solid #AAA;
 	}
 	
 	
 	
 	.apa #state {
 		display: block;
-        box-sizing: border-box;
         margin-bottom: 20px;
         margin-left: 260px;
-        padding: 8px;
         width: 260px;
         height: 32px;
         border: none;
-        border-bottom: 1px solid #AAA;
         font-family: sans-serif;
         font-weight: 400;
         font-size: 15px;
         transition: 0.2s ease;
+        border: 1px solid #AAA;
 	}
 	
 	.apa #city {
 		display: block;
-        box-sizing: border-box;
         margin-bottom: 20px;
         margin-left: 260px;
-        padding: 8px;
         width: 260px;
         height: 32px;
         border: none;
-        border-bottom: 1px solid #AAA;
         font-family: sans-serif;
         font-weight: 400;
         font-size: 15px;
-        transition: 0.2s ease;
+        transition: 0.5s ease;
+        border: 1px solid #AAA;
 	}
 	
 	</style>
@@ -102,6 +97,8 @@
 </head>
     
 <body id="main">
+    
+    
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
@@ -121,29 +118,31 @@
     <form method="post"  action="includes/signupf.php">
     <div id="login-box">
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
-        <h1><b>Sign up</b></h1>
+        <h1 class="sign"><b>Sign up</b></h1>
           <hr>
         <div class="input1">
-        <input type="text" name="cust_username" placeholder="Username" required/>
+        <input type="text" name="cust_username" minlength="3" maxlength="15" placeholder="Username" required/>
 		<input type="text" name="cust_email" placeholder="E-mail" required/>
-        <input type="password" name="cust_pwd" placeholder="Password" required/>
-		<div class="apa" >
+        <input type="password" name="password" id="password" minlength="3" maxlength="15" placeholder="Password" required/>
+        <input type="password" name="confirm_password" id="confirm_password"  minlength="3" maxlength="15" placeholder="Confirm Password" required/>
+		
+        <div class="apa" >  
 		<select id="country" name="country" required="required">
-		<option value="" selected>Please choose a Country</option>
+		<option value=""  disabled selected>Please select a Country</option>
 		<option value="Malaysia">Malaysia</option>
 		</select>
 		</div>
 		
 		<div class="apa">
 		<select id="state" name="state" required="required">
-		<option value="" selected>Please choose a State</option>
+		<option value=""  disabled selected>Please choose a State</option>
 		<option value="Sarawak">Sarawak</option>
 		</select>
 		</div>
 		
 		<div class="apa">
 		<select id="city" name="city" required="required">
-		<option value="" selected>Please choose a City</option>
+		<option value="" disabled selected>Please choose a City</option>
 		<option value="Kuching">Kuching</option>
 		<option value="Serian">Serian</option>
 		<option value="Kota Samarahan">Kota Samarahan</option>
@@ -153,7 +152,7 @@
 		
 		<input  class="ala" type="date" name="cust_bday" placeholder="Date of Birth" required/>
         </div>
-        <input type="submit" name="signup_submit" value="Sign up" />
+        <input type="submit" id="signup" name="signup_submit" value="Sign up" />
   
 
         <div class="text-center1">
@@ -167,7 +166,22 @@
     
     
     </form>  
-       
+    
+    <script>
+     var password = document.getElementById("password"), 
+         confirm_password = document.getElementById("confirm_password");
+
+     function validatePassword(){
+        if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Doesn't Match");
+     } else {
+        confirm_password.setCustomValidity('');
+            }
+     }
+
+     password.onchange = validatePassword;
+     confirm_password.onkeyup = validatePassword;
+    </script>
        
        
     <!--Twitter-->

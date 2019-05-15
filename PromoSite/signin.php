@@ -21,6 +21,10 @@ if ( ! empty( $_POST ) ) {
         }
     }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +60,7 @@ if ( ! empty( $_POST ) ) {
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
@@ -68,16 +72,17 @@ if ( ! empty( $_POST ) ) {
         </nav>
     </div>
 
-    <form method="post" name="loginform" >
+    <form method="post" name="loginform">
     <div id="login-box">
 
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
-        <h1><b>Log In</b></h1>
+        <h1 class="sign"><b>Log In</b></h1>
           <hr>
 
         <div class="input1">
-        <input type="text" name="username" placeholder="Username" required/>
-        <input type="text" name="password" placeholder="password" required/>
+        <input type="text" name="username" minlength="3" maxlength="15" placeholder="Username" required/>
+        <input type="password" name="password" id ="password" minlength="3" maxlength="15" placeholder="Password" required/>
+        <input type = "checkbox" id="togglePass"> Show password
         </div>
 
         <input type="submit" name="login_submit" value="Log In"/>
@@ -99,7 +104,22 @@ if ( ! empty( $_POST ) ) {
 
     </div>
     </form>
+    
 
+    <script>
+        const togglePass = document.getElementById('togglePass');
+        
+        const showhidePass = () => {
+            const password = document.getElementById('password');
+            if(password.type === 'password') {
+                password.type = 'text';
+            }else{
+                password.type = 'password';
+            }
+        };
+        
+        togglePass.addEventListener('change', showhidePass);
+    </script>
     <!--Twitter-->
     <script>
         $('#twitter-button').on('click', function() {

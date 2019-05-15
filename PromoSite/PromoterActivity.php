@@ -44,7 +44,7 @@ function filterTable($query)
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    <link rel="stylesheet" href="css/main.css">
+    <!--<link rel="stylesheet" href="css/main.css">-->
 	
     <style>
 	.data {

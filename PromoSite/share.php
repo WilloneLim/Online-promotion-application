@@ -3,6 +3,8 @@
 include 'connect.php';
 session_start();
 
+$check = 0;
+
 if(isset($_SESSION['cust_id'])){
     $sqla = "SELECT * FROM customer WHERE cust_id=".$_SESSION['cust_id'];
     $result = mysqli_query($conn,$sqla);
@@ -20,7 +22,9 @@ if(isset($_GET['id'])){
     $rowb  = mysqli_fetch_array($resultb);
 }
 
+$myurl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
+$myurl2= parse_url($myurl,PHP_URL_FRAGMENT);
 
 if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'facebook.com' ) ) {
     $check =123;
@@ -28,6 +32,12 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
         header("Location: signin.php");
     }
 }
+
+//if ($myurl2 == "!/three"){
+//    header("Location: index.php");
+//}
+//
+//echo $myurl2;
 
 ?>
 <!DOCTYPE html>
@@ -88,7 +98,7 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
@@ -110,9 +120,9 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
 <div class="container">
 
     <div class="row mt-4" id="mystepper">
-    <a href="" class="stepper mx-auto active" id="s1">1</a>
-    <a href="" class="stepper disabled" id="s2">2</a>
-    <a href="" class="stepper mx-auto disabled" id="s3">3</a>
+    <p class="stepper mx-auto active" id="s1">1</p>
+    <p class="stepper disabled" id="s2" disabled>2</p>
+    <p class="stepper mx-auto disabled" id="s3" disabled>3</p>
     </div>
 
     <div class="border m-2" ng-view></div>
@@ -139,7 +149,10 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
 
             <?php
             if ( isset( $_SESSION['cust_id'] ) ) {
-                echo '<button id="share-button" title="Facebook" class="btn btn-facebook btn-lg border bg-primary text-light"><i class="fa fa-facebook fa-fw"></i>Facebook</button>';
+//                echo '<button id="share-button" title="Facebook" class="btn btn-facebook btn-lg border bg-primary text-light"><i class="fa fa-facebook fa-fw"></i>Facebook</button>';
+                echo '<p class=text-muted">If you do not see a link please wait or refresh the page</p>';
+                echo '<iframe src="https://www.facebook.com/plugins/share_button.php?href='.$url.'/Online-promotion-application/PromoSite/share.php?id='.$_GET['id'].'&layout=button_count&size=large&appId=388469038426420&width=84&height=28" width="84" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
+
             }else{
                 echo '<a href="signin.php" class="btn btn-info mx-2 w-25" role="button">Log In</a>';
                 echo '<a href="signup.php" class="btn btn-info mx-2 w-25" role="button">Register</a>';
@@ -150,7 +163,8 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal"  id="fb-btn">Next</button>
         </div>
 
       </div>
@@ -173,7 +187,7 @@ if (!isset($_GET['id'])){
 
 ?>
 <!-- Footer -->
-<footer class="page-footer bg-secondary font-small pt-4 mt-5">
+<footer class="page-footer bg-secondary font-small pt-4 mt-5 sticky-bottom">
   <div class="container-fluid text-center text-md-left">
     <div class="row">
       <div class="col-md-6 mt-md-0 mt-3">
@@ -210,16 +224,28 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "step1.php?id=<?php echo $_GET['id'] ?>"
+        templateUrl : "step1.php?id=<?php echo $_GET['id']; ?>"
     })
     .when("/two", {
-        templateUrl : "step2.php?id=<?php echo $_GET['id'] ?>"
+        templateUrl : "step2.php?id=<?php echo $_GET['id']; ?>"
     })
     .when("/three", {
-        templateUrl : "step3.php?id=<?php echo $_GET['id'] ?>"
+        templateUrl : "step3.php?id=<?php echo $_GET['id']; ?>&ck=<?php echo $check; ?>"
     });
 });
 </script>
+
+<script>
+document.getElementById('fb-btn').addEventListener('click', function () {
+        window.location.hash = '#!two';
+        $('#myModal').modal('hide');
+        $('#s1').removeClass("active");
+        $('#s2').removeClass("disabled");
+        $('#s2').addClass("active");
+        $('#s1').addClass("disabled");
+    });
+</script>
+
 <script>
      document.getElementById('share-button').addEventListener('click', function () {
         FB.init({
@@ -251,16 +277,9 @@ app.config(function($routeProvider) {
     });
 </script>
 <script>
-    $(document).ready(function(){
-        $('#mystepper .stepper').click(function(){
-        $('.stepper').removeClass("active");
-        $(this).addClass("active");
-    });
-});
-</script>
-<script>
 
 if(<?php echo $check; ?> == <?php echo '123'; ?>){
+
     window.location.hash = '#!three';
     $('#s2').disabled = true;
     $('#s1').removeClass("active");
@@ -269,6 +288,31 @@ if(<?php echo $check; ?> == <?php echo '123'; ?>){
     $('#s1').addClass("disabled");
 
 }
+</script>
+<script>
+function back(page) {
+    if (page == 1){
+        window.location.hash = '#!/';
+    }else{
+        window.location.hash = '#!two';
+    }
+}
+</script>
+<script>
+var hash = location.hash.substr(1);
+
+if (hash == "!/two"){
+    $('#s1').removeClass("active");
+    $('#s2').removeClass("disabled");
+    $('#s2').addClass("active");
+    $('#s1').addClass("disabled");
+}else if (hash == "!/three"){
+    $('#s1').removeClass("active");
+    $('#s3').removeClass("disabled");
+    $('#s3').addClass("active");
+    $('#s1').addClass("disabled");
+}
+
 </script>
 
 </body>

@@ -10,11 +10,31 @@ if ( ! empty( $_POST ) ) {
         $result = mysqli_query($conn,$sqla);
         $row  = mysqli_fetch_array($result);
 
+        $sqlb = "SELECT * FROM promoter WHERE promoter_username ='".$_POST['username']."' AND promoter_password ='".$_POST['password']."'";
+        $resultb = mysqli_query($conn,$sqlb);
+        $rowb  = mysqli_fetch_array($resultb);
+
+        $sqlc = "SELECT * FROM admin WHERE admin_username ='".$_POST['username']."' AND admin_password ='".$_POST['password']."'";
+        $resultc = mysqli_query($conn,$sqlc);
+        $rowc  = mysqli_fetch_array($resultc);
+
         if(is_array($row)) {
             $_SESSION["cust_id"] = $row['cust_id'];
             header("Location:index.php");
         } else {
-            $message = "Invalid Username or Password!";
+
+            if(is_array($rowb)) {
+            $_SESSION["pro_id"] = $rowb['promoter_id'];
+            header("Location:promotionamount.html");
+            } else {
+
+                if(is_array($rowc)) {
+                $_SESSION["admin_id"] = $rowc['admin_id'];
+                header("Location:adminindex.php");
+                }else{
+                    $message = "Invalid Username or Password!";
+                }
+            }
         }
 
 
@@ -104,11 +124,11 @@ if ( ! empty( $_POST ) ) {
 
     </div>
     </form>
-    
+
 
     <script>
         const togglePass = document.getElementById('togglePass');
-        
+
         const showhidePass = () => {
             const password = document.getElementById('password');
             if(password.type === 'password') {
@@ -117,7 +137,7 @@ if ( ! empty( $_POST ) ) {
                 password.type = 'password';
             }
         };
-        
+
         togglePass.addEventListener('change', showhidePass);
     </script>
     <!--Twitter-->

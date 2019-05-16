@@ -136,17 +136,46 @@
 		<div class="apa">
 		<select id="state" name="state" required="required">
 		<option value=""  disabled selected>Please choose a State</option>
+		<option value="Johor">Johor</option>
+		<option value="Kedah">Kedah</option>
+		<option value="Kelantan">Kelantan</option>
+		<option value="Malacca">Malacca</option>
+		<option value="Negeri Sembilan">Negeri Sembilan</option>
+		<option value="Pahang">Pahang</option>
+		<option value="Pulau Pinang">Pulau Pinang</option>
+		<option value="Perak">Perak</option>
+		<option value="Perlis">Perlis</option>
+		<option value="Sabah">Sabah</option>
 		<option value="Sarawak">Sarawak</option>
+		<option value="Selangor">Selangor</option>
+		<option value="Terengganu">Terengganu</option>
+		<option value="Wilayah Persekutuan - Kuala Lumpur">Wilayah Persekutuan - Kuala Lumpur</option>
+		<option value="Wilayah Persekutuan - Labuan">Wilayah Persekutuan - Labuan</option>
+		<option value="Wilayah Persekutuan - Putrajaya">Wilayah Persekutuan - Putrajaya</option>
+		</option>
 		</select>
 		</div>
 		
 		<div class="apa">
 		<select id="city" name="city" required="required">
 		<option value="" disabled selected>Please choose a City</option>
+		<option value="Johor Bahru">Johor Bahru</option>
+		<option value="Alor Setar">Alor Setar</option>
+		<option value="Kota Bharu">Kota Bharu</option>
+		<option value="Malacca City">Malacca City</option>
+		<option value="Seremban">Seremban</option>
+		<option value="Kuantan">Kuantan</option>
+		<option value="Georgetown">Georgetown</option>
+		<option value="Ipoh">Ipoh</option>
+		<option value="Kangar">Kangar</option>
+		<option value="Shah Alam">Shah Alam</option>
+		<option value="Kota Kinabalu">Kota Kinabalu</option>
+		<option value="Kuala Lumpur">Kuala Terengganu</option>
 		<option value="Kuching">Kuching</option>
-		<option value="Serian">Serian</option>
-		<option value="Kota Samarahan">Kota Samarahan</option>
-		<option value="Sibu">Sibu</option>
+		<option value="Kuala Lumpur">Kuala Lumpur</option>
+		<option value="Victoria">Victoria</option>
+		<option value="Putrajaya">Putrajaya</option>
+		</option>
 		</select>
 		</div>
 		

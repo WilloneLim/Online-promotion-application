@@ -25,6 +25,7 @@ session_start();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" href="css/main.css">
+    
 </head>
 <body>
     <div class="header">
@@ -34,9 +35,6 @@ session_start();
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
-            <li class="nav-item mr-3">
-                    <a class="nav-link" href="proapplication.php">Promoter</a>
-                </li>
             <li class="nav-item">
             <?php
 
@@ -80,7 +78,7 @@ session_start();
   </a>
 </div>
 <div class="container">
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="myBtn" title="Go to class=top">Top</button>
 
 <h1>Our Promotions</h1>
     <hr/>
@@ -228,11 +226,11 @@ session_start();
       })
     </script>
      <script>
-        // When the user scrolls down 20px from the top of the document, show the button
+       
         window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {
-          if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+          if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             document.getElementById("myBtn").style.display = "block";
           } else {
             document.getElementById("myBtn").style.display = "none";
@@ -241,9 +239,9 @@ session_start();
 
         // When the user clicks on the button, scroll to the top of the document
         function topFunction() {
-//          document.body.scrollTop = 0;
-//          document.documentElement.scrollTop = 0;
-            window.scrollTo(0, 620);
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+           // window.scrollTo(0, 620);
         }
     </script>
 </body>

@@ -63,7 +63,7 @@ $chart_data = substr($chart_data, 0, -2);
 <?php
     
     if(isset($_GET['id'])) {
-        $sql = "SELECT * FROM promotion WHERE promo_id =".$_GET['id'];
+        $sql = "SELECT * FROM promotion WHERE promoter_id =".$_GET['id'];
         
         $result = $conn->query($sql) or die($conn->error);
         while($row = $result->fetch_assoc()){

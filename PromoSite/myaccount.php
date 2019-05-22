@@ -67,8 +67,8 @@ session_start();
             <br/>
         </div>
         <div class="col-8 border bg-light ml-2">
-            <h1>My Wishlist</h1>
-            <div class="container p-5">
+            <h1 class="text-center mt-5 mb-0 font-weight-normal">My Wishlist</h1>
+            <div class="container px-5">
               <div class="filter d-flex">
                 <button data-name='*' class="stext active">All</button>
                 <button data-name=".food" class="stext p-2">Food</button>

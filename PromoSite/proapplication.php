@@ -1,5 +1,5 @@
-<?php 
-include 'connect.php'; 
+<?php
+include 'connect.php';
 session_start();
 
 // define variables and set to empty values
@@ -15,12 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($app_name=="" || $app_desp=="" || $app_email=="" || $app_pass=="" || $app_cpass==""){
         $msg .= "<br/><h5 class='col-md-12 text-center bg-info text-white py-2'>Please Fill Every Box.</h5>";
     }else{
-        
+
         if($app_pass != $app_cpass){
             $msg .= "<br/><b>Passwords do not match.</b>";
         }
-        
-        
+
+
         if(!empty($_POST['app_key'])) {
         $checked_count = count($_POST['app_key']);
     //    echo "You have selected following ".$checked_count." option(s): <br/>";
@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }else {
             $msg .= "<br/><b>Please Select A Cover Image.</b>";
-        }  
-        
+        }
+
         if(!isset($_POST['app_profile'])) {
 
             if(file_exists('uploadedimage/' . $_FILES['app_profile']['name'])){
@@ -60,20 +60,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }else {
             $msg .= "<br/><b>Please Select A Profile Image.</b>";
-        }  
+        }
     }
-    
+
     if($msg == ""){
         $app_date = date("Y/m/d");
         $sql = "INSERT INTO application (app_email, app_username, app_password, app_desp, app_profile, app_cover, app_key, app_date) VALUES ('".$app_email."', '".$app_name."', '".$app_pass."', '".$app_desp."', '".$app_profile."', '".$app_cover."', '".$app_key."', '".$app_date."')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('New record added!');</script>";
+            echo "<script>alert('Your application has been submitted!');</script>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-    
+
 }
 
 function test_input($data) {
@@ -108,33 +108,36 @@ function test_input($data) {
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" href="css/main2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+
 </head>
 <body>
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
-            <li class="nav-item">
-            <?php
-                
-                if ( isset( $_SESSION['cust_id'] ) ) {
-                    echo'<a class="nav-link" href="myaccount.php">My Account</a>';
-                } else {
-                    echo '<a class="nav-link" href="signin.php">Log In</a>';
-                }
-                
-             ?>
-            </li>
-          </ul>
+              <li class="nav-item mr-3">
+                    <a class="nav-link" href="proapplication.php">Promoter</a>
+                </li>
+                <li class="nav-item">
+                <?php
+
+                    if ( isset( $_SESSION['cust_id'] ) ) {
+                        echo'<a class="nav-link" href="myaccount.php">My Account</a>';
+                    } else {
+                        echo '<a class="nav-link" href="signin.php">Log In</a>';
+                    }
+
+                 ?>
+                </li>
+            </ul>
             </div>
         </nav>
     </div>
@@ -143,16 +146,16 @@ function test_input($data) {
   <h2 class="text-center mt-5">Join as a promoter!!!</h2>
     <h4 class="text-center font-weight-normal">Build your profile</h4>
     <h4 class="text-center font-weight-normal"><?php echo $msg ?></h4>
-    
+
     <?php if(!empty($response)) { ?>
     <div class="response <?php echo $response["type"]; ?>">
     <?php echo $response["message"]; ?>
     </div>
     <?php }?>
-    
+
     <div class="row mt-5 shadow-lg">
     <div class="col-md-5 border">
-        
+
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
             <br/>
             <h5 class="text-muted font-weight-normal">Please select a cover image</h5>
@@ -166,8 +169,8 @@ function test_input($data) {
               <input type="file" class="custom-file-input" id="customFileB" name="app_profile">
               <label class="custom-file-label" for="customFileB">Choose Profile Image (360 X 360)</label>
             </div>
-            
-            
+
+
             <div class="form-group mt-3">
             <label for="title">Username</label><small class="text-muted ml-2"> Brand Name</small>
             <input class="form-control" id="title" type="text" placeholder="eg. KFC, Lazada" name="app_name" ng-model="title">
@@ -218,14 +221,14 @@ function test_input($data) {
               <input class="form-check-input" type="checkbox" id="cbkey3" value="other" name="app_key[]">
               <label class="form-check-label" for="cbkeyo">Others</label>
             </div>
-            
+
             <br/>
             <br/>
             <p class="text-muted">Satisfied with what you see? Send us your application.</p>
             <button type="submit" class="btn btn-warning btn-block mb-3" name="upload" value="upload">Submit Application</button>
-            
+
         </form>
-        
+
     </div>
     <div class="col-md-7 border px-0">
         <h5 class="bg-light text-black-50 m-0 py-2 pl-2"> Preview:</h5>
@@ -253,10 +256,10 @@ function test_input($data) {
         </div>
     </div>
 </div>
-    
+
 </div>
 </div>
-    
+
 <br/>
 <br/>
 <footer class="page-footer bg-secondary font-small pt-4">
@@ -283,7 +286,7 @@ function test_input($data) {
       </div>
     </div>
   </div>
-    
+
   <!-- Copyright -->
   <div class="footer-copyright text-white bg-dark text-center py-3">© 2019 Copyright:
     <a href="#"> Xense.com</a>
@@ -311,7 +314,7 @@ function test_input($data) {
         $("#customFileA").change(function(){
             preview(this,1);
         });
-    
+
         $("#customFileB").change(function(){
             preview(this,2);
         });
@@ -322,6 +325,6 @@ function test_input($data) {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-</script>    
+</script>
 </body>
 </html>

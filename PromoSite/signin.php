@@ -42,7 +42,15 @@ if ( ! empty( $_POST ) ) {
     }
 ?>
 
+<style>
+    .error{
+     color: red;
+     font-size: 90%;
+     display: table; 
+        margin-left: 260px;
+    }
 
+</style>
 
 
 <!DOCTYPE html>
@@ -92,7 +100,7 @@ if ( ! empty( $_POST ) ) {
         </nav>
     </div>
 
-    <form method="post" name="loginform">
+    <form method="post" name="loginform" onsubmit="return validateForm()">
     <div id="login-box">
 
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
@@ -100,9 +108,11 @@ if ( ! empty( $_POST ) ) {
           <hr>
 
         <div class="input1">
-        <input type="text" name="username" minlength="3" maxlength="15" placeholder="Username" required/>
-        <input type="password" name="password" id ="password" minlength="3" maxlength="15" placeholder="Password" required/>
-        <input type = "checkbox" id="togglePass"> Show password
+        <input type="text" name="username"  placeholder="Username" />
+        <div class="error" id="nameErr"></div>
+        <input type="password" name="password" id ="password"  placeholder="Password" />
+        <div class="error" id="passErr"></div>
+            <label><input type = "checkbox" id="togglePass" value="value"> Show password</label>
         </div>
 
         <input type="submit" name="login_submit" value="Log In"/>
@@ -125,7 +135,40 @@ if ( ! empty( $_POST ) ) {
     </div>
     </form>
 
-
+    <script>
+     function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+     }
+      function validateForm() {
+    // Retrieving the values of form elements 
+    var name = document.loginform.username.value;
+    var pass = document.loginform.password.value;
+    
+    var nameErr = passErr = true;
+    
+    if(name == "") {
+        printError("nameErr", "Please enter your name");
+    } else {
+        printError("nameErr", "");
+        nameErr = false;
+        }
+          
+          
+     if(pass.length == 0){
+         printError("passErr", "Please enter your password");      
+    }else{
+         printError("passErr", "");
+         passErr = false;
+        }     
+         
+    if((nameErr || passErr)  == true) {
+         return false;
+       }
+          
+    };
+    
+    
+    </script>
     <script>
         const togglePass = document.getElementById('togglePass');
 

@@ -26,7 +26,7 @@
 	.ala {
 		display: block;
         margin-bottom: -5px;
-        margin-left: 260px;
+        margin-left: 263px;
         width: 260px;
         height: 32px;
         border: none;
@@ -34,7 +34,7 @@
         font-weight: 400;
         font-size: 15px;
         transition: 0.2s ease;
-        border: 1px solid #AAA;
+        text-transform: uppercase;
 	}
 	
 	
@@ -58,7 +58,7 @@
         -o-transition: height 0.3s ease-in-out;
         -moz-transition: height 0.3s ease-in-out;
         transition: height 0.3s ease-in-out;
-        border: 1px solid #AAA;
+      
 	}
 	
 	
@@ -74,7 +74,7 @@
         font-weight: 400;
         font-size: 15px;
         transition: 0.2s ease;
-        border: 1px solid #AAA;
+     
 	}
 	
 	.apa #city {
@@ -88,9 +88,16 @@
         font-weight: 400;
         font-size: 15px;
         transition: 0.5s ease;
-        border: 1px solid #AAA;
+   
 	}
 	
+    .error {
+     color: red;
+     font-size: 90%;
+     display: table;
+   }    
+        
+
 	</style>
 	
     
@@ -115,27 +122,46 @@
     </div>
     
     <!-- Sign up form -->
-    <form method="post"  action="includes/signupf.php">
+    <form name="signupform" method="post"  action="includes/signupf.php" onsubmit="return validateForm()" >
     <div id="login-box">
         <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
         <h1 class="sign"><b>Sign up</b></h1>
           <hr>
-        <div class="input1">
-        <input type="text" name="cust_username" minlength="3" maxlength="15" placeholder="Username" required/>
-		<input type="text" name="cust_email" placeholder="E-mail" required/>
-        <input type="password" name="password" id="password" minlength="3" maxlength="15" placeholder="Password" required/>
-        <input type="password" name="confirm_password" id="confirm_password"  minlength="3" maxlength="15" placeholder="Confirm Password" required/>
-		
+        <div class= " col-md-12">
+        <div class="row">
+        <input type="text" name="cust_username" placeholder="Username"/>
+        <div class="error" id="nameErr"></div>
+        </div>    
+          
+        <div class="row">
+		<input type="text" name="cust_email" placeholder="E-mail" />
+        <div class="error" id="emailErr"></div>
+        </div>    
+            
+        <div class="row">
+        <input type="password" name="password" id="password"  placeholder="Password" />
+        <div class="error" id="passErr"></div>
+        </div>
+          
+        <div class="row">
+        <input type="password" name="confirm_password" id="confirm_password"  placeholder="Confirm Password" />
+        <div class="error" id="cfmpassErr"></div>
+		</div>
+        
+        <div class="row">
         <div class="apa" >  
-		<select id="country" name="country" required="required">
-		<option value=""  disabled selected>Please select a Country</option>
+		<select id="country" name="country" >
+		<option value="defaultCountry" >Please select a Country</option>
 		<option value="Malaysia">Malaysia</option>
 		</select>
 		</div>
-		
+        <div class="error" id="countryErr"></div>
+		</div>
+        
+        <div class="row">
 		<div class="apa">
-		<select id="state" name="state" required="required">
-		<option value=""  disabled selected>Please choose a State</option>
+		<select id="state" name="state" >
+		<option value="defaultState">Please choose a State</option>
 		<option value="Johor">Johor</option>
 		<option value="Kedah">Kedah</option>
 		<option value="Kelantan">Kelantan</option>
@@ -152,13 +178,15 @@
 		<option value="Wilayah Persekutuan - Kuala Lumpur">Wilayah Persekutuan - Kuala Lumpur</option>
 		<option value="Wilayah Persekutuan - Labuan">Wilayah Persekutuan - Labuan</option>
 		<option value="Wilayah Persekutuan - Putrajaya">Wilayah Persekutuan - Putrajaya</option>
-		</option>
 		</select>
 		</div>
-		
+        <div class="error" id="stateErr"></div>
+		</div>
+            
+        <div class="row">
 		<div class="apa">
-		<select id="city" name="city" required="required">
-		<option value="" disabled selected>Please choose a City</option>
+		<select id="city" name="city" >
+		<option value="defaultCity">Please choose a City</option>
 		<option value="Johor Bahru">Johor Bahru</option>
 		<option value="Alor Setar">Alor Setar</option>
 		<option value="Kota Bharu">Kota Bharu</option>
@@ -175,14 +203,19 @@
 		<option value="Kuala Lumpur">Kuala Lumpur</option>
 		<option value="Victoria">Victoria</option>
 		<option value="Putrajaya">Putrajaya</option>
-		</option>
 		</select>
 		</div>
-		
-		<input  class="ala" type="date" name="cust_bday" placeholder="Date of Birth" required/>
+        <div class="error" id="cityErr"></div>
+		</div>
+          
+        <div class="row">
+		<input  class="ala" type="date" name="cust_bday" placeholder="Date of Birth" />
+        <div class="error" id="dateErr"></div>
         </div>
+        
+        <div class="row">
         <input type="submit" id="signup" name="signup_submit" value="Sign up" />
-  
+        </div>
 
         <div class="text-center1">
          <span class="txt1">
@@ -193,23 +226,118 @@
         
     </div>    
     
-    
+    </div>
     </form>  
     
     <script>
-     var password = document.getElementById("password"), 
-         confirm_password = document.getElementById("confirm_password");
+        
+        
+    function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+        }
+      function validateForm() {
+    // Retrieving the values of form elements 
+    var name = document.signupform.cust_username.value;
+    var email = document.signupform.cust_email.value;
+    var pass = document.signupform.password.value;
+    var passwordcfm = document.signupform.confirm_password.value;
+    var country = document.signupform.country.value;
+    var state = document.signupform.state.value;
+    var city = document.signupform.city.value;
+    var date = document.signupform.cust_bday.value;
+          
+          
+    var nameErr = emailErr = passErr= cfmpassErr = countryErr =  stateErr = cityErr = genderErr = dateErr = true;
+   
+          
+   // Validate name
+    if(name == "") {
+        printError("nameErr", "Please enter your name");
+    } else {
+        var regex = /^[a-zA-Z0-9-_ \s]+$/;                
+        if(regex.test(name) === false) {
+            printError("nameErr", "Please enter a valid name");
+        } else {
+            printError("nameErr", "");
+            nameErr = false;
+        }
+    }
+    
+          
+          // Validate email address
+    if(email == "") {
+        printError("emailErr", "Please enter your email address");
+    } else {
+        // Regular expression for basic email validation
+        var regex = /^\S+@\S+\.\S+$/;
+        if(regex.test(email) === false) {
+            printError("emailErr", "Please enter a valid email address");
+        } else{
+            printError("emailErr", "");
+            emailErr = false;
+        }
+    }
+          
+          //Validate password
+          
+          if(pass.length == 0 || pass.length < 6){
+              printError("passErr", "Password must be at least 6 characters long");
+              
+          }else{
+             printError("passErr", "");
+             passErr = false;
+          }
+            if(pass != passwordcfm){
+              printError("cfmpassErr", "Password doesn't match!");
+              
+          }else{
+             printError("cfmpassErr", "");
+             cfmpassErr = false;
+        }
+          
+          
+          
+           // Validate country
+          if(country == "defaultCountry") {
+              printError("countryErr", "Please select your country");
+          } else {
+              printError("countryErr", "");
+              countryErr = false;
+          }
+          
+          
+          //validate state
+          if(state == "defaultState") {
+            printError("stateErr", "Please select your state");
+          } else {
+              printError("stateErr", "");
+              stateErr = false;
+          }
+          
+          //validate city
+          if(city == "defaultCity") {
+            printError("cityErr", "Please select your city");
+          } else {
+              printError("cityErr", "");
+              cityErr = false;
+          }
+          
+          //validate date
+          if(date == ""){
+            printError("dateErr", "Please select a date");
+          } else {
+              printError("dateErr", "");
+              dateErr = false;
+          }
 
-     function validatePassword(){
-        if(password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Doesn't Match");
-     } else {
-        confirm_password.setCustomValidity('');
-            }
-     }
-
-     password.onchange = validatePassword;
-     confirm_password.onkeyup = validatePassword;
+          
+          
+           if((nameErr || emailErr || passErr || cfmpassErr || countryErr || stateErr || cityErr || dateErr)  == true) {
+           return false;
+           }
+          
+      };
+        
     </script>
        
        

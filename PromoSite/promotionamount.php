@@ -1,4 +1,6 @@
 <?php 
+include 'connect.php'; 
+session_start();
 
 $connect = mysqli_connect("localhost", "root", "", "promoalert");
 $query = "SELECT * FROM transaction";
@@ -51,44 +53,57 @@ $chart_data = substr($chart_data, 0, -2);
         </a>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="signin.php">Log In</a>
+              <a class="nav-link" href="logout.php">Sign Out</a>
             </li>
           </ul>
             </div>
         </nav>
     </div>
     
-    <div class="container" id="promoimg">
-      <div class="row">
-          <div class="col-md-6 image">
-              <img class="img-fluid" src="images/promo5kfc.png" alt="tealiveid">
-          </div>
-          
-          <div class="col-md-6 title" style="text-align:justify;">
-              <h1>20% off Chicken Nuggets and Tenders</h1>
-              <p>Receive up to 20% off for the selected promotion. Price shown reflects discount. Offer ends 8/15/2019 at 11:59 PM GMT. Offer valid for a limited time only.This offer does not apply to gift cards, applicable taxes, or shipping and handling. Offer cannot be combined with any other offers or used on previous purchases.</p>
-          </div> 
-          
-      </div>
-        
-     <div class="row">
-      <h2 align="center"> Promotion Statistics</h2>
-     </div>
-        
-     <br/>
-        
-      <div class="row">
-        <div id="prof" class="col-md-12">
-            <div id="chartLegend" class="line-chart-legend"></div>
-            <div id="chart"></div>   
-        </div>
-        <br/>
-          
-        <div class="col-md-12"><button class="download"   onclick="saveAsPDF();">Download</button> 
-        </div>
-      </div>
-    </div>
+<?php
     
+    if(isset($_GET['id'])) {
+        $sql = "SELECT * FROM promotion WHERE promoter_id =".$_GET['id'];
+        
+        $result = $conn->query($sql) or die($conn->error);
+        while($row = $result->fetch_assoc()){
+            
+ 
+    echo'<div class="container" id="promoimg">';
+      echo'<div class="row">';
+          echo'<div class="col-md-6 image">';
+              echo'<img src="images/'.$row['promo_img'].'" alt="tealiveid" id="imginfo">';
+          echo'</div>';
+          
+          echo'<div class="col-md-6 title" style="text-align:justify;">';
+          echo '<h1>'.$row['promo_title'].'</h1>'; 
+          echo '<br/>';
+          echo'<p>Receive up to 20% off for the selected promotion. Price shown reflects discount. Offer ends 8/15/2019 at 11:59 PM GMT. Offer valid for a limited time only.This offer does not apply to gift cards, applicable taxes, or shipping and handling. Offer cannot be combined with any other offers or used on previous purchases.</p>';
+          echo'</div>'; 
+          
+      echo'</div>';
+     echo '<hr class="w-80 mt-5" />';
+     echo'<div class="col-md-12">';
+      echo'<h2 align="center" class="graphtitle"> Promotion Statistics</h2>';
+     echo '<hr class="w-80 mt-5" />';
+     echo'</div>';
+        
+     echo'<br/>';
+        
+      echo'<div class="row">';
+        echo'<div id="prof" class="col-md-12">';
+            echo'<div id="chartLegend" class="line-chart-legend"></div>';
+            echo'<div id="chart"></div>';  
+        echo'</div>';
+        echo'<br/>';
+          
+        echo'<div class="col-md-12"><button class="download"   onclick="saveAsPDF();">Download</button>'; 
+        echo'</div>';
+      echo'</div>';
+    echo'</div>';
+     }
+ }       
+?>     
      <script>
       var lineChart = Morris.Line({
         element : 'chart',
@@ -116,13 +131,12 @@ $chart_data = substr($chart_data, 0, -2);
    
          function saveAsPDF() {
     html2canvas(document.getElementById('prof')).then(canvas => {
-        var w = document.getElementById("chart").offsetWidth;
-        var h = document.getElementById("chart").offsetHeight;
+        
 
         var img = canvas.toDataURL("image/png", 1);
 
         var doc = new jsPDF('L', 'pt', [canvas.width,canvas.height]);
-        doc.addImage(img, 'PNG', 10, 10, w, h);
+        doc.addImage(img, 'PNG', 10, 10, canvas.width,canvas.height);
         doc.save('Statistics.pdf');
     }).catch(function(e) {
         console.log(e.message);

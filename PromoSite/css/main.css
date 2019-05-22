@@ -136,7 +136,6 @@ input[type="submit"]:active {
 
 .text-center1 {
   text-align: center;
-  margin-right: 12px;
   margin-top: -20px;
 }
 
@@ -234,9 +233,12 @@ button.social-signin.google {
 }
 
 .title{
-   margin: auto;
+   padding: 40px 50px 0px 50px;
 }
 
+.graphtitle{
+      
+}
 
 .search{
     margin-top: 5%;
@@ -320,6 +322,7 @@ button.social-signin.google {
 /*-- promotion detail --*/
 #imginfo{
     margin-top: 20px;
+    width: 490px;
 }
 
 #promodetail{
@@ -424,8 +427,8 @@ p.uppercase{
 }
 
 .line-chart-legend .legend-color {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     margin: 3px 5px;
     display: inline-block;
 }

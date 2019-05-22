@@ -4,7 +4,7 @@ if(isset($_POST['search']))
 {
 
 	 $valueToSearch = $_POST['valueToSearch'];
-	 $query = "SELECT * FROM `promotion` WHERE CONCAT(`promo_id`, `promo_img`, `promo_title`) LIKE '%".$valueToSearch."%'";
+	 $query = "SELECT * FROM `promotion` WHERE CONCAT(`promo_id`) LIKE '%".$valueToSearch."%'";
      $search_result = filterTable($query);
 }else {
 	 $query = "SELECT * FROM `promotion`";
@@ -48,7 +48,7 @@ function filterTable($query)
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
@@ -63,7 +63,7 @@ function filterTable($query)
     <div class="container">
       <div class="row">
           <div class="col-md-6 image">
-              <img class="img-fluid" src="images/promo1.png" alt="tealiveid" style="margin-top:20px;">
+              <img class="img-fluid" src="images/profilekfc.png" alt="tealiveid" style="margin-top:20px;">
           </div>
           <div class="col-md-6 title" style="margin-top:20px;">
               <p><b>Kentucky Fried Chicken</b></p>
@@ -90,12 +90,12 @@ function filterTable($query)
             <th>Promotion Title</th>
         </tr>
         </thead>
-        <?php while($promotion = mysqli_fetch_array($search_result)):?>
+        <?php while($row  = mysqli_fetch_array($search_result)):?>
         
         <tr>
-            <td><?php echo $promotion['promo_id'];?></td>
-            <td><a href="#"><img src="<?= $promotion['promo_img'] ?>" class="img-responsive" id="images" alt="product" style="width:220px;"/></a></td>
-            <td><?php echo $promotion['promo_title'];?></td>
+            <td><?php echo $row['promo_id'];?></td>
+            <td><a href="#"><?php echo '<img src="images/'.$row['promo_img'].'" alt="tealiveid" id="imginfo" style="width:300px;height:150px">'; ?></a></td>
+            <td><?php echo $row['promo_title'];?></td>
         </tr>
         <?php endwhile; ?>
     </table>
@@ -104,35 +104,5 @@ function filterTable($query)
       </form>
     </div>
         
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-<script>
-      var $grid = $('.grid').isotope({
-        itemSelector: '.grid-item',
-        layoutMode: 'fitRows',
-        getSortData: {
-          name: function (element) {
-            return $(element).text();
-          }
-        }
-      });
-      $('.filter button').on("click", function () {
-        var value = $(this).attr('data-name');
-          $grid.isotope({
-            filter: value
-          });
-        $('.filter button').removeClass('active');
-        $(this).addClass('active');
-      })
-      $('.sort button').on("click", function () {
-        var value = $(this).attr('data-name');
-        $grid.isotope({
-          sortBy: value
-        });
-        $('.sort button').removeClass('active');
-        $(this).addClass('active');
-      })
-    </script>
 </body>
 </html>

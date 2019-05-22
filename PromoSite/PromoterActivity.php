@@ -7,7 +7,7 @@ if(isset($_POST['search']))
 {
 
 	 $valueToSearch = $_POST['valueToSearch'];
-	 $query = "SELECT * FROM `promotion` WHERE CONCAT(`promo_id`, `promo_title`) LIKE '%".$valueToSearch."%'";
+	 $query = "SELECT * FROM `promotion` WHERE CONCAT(`promo_id`) LIKE '%".$valueToSearch."%'";
      $search_result = filterTable($query);
 }else {
 	 $query = "SELECT * FROM `promotion`";
@@ -164,12 +164,12 @@ echo '</div>';
 	
 	
 				 echo '<td>';
-				 echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
+				 echo '<a href="promotionamount.php?id='.$row['promoter_id'].'">';
 				 echo $nrow['promo_id'];
 				 echo '</a>';
 				 echo '</td>';
 				 echo '<td>';
-				 echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
+				 echo '<a href="promotionamount.php?id='.$row['promoter_id'].'">';
 				 echo $nrow['promo_title'];
 				 echo '</a>';
 				 echo '</td>';

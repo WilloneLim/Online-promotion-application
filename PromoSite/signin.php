@@ -25,7 +25,7 @@ if ( ! empty( $_POST ) ) {
 
             if(is_array($rowb)) {
             $_SESSION["pro_id"] = $rowb['promoter_id'];
-            header("Location:promotionamount.html");
+            header("Location:promoter.php");
             } else {
 
                 if(is_array($rowc)) {

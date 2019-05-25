@@ -176,12 +176,32 @@ echo '</div>';
 				 echo '<td>';
 				 echo 'To be added';
 				 echo '</td>';
+			          echo '<td>';
+				 echo '<a class="btn btn-success text-white w-100" >';
+				 echo 'Edit';
+				 echo '</a>';
+				 echo '</td>';
+				 echo '<td>';
+				 echo '<a href="javascript:delete_id(<?php echo' .$row['promoter_id'].';?>)" class="btn btn-danger text-white w-100 remove" id="del_click">';
+				 echo 'Delete';
+				 echo '</a>';
+				 echo '</td>';
 			  echo '</tr>';
 		  echo  '<?php endwhile; ?>';
 		  echo '</table>';
 		  echo '</div>';
 		  echo '</form>';
 		  echo '</div>';
+			
+	           echo '<script type="text/javascript">';
+echo 'function delete_id(id)
+{
+     if(confirm("Sure To Remove This Record ?"))
+     {
+        window.location.href="dep.php?del_id="+id;
+     }
+}';
+echo '</script>';
 		  
 		}
 	}

@@ -50,10 +50,13 @@ function filterTable($query)
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="adminindex.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
+	    <li class="nav-item">
+              <a class="nav-link" href="applicantview.php">View Applications</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="signin.php">Sign Out</a>
             </li>
@@ -89,10 +92,12 @@ function filterTable($query)
 		   </thead>
 		   <?php while($row = mysqli_fetch_array($search_result)):?>
 
-		      <tr class="table-row" data-href="PromoterActivity.php?id=<?php echo $row['promoter_id'];?>">
+		      <tr>
 			     <td><a href="PromoterActivity.php"><?php echo $row['promoter_id'];?></a></td>
 				 <td><a href="PromoterActivity.php?id=<?php echo $row['promoter_id'];?>" ><?php echo $row['promoter_username'];?></td>
 				 <td>To be added</td>
+			         <td><a class="btn btn-success text-white w-100" > Edit </a></td>
+				 <td><a href="javascript:delete_id(<?php echo $row['promoter_id'];?>)" class="btn btn-danger text-white w-100 remove" id="del_click">Delete</a></td>
 			  </tr>
 		   <?php endwhile; ?>
 	   </table>
@@ -140,6 +145,16 @@ function filterTable($query)
 		 
 	 });
 	</script>
+	
+	<script type="text/javascript">
+function delete_id(id)
+{
+     if(confirm('Sure To Remove This Record ?'))
+     {
+        window.location.href='delete.php?del_id='+id;
+     }
+}
+</script>
     
 </body>
 </html>

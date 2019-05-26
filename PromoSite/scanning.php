@@ -6,12 +6,28 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <link rel="icon" type="image/png" href="images/Logo.png"/>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css.map">
+    <link rel="stylesheet" href="css/bootstrap.css.map">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css.map">
+    <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
+  <body class= "bg-dark">
 <!--    <a href="https://github.com/schmich/instascan"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>-->
     <div id="app">
+    <div >
       <div class="sidebar">
-        <section class="cameras">
+        <section class="cameras mx-5 my-2 text-light">
           <h2>Cameras</h2>
           <ul>
             <li v-if="cameras.length === 0" class="empty">No cameras found</li>
@@ -23,6 +39,7 @@
             </li>
           </ul>
         </section>
+<!--
         <section class="scans">
           <h2>Scans</h2>
           <ul v-if="scans.length === 0">
@@ -32,10 +49,12 @@
             <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>
           </transition-group>
         </section>
+-->
       </div>
       <div class="preview-container">
-        <video id="preview"></video>
+        <video id="preview" class="d-block mx-auto my-3 border"></video>
       </div>
+    </div>
     </div>
     <script>
       var app = new Vue({
@@ -77,7 +96,7 @@
           }
         });
 
-      
+
     </script>
   </body>
 </html>

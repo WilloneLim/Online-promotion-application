@@ -299,17 +299,41 @@ function test_input($data) {
             if (input.files && input.files[0]) {
                 var freader = new FileReader();
                 freader.onload = function (e) {
-                    if(num == 1){
-                        $("#previewc").show();
-                        $('#previewc').attr('src', e.target.result);
-                    } else {
-                        $("#previewp").show();
-                        $('#previewp').attr('src', e.target.result);
-                    }
+
+                    var img = new Image;
+
+                    img.onload = function() {
+
+                        if(num == 1){
+                            if(img.width==820 || img.height == 315){
+                                $("#previewc").show();
+                                $('#previewc').attr('src', e.target.result);
+                            }else{
+                                alert ('Cover image must be 820px x 315px');
+                                $("#customFileA").val(null);
+                                $("#previewc").attr("src","images/defaultcover.png");
+
+                            }
+                        }else{
+                            if(img.width==360 || img.height == 360){
+                                $("#previewp").show();
+                                $('#previewp').attr('src', e.target.result);
+                            }else{
+                                alert ('Profile image must be 360px x 360px');
+                                $("#customFileB").val(null);
+                                $("#previewp").attr("src","images/defaultprofile.png");
+
+                            }
+                        }
+                    };
+
+                    img.src = freader.result;
+
                 }
                 freader.readAsDataURL(input.files[0]);
             }
         }
+
 
         $("#customFileA").change(function(){
             preview(this,1);

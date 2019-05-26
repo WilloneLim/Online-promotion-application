@@ -2,6 +2,8 @@
 include 'connect.php';
 session_start();
 
+$message ="";
+
 if ( ! empty( $_POST ) ) {
     if (isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
         // Getting submitted user data from database
@@ -25,7 +27,7 @@ if ( ! empty( $_POST ) ) {
 
             if(is_array($rowb)) {
             $_SESSION["pro_id"] = $rowb['promoter_id'];
-            header("Location:promoter.php");
+            header("Location:promoter.php?id=".$_SESSION["pro_id"]);
             } else {
 
                 if(is_array($rowc)) {
@@ -36,8 +38,6 @@ if ( ! empty( $_POST ) ) {
                 }
             }
         }
-
-
         }
     }
 ?>
@@ -46,7 +46,7 @@ if ( ! empty( $_POST ) ) {
     .error{
      color: red;
      font-size: 90%;
-     display: table; 
+     display: table;
         margin-left: 260px;
     }
 
@@ -107,6 +107,7 @@ if ( ! empty( $_POST ) ) {
         <h1 class="sign"><b>Log In</b></h1>
           <hr>
 
+
         <div class="input1">
         <input type="text" name="username"  placeholder="Username" />
         <div class="error" id="nameErr"></div>
@@ -114,7 +115,7 @@ if ( ! empty( $_POST ) ) {
         <div class="error" id="passErr"></div>
             <label><input type = "checkbox" id="togglePass" value="value"> Show password</label>
         </div>
-
+<p class="text-center text-danger p-0 m-0"><?php echo $message; ?></p>
         <input type="submit" name="login_submit" value="Log In"/>
 
         <div class="seperator"><i>OR</i></div>
@@ -140,34 +141,34 @@ if ( ! empty( $_POST ) ) {
     document.getElementById(elemId).innerHTML = hintMsg;
      }
       function validateForm() {
-    // Retrieving the values of form elements 
+    // Retrieving the values of form elements
     var name = document.loginform.username.value;
     var pass = document.loginform.password.value;
-    
+
     var nameErr = passErr = true;
-    
+
     if(name == "") {
         printError("nameErr", "Please enter your name");
     } else {
         printError("nameErr", "");
         nameErr = false;
         }
-          
-          
+
+
      if(pass.length == 0){
-         printError("passErr", "Please enter your password");      
+         printError("passErr", "Please enter your password");
     }else{
          printError("passErr", "");
          passErr = false;
-        }     
-         
+        }
+
     if((nameErr || passErr)  == true) {
          return false;
        }
-          
+
     };
-    
-    
+
+
     </script>
     <script>
         const togglePass = document.getElementById('togglePass');

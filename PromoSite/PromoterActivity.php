@@ -33,7 +33,7 @@ function filterTable($query)
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0" />
     <!-- Bootstrap -->
-    
+
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -48,11 +48,11 @@ function filterTable($query)
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <!--<link rel="stylesheet" href="css/main.css">-->
-	
+
     <style>
 	.data {
 		list-style-type: none;
-		
+
 	}
 	</style>
 </head>
@@ -77,14 +77,14 @@ function filterTable($query)
             </div>
         </nav>
     </div>
-	
-	
+
+
 <?php
-    
+
      if(isset($_GET['id'])) {
-		 
+
 		 $sql = "SELECT * FROM promoter WHERE promoter_id = ".$_GET['id'];
-		 
+
 		 $result = $conn->query($sql) or die($conn->error);
 		while($row = $result->fetch_assoc()) {
          echo '<div class="container">';
@@ -94,7 +94,7 @@ function filterTable($query)
                  echo '<div class="col-sm-4">';
                  echo '</br>';
                  echo '</br>';
-				 echo '<img src="images/'.$row['promoter_profile'].'" alt="tealiveid" id="imginfo" style="width:300px;height:200px">';
+				 echo '<img src="images/'.$row['promoter_profile'].'" alt="tealiveid" id="imginfo" class="w-75">';
 				 echo '</div>';
                  echo '<div class="col-sm-6">';
 	             echo '<hr class="w-100 mt-5" />';
@@ -111,7 +111,7 @@ function filterTable($query)
 				 echo 'Average Claims:';
 				 echo '</li>';
 				 echo '</ul>';
- 
+
                  echo '</div>';
                  echo '<div class="col-sm-2">';
                  echo  '<a href="adminindex.php"class="btn btn-primary float-right mb-3">';
@@ -119,15 +119,15 @@ function filterTable($query)
                  echo '</a>';
 
                  echo '</div>';
-  
+
                  echo '</div>';
                  echo '</div>';
- echo '</br>';  
- 
+ echo '</br>';
+
  echo '<form action="PromoterActivity.php" method="POST">';
- //Search Bar 
-	
-echo   '<a href="CreatePromotion.php" class="btn btn-primary float-right mb-3">';
+ //Search Bar
+
+echo   '<a href="addpromoadmin.php?id='.$_GET['id'].'" class="btn btn-primary float-right mb-3">';
 echo '+';
 echo '</a>';
 
@@ -153,16 +153,16 @@ echo '</div>';
 	echo	' <?php while($row = mysqli_fetch_array($search_result)):?>';
 
 	echo	       '<tr class="table-row" data-href="">';
-	
+
 	echo '<a href="Promoterview.php?id='.$row['promoter_id'].'">';
-	
+
 	$sql1 = "SELECT * FROM promotion WHERE promoter_id =".$_GET['id'];
 	$result1 = $conn->query($sql1);
-	
+
 	if ($result1->num_rows > 0) {
 		while($nrow = $result1->fetch_assoc()){
-	
-	
+
+
 				 echo '<td>';
 				 echo '<a href="promotionamount.php?id='.$row['promoter_id'].'">';
 				 echo $nrow['promo_id'];
@@ -177,12 +177,12 @@ echo '</div>';
 				 echo 'To be added';
 				 echo '</td>';
 			          echo '<td>';
-				 echo '<a class="btn btn-success text-white w-100" >';
+				 echo '<a class="btn btn-success text-white w-100 disabled" >';
 				 echo 'Edit';
 				 echo '</a>';
 				 echo '</td>';
 				 echo '<td>';
-				 echo '<a href="javascript:delete_id(<?php echo' .$row['promoter_id'].';?>)" class="btn btn-danger text-white w-100 remove" id="del_click">';
+				 echo '<a href="javascript:delete_id(<?php echo' .$row['promoter_id'].';?>)" class="btn btn-danger text-white w-100 remove disabled" id="del_click">';
 				 echo 'Delete';
 				 echo '</a>';
 				 echo '</td>';
@@ -192,7 +192,7 @@ echo '</div>';
 		  echo '</div>';
 		  echo '</form>';
 		  echo '</div>';
-			
+
 	           echo '<script type="text/javascript">';
 echo 'function delete_id(id)
 {
@@ -202,12 +202,12 @@ echo 'function delete_id(id)
      }
 }';
 echo '</script>';
-		  
+
 		}
 	}
 	 }
 	 }
-		 
+
 ?>
 </body>
 </html>

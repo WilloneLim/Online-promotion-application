@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_pass = test_input($_POST["app_pass"]);
     $app_sdate = test_input($_POST["app_sdate"]);
     $app_edate = test_input($_POST["app_edate"]);
-    
+
     if($app_desp=="" || $app_email=="" || $app_pass==""|| $app_title=="" || $app_sdate=="" || $app_edate==""){
         $msg .= "<br/><h5 class='col-md-12 text-center bg-info text-white py-2'>Please Fill Every Box.</h5>";
     }else{
@@ -53,19 +53,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(file_exists('uploadedpromotion/' . $_FILES['app_cover']['name'])){
                 $msg .= "<br/><b>File with that name already exists.</b>";
             }else{
-                
+
             $app_cover = $_FILES['app_cover']['name'];
             }
 
         }else {
             $msg .= "<br/><b>Please Select A Promotional Image.</b>";
         }
-        
+
         if($app_email != $pro_email || $app_pass != $pro_password){
             echo $app_email."=".$pro_email." / ".$app_pass."=".$pro_password;
             $msg .= "<br/><b>Email or Password Incorrect.</b>";
         }
-        
+
     }
 
     if($msg == ""){
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Your application has been submitted!');</script>";
             $destFile = "uploadedpromotion/".$_FILES['app_cover']['name'];
             move_uploaded_file( $_FILES['app_cover']['tmp_name'], $destFile );
-            
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -124,11 +124,11 @@ function test_input($data) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    
-    
+
+
     <style>
     #description {
       white-space: pre-line;
@@ -163,7 +163,7 @@ function test_input($data) {
             <a href="#"><img class="img-fluid p-2 mt-2" id="previewc" src="images/defaultpromotionimg.png" alt="IMG-PRODUCT"></a>
             <h5 class="pt-2 pl-3">{{title}}</h5>
             <p class="pl-3">
-                <?php 
+                <?php
                 if($pro_name ==""){
                     echo "";
                 }else{
@@ -177,8 +177,8 @@ function test_input($data) {
             <br/>
         </div>
     </div>
-    
-    
+
+
     <div class="col-md-6 pb-5 border">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?id=".$_GET['id'];?>" enctype="multipart/form-data">
             <br/>
@@ -204,9 +204,9 @@ function test_input($data) {
             <label for="datepickerb">End Date</label>
             <input id="datepickerb" name="app_edate" width="276" placeholder="" />
             </div>
-            
+
             <p id="display"></p>
-            
+
             <br/>
             <br/>
             <hr/>
@@ -223,7 +223,7 @@ function test_input($data) {
             <hr/>
             <br/>
             <br/>
-            
+
             <br/>
             <h5 class="font-weight-normal">Keywords</h5>
             <hr class="w-50 ml-0 mt-1" />
@@ -259,20 +259,35 @@ function test_input($data) {
 
         </form>
     </div>
-    
-</div>   
+
 </div>
 </div>
-    
+</div>
+
 <script>
     function preview(input,num) {
+        var chk = 0;
             if (input.files && input.files[0]) {
-                var freader = new FileReader();
+                var freader = new FileReader;
+
                 freader.onload = function (e) {
-                    if(num == 1){
-                        $("#previewc").show();
-                        $('#previewc').attr('src', e.target.result);
-                    }
+
+                    var img = new Image;
+
+                    img.onload = function() {
+                        if(img.width==1200 || img.height == 630){
+                            $("#previewc").show();
+                            $('#previewc').attr('src', e.target.result);
+                        }else{
+                            alert ('Promotional image must be 1200px x 630px');
+                            $("#customFileA").val(null);
+                            $("#previewc").attr("src","images/defaultpromotionimg.png");
+
+                        }
+                    };
+
+                    img.src = freader.result;
+
                 }
                 freader.readAsDataURL(input.files[0]);
             }
@@ -281,6 +296,7 @@ function test_input($data) {
         $("#customFileA").change(function(){
             preview(this,1);
         });
+
 </script>
 <script>
     // Add the name of the file appear on select

@@ -1,15 +1,15 @@
 <?php
-include 'connect.php'; 
+include 'connect.php';
 session_start();
 
 if(isset($_POST['search']))
 {
-	
+
 	 $valueToSearch = $_POST['valueToSearch'];
-	 $query = "SELECT * FROM `application` WHERE CONCAT(`app_id`, `app_username`) LIKE '%".$valueToSearch."%'";
-     $search_result = filterTable($query);	 
+	 $query = "SELECT * FROM `applypromo` WHERE CONCAT(`proapp_id`, `promoter_id`, 'proapp_title') LIKE '%".$valueToSearch."%'";
+     $search_result = filterTable($query);
 }else {
-	 $query = "SELECT * FROM `application`";
+	 $query = "SELECT * FROM `applypromo`";
 	 $search_result = filterTable($query);
 }
 
@@ -33,7 +33,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0" />
     <!-- Bootstrap -->
-    
+
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -47,7 +47,7 @@ $conn->close();
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -58,10 +58,19 @@ $conn->close();
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="adminindex.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Applications
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="promoapplicantview.php">Promotions</a>
+                <a class="dropdown-item" href="applicantview.php">Promoters</a>
+              </div>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="signin.php">Sign Out</a>
             </li>
@@ -69,18 +78,17 @@ $conn->close();
             </div>
         </nav>
     </div>
-    
+
 <div class="container">
 <hr class="w-75 mt-5 "/>
-<h1 class="text-center mb-2">New Applications</h1>
+<h1 class="text-center mb-2">New Promotions Applications</h1>
 <hr class="w-75"/>
-    
+
 <form action="applicantview.php" method="POST">
-<a href="PromoterAddForm.html" class="btn btn-primary float-right mb-3">+</a>
-  
-      
+
+
 <div class="input-group mb-3">
-  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #ID, or #Username" aria-describedby="basic-addon2">
+  <input type="text" class="form-control" name="valueToSearch" placeholder="Search for #ID, or #Title" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
   </div>
@@ -90,31 +98,45 @@ $conn->close();
        <table class="table table-striped table-hover">
 	       <thead>
 		       <tr>
-			       <th>Application ID</th>
+			       <th>ID</th>
 				   <th>Applicant Name</th>
-				   <th>Email</th>
+				   <th>Applicant promotion</th>
                    <th></th>
                    <th></th>
 			   </tr>
 		   </thead>
 		   <?php while($row = mysqli_fetch_array($search_result)):?>
-		   
-		      <tr id="<?php echo $row['app_id'];?>">
-			     <td><?php echo $row['app_id'];?></td>
-				 <td><?php echo $row['app_username'];?></td>
-				 <td><?php echo $row['app_email'];?></td>
+
+           <?php
+//            $sqla = "SELECT * FROM promoter WHERE promoter_id ='".$row['promoter_id']."'";
+//            $resulta = $conn->query($sqla);
+//            $pro_name ="";
+//
+//            if ($resulta->num_rows > 0) {
+//                // output data of each row
+//                while($rowa = $resulta->fetch_assoc()) {
+//                    $pro_name = $rowa['promoter_username'];
+//
+//                }
+//            }
+            ?>
+
+		      <tr id="<?php echo $row['proapp_id'];?>">
+			     <td><?php echo $row['proapp_id'];?></td>
+				 <td><?php echo $row['promoter_id'];?></td>
+				 <td><?php echo $row['proapp_title'];?></td>
 				 <td><a class="btn btn-success text-white w-100"> View </a></td>
-				 <td><a href="javascript:delete_id(<?php echo $row['app_id'];?>)" class="btn btn-danger text-white w-100 remove" id="del_click">Delete</a></td>
+				 <td><a href="javascript:delete_id(<?php echo $row['proapp_id'];?>)" class="btn btn-danger text-white w-100 remove" id="del_click">Delete</a></td>
 			  </tr>
-           
+
 		   <?php endwhile; ?>
 	   </table>
   </div>
  </form>
-    
-    
-</div>    
-      
+
+
+</div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>

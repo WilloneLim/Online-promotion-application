@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2019 at 07:22 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: May 17, 2019 at 01:53 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -70,60 +72,6 @@ INSERT INTO `application` (`app_id`, `app_email`, `app_username`, `app_password`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `applypromo`
---
-
-CREATE TABLE `applypromo` (
-  `proapp_id` int(50) NOT NULL,
-  `promoter_id` int(50) NOT NULL,
-  `proapp_title` varchar(100) NOT NULL,
-  `proapp_desp` varchar(300) NOT NULL,
-  `proapp_sdate` varchar(255) NOT NULL,
-  `proapp_edate` varchar(255) NOT NULL,
-  `proapp_img` varchar(100) NOT NULL,
-  `proapp_key` varchar(300) NOT NULL,
-  `proapp_date` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `applypromo`
---
-
-INSERT INTO `applypromo` (`proapp_id`, `promoter_id`, `proapp_title`, `proapp_desp`, `proapp_sdate`, `proapp_edate`, `proapp_img`, `proapp_key`, `proapp_date`) VALUES
-(1, 7, 'SHIPS', '1.2\r\n3.4', '', '', 'Ship.jpg', ' drink', '2019/05/22'),
-(2, 8, 'SHIPS', '1. Buy 1 per claim\r\n2. Promotion cant be used with available discounts', '', '', 'star.jpg', ' shoe', '2019/05/22'),
-(3, 8, 'shippw', '1. ienqeinieqnc\r\n2. ecnwecniencew', '', '', 'awaits.jpg', ' shoe', '2019/05/22'),
-(4, 7, 'shippw', '1.2.3.4', '2019/05/23', '2019/05/31', 'summer.jpg', ' drink', '2019/05/23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `claims`
---
-
-CREATE TABLE `claims` (
-  `tran_id` int(255) NOT NULL,
-  `cust_id` int(50) NOT NULL,
-  `promo_id` int(50) NOT NULL,
-  `tran_sale` decimal(65,2) NOT NULL,
-  `tran_date` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `claims`
---
-
-INSERT INTO `claims` (`tran_id`, `cust_id`, `promo_id`, `tran_sale`, `tran_date`) VALUES
-(5, 1, 4, '80.00', '2019/05/22'),
-(6, 1, 4, '10.00', '2019/05/22'),
-(7, 1, 4, '15.30', '2019/05/22'),
-(8, 1, 4, '15.30', '2019/05/22'),
-(9, 1, 4, '15.30', '2019/05/22'),
-(10, 1, 4, '12.35', '2019/05/22');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `customer`
 --
 
@@ -135,19 +83,18 @@ CREATE TABLE `customer` (
   `cust_country` varchar(100) NOT NULL,
   `cust_city` varchar(100) NOT NULL,
   `cust_state` varchar(100) NOT NULL,
-  `cust_bday` varchar(50) NOT NULL,
-  `cust_profile` varchar(255) NOT NULL
+  `cust_bday` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `cust_username`, `cust_email`, `cust_password`, `cust_country`, `cust_city`, `cust_state`, `cust_bday`, `cust_profile`) VALUES
-(1, 'jocelyn123', 'jocelyn@gmail.com', 'helloworld', 'Malaysia', 'Kuching', 'Sarawak', '1998-08-28', ''),
-(2, 'alex321', 'alex@hotmail.com', 'testtest', 'Malaysia', 'Kuching', 'Sarawak', '1993-10-09', ''),
-(5, 'Anais', 'itsbabyanais@gmail.com', '$2y$10$yRAqhKcI', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-26', ''),
-(6, 'Darwin', 'dwin@gmail.com', '$2y$10$0qO2TidS', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-15', '');
+INSERT INTO `customer` (`cust_id`, `cust_username`, `cust_email`, `cust_password`, `cust_country`, `cust_city`, `cust_state`, `cust_bday`) VALUES
+(1, 'jocelyn123', 'jocelyn@gmail.com', 'helloworld', 'Malaysia', 'Kuching', 'Sarawak', '1998-08-28'),
+(2, 'alex321', 'alex@hotmail.com', 'testtest', 'Malaysia', 'Kuching', 'Sarawak', '1993-10-09'),
+(5, 'Anais', 'itsbabyanais@gmail.com', '$2y$10$yRAqhKcI', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-26'),
+(6, 'Darwin', 'dwin@gmail.com', '$2y$10$0qO2TidS', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-15');
 
 -- --------------------------------------------------------
 
@@ -215,31 +162,6 @@ INSERT INTO `promotion` (`promo_id`, `promo_img`, `promo_title`, `promo_desc`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `statistics`
---
-
-CREATE TABLE `statistics` (
-  `id` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
-  `purchase` int(11) NOT NULL,
-  `sale` int(11) NOT NULL,
-  `profit` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `statistics`
---
-
-INSERT INTO `statistics` (`id`, `year`, `purchase`, `sale`, `profit`) VALUES
-(1, 2014, 2444, 3521, 3555),
-(2, 2015, 2111, 2345, 2545),
-(3, 2016, 2552, 1233, 757),
-(4, 2017, 6767, 5656, 7777),
-(5, 2018, 4324, 556, 442);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transaction`
 --
 
@@ -286,18 +208,6 @@ ALTER TABLE `application`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Indexes for table `applypromo`
---
-ALTER TABLE `applypromo`
-  ADD PRIMARY KEY (`proapp_id`);
-
---
--- Indexes for table `claims`
---
-ALTER TABLE `claims`
-  ADD PRIMARY KEY (`tran_id`);
-
---
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -316,12 +226,6 @@ ALTER TABLE `promotion`
   ADD PRIMARY KEY (`promo_id`);
 
 --
--- Indexes for table `statistics`
---
-ALTER TABLE `statistics`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -330,36 +234,32 @@ ALTER TABLE `statistics`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
   MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `applypromo`
---
-ALTER TABLE `applypromo`
-  MODIFY `proapp_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `claims`
---
-ALTER TABLE `claims`
-  MODIFY `tran_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `cust_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `promoter`
 --
 ALTER TABLE `promoter`
   MODIFY `promoter_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
   MODIFY `promo_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

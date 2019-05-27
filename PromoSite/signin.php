@@ -115,14 +115,14 @@ if ( ! empty( $_POST ) ) {
           
         </div>   
         <hr/>
-        <div class= "col-md-8 d-block mx-auto">
+        <div class= "col-md-5 d-block mx-auto">
         <div class="form-group">
         <input type="text" name="username" class="form-control" placeholder="Username"/>
         <div class="error" id="nameErr"></div>
         </div>    
           
         <div class="form-group">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
         <div class="error" id="passErr"></div>
         <label><input type = "checkbox" id="togglePass" value="value"> Show password</label>
         </div>
@@ -130,7 +130,7 @@ if ( ! empty( $_POST ) ) {
         
         <p class="text-center text-danger p-0 m-0"><?php echo $message; ?></p>
             
-         <input type="submit" name="login_submit" class="btn btn-primary d-block mt-4 mx-auto col-md-9 border" value="Log In" />
+         <input type="submit" name="login_submit" class="btn btn-primary d-block mt-4 mx-auto col-md-12 border" value="Log In" />
         
             
         <div class="seperator"><i>OR</i></div>

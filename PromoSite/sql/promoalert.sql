@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2019 at 07:22 AM
+-- Generation Time: May 27, 2019 at 10:19 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_id` int(50) NOT NULL,
   `admin_username` varchar(100) NOT NULL,
-  `admin_password` varchar(100) NOT NULL,
+  `admin_password` varchar(255) NOT NULL,
   `admin_email` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_password`, `admin_email`) VALUES
-(1, 'benny', 'benny', 'benny@email.com');
+(1, 'benny', '$2y$10$Z44kY/Rz/HlH63Fg/Jam4OejTAbYpGUzC5v.as0PsPdp6.wF1tofG', 'benny@email.com');
 
 -- --------------------------------------------------------
 
@@ -64,8 +64,8 @@ CREATE TABLE `application` (
 
 INSERT INTO `application` (`app_id`, `app_email`, `app_username`, `app_password`, `app_desp`, `app_profile`, `app_cover`, `app_key`, `app_date`) VALUES
 (1, 'we@admin.com', 'Wilson and co', 'nothinghere', 'desption', 'some.png', 'cover.png', 'key.png', '2019/09/10'),
-(3, 'ewfwef@gmail.com', 'Rinchinfs', 'rerere', 'Desppint', 'kokok.png', 'cove.png', 'keykay', '2018/07/12'),
-(4, 'jojojo@gmail.com', 'Square', '123', 'Cool stuff', '5.jpg', 'explore.jpg', ' drink clothes', '2019/05/16');
+(4, 'jojojo@gmail.com', 'Square', '123', 'Cool stuff', '5.jpg', 'explore.jpg', ' drink clothes', '2019/05/16'),
+(5, 'thesquare@gmail.com', 'Explode', '123456', 'We sell stuff', '1.png', '6.png', ' clothes', '2019/05/27');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,8 @@ INSERT INTO `applypromo` (`proapp_id`, `promoter_id`, `proapp_title`, `proapp_de
 (1, 7, 'SHIPS', '1.2\r\n3.4', '', '', 'Ship.jpg', ' drink', '2019/05/22'),
 (2, 8, 'SHIPS', '1. Buy 1 per claim\r\n2. Promotion cant be used with available discounts', '', '', 'star.jpg', ' shoe', '2019/05/22'),
 (3, 8, 'shippw', '1. ienqeinieqnc\r\n2. ecnwecniencew', '', '', 'awaits.jpg', ' shoe', '2019/05/22'),
-(4, 7, 'shippw', '1.2.3.4', '2019/05/23', '2019/05/31', 'summer.jpg', ' drink', '2019/05/23');
+(4, 7, 'shippw', '1.2.3.4', '2019/05/23', '2019/05/31', 'summer.jpg', ' drink', '2019/05/23'),
+(5, 9, 'New Dish 20% Off', '1. One claim per person\r\n2. Purchase must be RM15 and above', '2019/05/27', '2019/05/31', 'chicken.png', ' food', '2019/05/27');
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,12 @@ INSERT INTO `claims` (`tran_id`, `cust_id`, `promo_id`, `tran_sale`, `tran_date`
 (7, 1, 4, '15.30', '2019/05/22'),
 (8, 1, 4, '15.30', '2019/05/22'),
 (9, 1, 4, '15.30', '2019/05/22'),
-(10, 1, 4, '12.35', '2019/05/22');
+(10, 1, 4, '12.35', '2019/05/22'),
+(11, 1, 1, '12.30', '2019/05/26'),
+(12, 1, 6, '15.80', '2019/05/26'),
+(13, 1, 6, '15.60', '2019/05/26'),
+(14, 1, 1, '15.50', '2019/05/27'),
+(15, 1, 6, '15.23', '2019/05/27');
 
 -- --------------------------------------------------------
 
@@ -131,7 +137,7 @@ CREATE TABLE `customer` (
   `cust_id` int(5) NOT NULL,
   `cust_username` varchar(15) NOT NULL,
   `cust_email` varchar(254) NOT NULL,
-  `cust_password` varchar(15) NOT NULL,
+  `cust_password` varchar(255) NOT NULL,
   `cust_country` varchar(100) NOT NULL,
   `cust_city` varchar(100) NOT NULL,
   `cust_state` varchar(100) NOT NULL,
@@ -144,10 +150,14 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cust_id`, `cust_username`, `cust_email`, `cust_password`, `cust_country`, `cust_city`, `cust_state`, `cust_bday`, `cust_profile`) VALUES
-(1, 'jocelyn123', 'jocelyn@gmail.com', 'helloworld', 'Malaysia', 'Kuching', 'Sarawak', '1998-08-28', ''),
-(2, 'alex321', 'alex@hotmail.com', 'testtest', 'Malaysia', 'Kuching', 'Sarawak', '1993-10-09', ''),
+(1, 'jocelyn123', 'jocelyn@gmail.com', '$2y$10$OQmX787aqkGCgN1V/nwpX.kL39iVNf.UdavaUzOPliz1NggsGkhXS', 'Malaysia', 'Kuching', 'Sarawak', '1998-08-28', ''),
+(2, 'alex321', 'alex@hotmail.com', '$2y$10$c7IFoswhura.OWAajtRMZOTlyEIZkl3AdJDg4LOltSawNz2TWB1we', 'Malaysia', 'Kuching', 'Sarawak', '1993-10-09', ''),
 (5, 'Anais', 'itsbabyanais@gmail.com', '$2y$10$yRAqhKcI', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-26', ''),
-(6, 'Darwin', 'dwin@gmail.com', '$2y$10$0qO2TidS', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-15', '');
+(6, 'Darwin', 'dwin@gmail.com', '$2y$10$0qO2TidS', 'Malaysia', 'Sarawak', 'Kuching', '2019-05-15', ''),
+(7, 'kowari', 'kowari@email.com', '123', 'Belgium', 'Brussels', 'Brussels Capital', '07/31/2009', ''),
+(8, 'jimmy28', 'jimmy28', '123', 'Belize', 'Shipyard', 'Orange Walk', '05/06/2019', ''),
+(9, 'Henry42', 'henry42', 'henry42', 'Belarus', 'Mazyr', 'Gomel', '12/20/1996', ''),
+(10, 'Lucas55', 'lucas55@email.com', '$2y$10$zJ.B0BtcX3SOcb3bxbDasuT38V0rRBSAq4ObaioHL9a8LNxhbqe96', 'Bahrain', 'Manama', 'Manama', '08/22/1996', '');
 
 -- --------------------------------------------------------
 
@@ -209,8 +219,9 @@ INSERT INTO `promotion` (`promo_id`, `promo_img`, `promo_title`, `promo_desc`, `
 (3, 'promo8sephora.png', '20% off for membership', 'Look, makeup!', '5/5/19', '6/6/19', 'other', 12),
 (4, 'promo1.png', 'Buy stuff', 'Drinks', '23/5/19', '23/6/19', 'drinks', 13),
 (5, 'promo2mcd.png', 'RM1 for McChicken burger', 'One claim per person', '25/5/19', '23/6/19', 'food', 14),
-(6, 'promo5kfc.png', '20% discount of nuggets and tenders', '20% discount at any kfc store', '25/5/19', '23/6/19', 'food', 9),
-(7, 'promo6sketchers.png', '20% off on second pair', 'At sketchers', '25/5/19', '23/6/19', 'shoes', 8);
+(6, 'promo5kfc.png', '20% discount at any kfc store', '1. One claim per customer\n2. Purchase must be RM 15 and above', '25/5/19', '23/6/19', 'food', 9),
+(7, 'promo6sketchers.png', '20% off on second pair', 'At sketchers', '25/5/19', '23/6/19', 'shoes', 8),
+(8, 'mcd.png', '20% off new dishes', '1. One claim per customer\r\n2. Purchase must be RM10 and over', '2019/05/26', '2019/05/31', ' food drinks', 14);
 
 -- --------------------------------------------------------
 
@@ -334,22 +345,22 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
-  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `applypromo`
 --
 ALTER TABLE `applypromo`
-  MODIFY `proapp_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `proapp_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `claims`
 --
 ALTER TABLE `claims`
-  MODIFY `tran_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `tran_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cust_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `promoter`
 --
@@ -359,7 +370,7 @@ ALTER TABLE `promoter`
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `promo_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `promo_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

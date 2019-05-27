@@ -74,7 +74,7 @@ if(isset($_GET['id'])){
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">

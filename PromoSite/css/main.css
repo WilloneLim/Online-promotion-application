@@ -52,6 +52,7 @@ hr{
   margin-top: 43px
 }
 
+/*
 #login-box {
   position: relative;
   margin: 5% auto;
@@ -138,6 +139,7 @@ input[type="submit"]:active {
   text-align: center;
   margin-top: -20px;
 }
+*/
 
 .btn{
   position: relative;
@@ -148,22 +150,23 @@ input[type="submit"]:active {
   color: #FFF;
   font-family: sans-serif;
   font-weight: 500;
-  margin-left: 280px;
+  margin-left: 106px;
   margin-top: 5px;
 
 }
 
 .seperator{
-    margin: 6px 0 6px;
+    margin-top: 40px;
     text-align: center;
     border-top: 1px solid #e5e5e5;
     color: #ccc;
-    width: 50%;
-    margin-left: 196px;
+    width: 80%;
+    margin-left: 46px;
 }
 
 .seperator i{
     padding: 0 10px;
+    margin-top: 20px;
     background: #fff;
     position: relative;
     top: -11px;

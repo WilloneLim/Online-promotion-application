@@ -1,35 +1,56 @@
 <?php
 include 'connect.php';
 
-$msg = $uname = $email = $country = $state = $city = $date = $password = $cpassword = "";
+$msg = $uname = $email = $country = $state = $city = $date = $password = $cpassword = $chk = "";
 
-$sql = "SELECT * FROM promotion";
+$a_email = array();
+
+$sql = "SELECT * FROM customer";
     $result = $conn->query($sql);
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uname = test_input($_POST["cust_username"]);
-    $email = test_input($_POST["cust_email"]);
-    $password = test_input($_POST["password"]);
-    $cpassword = test_input($_POST["ccpassword"]);
-    $country = test_input($_POST["country"]);
-    $state = test_input($_POST["state"]);
-    $city = test_input($_POST["city"]);
-    $date = test_input($_POST["cust_bday"]);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $a_email[] = $row['cust_email'];
+    }
+}
 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $uname = mysqli_real_escape_string($conn,test_input($_POST["cust_username"]));
+    $email = mysqli_real_escape_string($conn,test_input($_POST["cust_email"]));
+    $password = mysqli_real_escape_string($conn,test_input($_POST["password"]));
+    $cpassword = mysqli_real_escape_string($conn,test_input($_POST["ccpassword"]));
+    $country = mysqli_real_escape_string($conn,test_input($_POST["country"]));
+    $state = mysqli_real_escape_string($conn,test_input($_POST["state"]));
+    $city = mysqli_real_escape_string($conn,test_input($_POST["city"]));
+    $date = mysqli_real_escape_string($conn,test_input($_POST["cust_bday"]));
 
     if($uname=="" || $email=="" || $password=="" || $cpassword == "" || $country=="" || $state=="" || $city=="" || $date == ""){
         $msg = "Please Fill Every Box.";
     }else{
+            if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                if ($email == $row['cust_email']){
+                    $chk = "yes";
+                }
+            }
+        }
+        if ($chk == "yes"){
+            $msg = "Email has been used";
+        }else{
 
        if($password != $cpassword){
-           $msg = $cpassword;
+           $msg = "Passwords dont match!";
        }else{
            $pieces = explode("/", $date);
-           if(date("Y") < $pieces[2]){
+           $age = date("Y") - $pieces[2];
+           if(date("Y") <= $pieces[2] || ($age <= 10)){
                $msg = "Please select correct birthdate";
            }else{
 
+               $password = password_hash($password, PASSWORD_DEFAULT);
                $sql = "INSERT INTO customer (cust_username, cust_email, cust_password, cust_country, cust_city, cust_state, cust_bday) VALUES ('".$uname."', '".$email."', '".$password."', '".$country."', '".$city."', '".$state."', '".$date."')";
 
                 if ($conn->query($sql) === TRUE) {
@@ -38,17 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
 
+               }
            }
-       }
-    }
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-
         }
     }
-
 }
 
 function test_input($data) {
@@ -88,8 +102,10 @@ function test_input($data) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 
+<!--
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+-->
 
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
@@ -196,24 +212,22 @@ function test_input($data) {
     <!-- Sign up form -->
     <form name="signupform" method="post"  action="signup.php" >
 
-
-
         <div class="col-md-8 d-block mx-auto border shadow-lg p-3 mb-5 bg-white rounded">
         <div class="row">
         <img src="images/navlogo.png" alt="signuplogo" class="col-md-2 d-block mx-auto my-4">
         <h1 class="col-md-12 text-center"><b>Register</b></h1>
-            <h5 class="col-md-6 text-center border bg-danger d-block mx-auto text-light"><?php echo $msg; ?></h5>
+            <h5 class="col-md-6 text-center font-weight-normal text-danger d-block mx-auto mt-3"><?php echo $msg; ?></h5>
 
         </div>
         <hr>
         <div class= "col-md-8 d-block mx-auto">
         <div class="form-group">
         <input type="text" name="cust_username" class="form-control" placeholder="Username"/>
-        <div class="error" id="nameErr"></div>
+
         </div>
 
         <div class="form-group">
-		<input type="text" name="cust_email" class="form-control" placeholder="E-mail" />
+		<input type="text" id="fname" name="cust_email" class="form-control" placeholder="E-mail" />
         <div class="error" id="emailErr"></div>
         </div>
 
@@ -221,9 +235,10 @@ function test_input($data) {
         <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-0">
         <input type="password" name="ccpassword" class="form-control" id="ccpassword" placeholder="Password" />
         </div>
+        <div class="error mt-0 mb-2" id="pwordErr"></div>
 
         <select name="country" class="countries custom-select mr-sm-2 mb-2" id="countryId">
             <option value="">Select Country</option>
@@ -235,7 +250,8 @@ function test_input($data) {
             <option value="">Select City</option>
         </select>
 
-        <input id="datepicker"  name="cust_bday" placeholder="Your Birth Date"/>
+        <input id="datepicker" name="cust_bday" placeholder="Your Birth Date"/>
+        <div class="error mt-0 mb-2" id="dateErr"></div>
 
         <input type="submit" name="signup_submit" class="btn btn-primary d-block mt-4 mx-auto col-md-9 border" value="Sign up" />
 
@@ -259,114 +275,78 @@ function test_input($data) {
         });
     </script>
     <script>
-//
-//
-//    function printError(elemId, hintMsg) {
-//    document.getElementById(elemId).innerHTML = hintMsg;
-//        }
-//      function validateForm() {
-//    // Retrieving the values of form elements
-//    var name = document.signupform.cust_username.value;
-//    var email = document.signupform.cust_email.value;
-//    var pass = document.signupform.password.value;
-//    var passwordcfm = document.signupform.confirm_password.value;
-//    var country = document.signupform.country.value;
-//    var state = document.signupform.state.value;
-//    var city = document.signupform.city.value;
-//    var date = document.signupform.cust_bday.value;
-//
-//
-//    var nameErr = emailErr = passErr= cfmpassErr = countryErr =  stateErr = cityErr = genderErr = dateErr = true;
-//
-//
-//   // Validate name
-//    if(name == "") {
-//        printError("nameErr", "Please enter your name");
-//    } else {
-//        var regex = /^[a-zA-Z0-9-_ \s]+$/;
-//        if(regex.test(name) === false) {
-//            printError("nameErr", "Please enter a valid name");
-//        } else {
-//            printError("nameErr", "");
-//            nameErr = false;
-//        }
-//    }
-//
-//
-//          // Validate email address
-//    if(email == "") {
-//        printError("emailErr", "Please enter your email address");
-//    } else {
-//        // Regular expression for basic email validation
-//        var regex = /^\S+@\S+\.\S+$/;
-//        if(regex.test(email) === false) {
-//            printError("emailErr", "Please enter a valid email address");
-//        } else{
-//            printError("emailErr", "");
-//            emailErr = false;
-//        }
-//    }
-//
-//          //Validate password
-//
-//          if(pass.length == 0 || pass.length < 6){
-//              printError("passErr", "Password must be at least 6 characters long");
-//
-//          }else{
-//             printError("passErr", "");
-//             passErr = false;
-//          }
-//            if(pass != passwordcfm){
-//              printError("cfmpassErr", "Password doesn't match!");
-//
-//          }else{
-//             printError("cfmpassErr", "");
-//             cfmpassErr = false;
-//        }
-//
-//
-//
-//           // Validate country
-//          if(country == "defaultCountry") {
-//              printError("countryErr", "Please select your country");
-//          } else {
-//              printError("countryErr", "");
-//              countryErr = false;
-//          }
-//
-//
-//          //validate state
-//          if(state == "defaultState") {
-//            printError("stateErr", "Please select your state");
-//          } else {
-//              printError("stateErr", "");
-//              stateErr = false;
-//          }
-//
-//          //validate city
-//          if(city == "defaultCity") {
-//            printError("cityErr", "Please select your city");
-//          } else {
-//              printError("cityErr", "");
-//              cityErr = false;
-//          }
-//
-//          //validate date
-//          if(date == ""){
-//            printError("dateErr", "Please select a date");
-//          } else {
-//              printError("dateErr", "");
-//              dateErr = false;
-//          }
-//
-//
-//
-//           if((nameErr || emailErr || passErr || cfmpassErr || countryErr || stateErr || cityErr || dateErr)  == true) {
-//           return false;
-//           }
-//
-//      };
+        var emails = <?php echo json_encode($a_email); ?>;
 
+        document.getElementById("fname").onchange = function() {myFunction("email")};
+
+
+        document.getElementById("password").onchange = function() {myFunction("password")};
+        document.getElementById("ccpassword").onchange = function() {myFunction("password")};
+
+        document.getElementById("datepicker").onchange = function() {myFunction("date")};
+
+
+
+        function myFunction(type) {
+            var x = document.getElementById("fname");
+            var y = document.getElementById("emailErr");
+
+            var chk1 = 0;
+            var chk2 = 0;
+
+            var a = document.getElementById("password");
+            var b = document.getElementById("ccpassword");
+            var c = document.getElementById("pwordErr");
+
+
+            var d = document.getElementById("datepicker");
+            var e = document.getElementById("dateErr");
+
+            var array = d.value.split("/");
+            var now = new Date().getFullYear();
+
+            var hasNumber = /\d/;
+            var isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if(type == "email"){
+                if(!isEmail.test(x.value)){
+                    y.innerHTML = "Please enter a valid email";
+                }else{
+                    for (i = 0; i < emails.length; i++) {
+                        if(x.value == emails[i]){
+                            chk1 = 1;
+                        }
+                    }
+                    if(chk1 == 1){
+                        y.innerHTML = "This email is taken!";
+                    }else{
+                        y.innerHTML = "";
+                    }
+                }
+
+            }else if(type == "password"){
+                if(a.value.length < 6 || a.value.length > 18){
+                    c.innerHTML = "Passwords must have 6 to 18 characters";
+                }else{
+                    if(!hasNumber.test(a.value)){
+                        c.innerHTML = "Passwords must include at least 1 number";
+                    }else{
+                        if(a.value != b.value && b.value != ""){
+                            c.innerHTML = "Passwords do not match!";
+                        }else{
+                            c.innerHTML = "";
+                        }
+                    }
+                }
+            }else{
+                if((now-Number(array[2])) < 10){
+                    e.innerHTML = "Are you sure you're "+(now-Number(array[2]))+" years old?";
+                }else{
+                    e.innerHTML = "";
+                }
+
+            }
+        }
     </script>
 </body>
 </html>

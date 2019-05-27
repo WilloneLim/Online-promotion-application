@@ -40,10 +40,9 @@ include 'connect.php';
                     }
                 }
 
-
                 echo "<p class='font-weight-bolder m-0'>Promotion Description</p><p class='text-dark'>".$row['promo_desc']."</p>";
                 echo "<p class='m-0'> This promotion starts <b>".$row['promo_start']."</b></p>";
-                echo "<p> This promotion starts <b>".$row['promo_end']."</b></p>";
+                echo "<p> This promotion ends <b>".$row['promo_end']."</b></p>";
                 echo '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click Me</button>';
                 echo "<br/>";
                 echo "<br/>";

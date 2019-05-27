@@ -140,7 +140,7 @@ function test_input($data) {
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="promoter.php?id=<?php echo $_SESSION["pro_id"]; ?>">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">

@@ -1,6 +1,11 @@
 <?php
 include 'connect.php';
 session_start();
+
+        $sqla = "SELECT * FROM customer WHERE cust_id ='".$_SESSION["cust_id"]."'";
+        $result = mysqli_query($conn,$sqla);
+        $row  = mysqli_fetch_array($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +39,9 @@ session_start();
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
+              <li class="nav-item mr-3">
+                    <a class="nav-link" href="proapplication.php">Promoter</a>
+                </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Sign Out</a>
             </li>
@@ -49,8 +57,8 @@ session_start();
           <img class="img-fluid rounded-circle p-3" src="images/profile_placeholder.jpg" alt="IMG-placeholder">
           <br/>
             <h4 class="p-3">
-              USERNAME
-              <small class="text-muted">email@hotmail.com</small>
+              <?php echo $row['cust_username']; ?>
+              <small class="text-muted"><?php echo $row['cust_email']; ?></small>
             </h4>
 <!--
               <ul class="list-group list-group-flush ">

@@ -46,8 +46,12 @@ if ( ! empty( $_POST ) ) {
     .error{
      color: red;
      font-size: 90%;
-     display: table;
-        margin-left: 260px;
+     display: table; 
+     
+    }
+    
+    #togglePass{
+        margin-top: 10px;
     }
 
 </style>
@@ -99,25 +103,36 @@ if ( ! empty( $_POST ) ) {
             </div>
         </nav>
     </div>
-
-    <form method="post" name="loginform" onsubmit="return validateForm()">
-    <div id="login-box">
-
-        <img src="images/navlogo.png" height="60" alt="signuplogo" id="slogo">
-        <h1 class="sign"><b>Log In</b></h1>
-          <hr>
-
-
-        <div class="input1">
-        <input type="text" name="username"  placeholder="Username" />
+    
+ <div class="container my-5 "> 
+    <!-- Sign up form -->
+   <form method="post" name="loginform" onsubmit="return validateForm()">
+        
+        <div class="col-md-8 d-block mx-auto border shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="row">
+        <img src="images/navlogo.png" alt="signuplogo" class="col-md-2 d-block mx-auto my-4">
+        <h1 class="col-md-12 text-center"><b>Log In</b></h1>
+          
+        </div>   
+        <hr/>
+        <div class= "col-md-8 d-block mx-auto">
+        <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="Username"/>
         <div class="error" id="nameErr"></div>
-        <input type="password" name="password" id ="password"  placeholder="Password" />
+        </div>    
+          
+        <div class="form-group">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
         <div class="error" id="passErr"></div>
-            <label><input type = "checkbox" id="togglePass" value="value"> Show password</label>
+        <label><input type = "checkbox" id="togglePass" value="value"> Show password</label>
         </div>
-<p class="text-center text-danger p-0 m-0"><?php echo $message; ?></p>
-        <input type="submit" name="login_submit" value="Log In"/>
-
+            
+        
+        <p class="text-center text-danger p-0 m-0"><?php echo $message; ?></p>
+            
+         <input type="submit" name="login_submit" class="btn btn-primary d-block mt-4 mx-auto col-md-9 border" value="Log In" />
+        
+            
         <div class="seperator"><i>OR</i></div>
         <a id="facebook-button" class="btn btn-social btn-facebook">
         <i class="fa fa-facebook"></i> Log in with <b>Facebook</b></a>
@@ -132,43 +147,46 @@ if ( ! empty( $_POST ) ) {
 
             <a href="signup.php" class="txt2">Sign Up</a>
         </div>
-
+    </div>    
+    
     </div>
-    </form>
+    </form>  
+    </div>
 
+    
     <script>
      function printError(elemId, hintMsg) {
     document.getElementById(elemId).innerHTML = hintMsg;
      }
       function validateForm() {
-    // Retrieving the values of form elements
+    // Retrieving the values of form elements 
     var name = document.loginform.username.value;
     var pass = document.loginform.password.value;
-
+    
     var nameErr = passErr = true;
-
+    
     if(name == "") {
         printError("nameErr", "Please enter your name");
     } else {
         printError("nameErr", "");
         nameErr = false;
         }
-
-
+          
+          
      if(pass.length == 0){
-         printError("passErr", "Please enter your password");
+         printError("passErr", "Please enter your password");      
     }else{
          printError("passErr", "");
          passErr = false;
-        }
-
+        }     
+         
     if((nameErr || passErr)  == true) {
          return false;
        }
-
+          
     };
-
-
+    
+    
     </script>
     <script>
         const togglePass = document.getElementById('togglePass');
@@ -184,6 +202,7 @@ if ( ! empty( $_POST ) ) {
 
         togglePass.addEventListener('change', showhidePass);
     </script>
+    
     <!--Twitter-->
     <script>
         $('#twitter-button').on('click', function() {
@@ -195,10 +214,6 @@ if ( ! empty( $_POST ) ) {
     // Prompts 'welcome' message with User's email on successful login
     // #me() is a convenient method to retrieve user data without requiring you
     // to know which OAuth provider url to call
-    twitter.me().then(data => {
-      console.log('data:', data);
-      alert('Twitter says your email is:' + data.email + ".\nView browser 'Console Log' for more details");
-    });
     // Retrieves user data from OAuth provider by using #get() and
     // OAuth provider url
     twitter.get('/1.1/account/verify_credentials.json?include_email=true').then(data => {
@@ -221,10 +236,6 @@ if ( ! empty( $_POST ) ) {
     // Prompts 'welcome' message with User's email on successful login
     // #me() is a convenient method to retrieve user data without requiring you
     // to know which OAuth provider url to call
-    google.me().then(data => {
-      console.log('me data:', data);
-      alert('Google says your email is:' + data.email + ".\nView browser 'Console Log' for more details");
-    });
     // Retrieves user data from OAuth provider by using #get() and
     // OAuth provider url
     google.get('/plus/v1/people/me').then(data => {
@@ -245,10 +256,6 @@ if ( ! empty( $_POST ) ) {
           // Prompts 'welcome' message with User's email on successful login
           // #me() is a convenient method to retrieve user data without requiring you
           // to know which OAuth provider url to call
-          facebook.me().then(data => {
-            console.log('me data:', data);
-            alert('Facebook says your email is:' + data.email + ".\nView browser 'Console Log' for more details");
-          })
           // Retrieves user data from OAuth provider by using #get() and
           // OAuth provider url
           facebook.get('/v2.5/me?fields=name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture').then(data => {

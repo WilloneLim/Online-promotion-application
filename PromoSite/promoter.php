@@ -7,7 +7,7 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'sal
 }
 
 if(isset($_GET['id'])){
-
+    
     if(isset($_POST['search']))
     {
 
@@ -22,7 +22,7 @@ if(isset($_GET['id'])){
     $pro_img = $pro_name = $pro_desp = "";
 
 
-
+    
     $sqla = "SELECT * FROM promoter WHERE promoter_id =".$_GET['id'];
             $resulta = $conn->query($sqla);
 
@@ -54,7 +54,7 @@ if(isset($_GET['id'])){
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0" />
     <!-- Bootstrap -->
-
+    
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -85,11 +85,11 @@ if(isset($_GET['id'])){
             </div>
         </nav>
     </div>
-
+    
     <div class="container">
-
-<?php if(isset($_GET['id'])){ ?>
-
+        
+<?php if(isset($_GET['id'])){ ?>        
+        
       <div class="row border mt-3 ">
           <div class="col-md-3 image">
               <img class="img-fluid m-3" src="images/<?php echo $pro_img; ?>" alt="promoterIMG" style="margin-top:20px;">
@@ -103,7 +103,7 @@ if(isset($_GET['id'])){
           <div class="col-md-2 mt-3">
               <a href="promoapplication.php?id=<?php echo $_GET['id']; ?>" class="btn btn-primary btn-block">Apply for new promotion</a>
               <a href="#" class="btn btn-primary btn-block disabled">View / Edit Customer View</a>
-
+              
           </div>
       </div>
          <form action="promoter.php" method="POST">
@@ -113,7 +113,7 @@ if(isset($_GET['id'])){
     <button class="btn btn-outline-secondary" type="submit" name="search" value="Search">Search</button>
   </div>
 </div>
-
+    
 
     <div class="table-responsive">
     <table class="table table-striped table-hover">
@@ -127,29 +127,29 @@ if(isset($_GET['id'])){
         </tr>
         </thead>
         <?php while($row  = mysqli_fetch_array($search_result)):?>
-
+        
         <tr>
             <td><?php echo $row['promo_id'];?></td>
-            <td><a href="#"><?php echo '<img src="images/'.$row['promo_img'].'" alt="tealiveid" id="imginfo" style="width:300px;height:150px">'; ?></a></td>
+            <td><a href="promotionamount.php?id=<?php echo $_GET['id']; ?>"><?php echo '<img src="images/'.$row['promo_img'].'" alt="tealiveid" id="imginfo" style="width:300px;height:150px">'; ?></a></td>
             <td><?php echo $row['promo_title'];?></td>
             <td><a href="scanning.php?id=<?php echo $row['promo_id']; ?>" class="btn btn-success py-5 mt-3 w-100">Scan QR</a></td>
             <td><a href="#" class="btn btn-warning py-5 mt-3 w-100 disabled">Edit</a></td>
         </tr>
         <?php endwhile; ?>
     </table>
-
-      </div>
+    
+      </div> 
       </form>
-
-<?php }else{
-
+        
+<?php }else{ 
+        
         echo "<h1 class='text-center mt-5 pt-1'>Oops... this promoter is missing</h1>";
         echo "<br/>";
         echo "<br/>";
         echo "<img src='images/error.png' class='mx-auto d-block w-10 mb-5 pb-5' alt='...'>";
     }
-
-?>
+        
+?>     
     </div>
 <footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
@@ -182,6 +182,6 @@ if(isset($_GET['id'])){
   </div>
   <!-- Copyright -->
 
-</footer>
+</footer>       
 </body>
 </html>

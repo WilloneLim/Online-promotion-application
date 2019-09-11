@@ -79,7 +79,7 @@ if(isset($_GET['id'])){
         </a>
           <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Log Out</a>
+                    <a class="nav-link" onclick="myLogout()">Log Out</a>
                 </li>
             </ul>
             </div>
@@ -88,7 +88,7 @@ if(isset($_GET['id'])){
     
     <div class="container">
         
-<?php if(isset($_GET['id'])){ ?>        
+<?php if(isset($_GET['id'])){ ?>
         
       <div class="row border mt-3 ">
           <div class="col-md-3 image">
@@ -122,8 +122,8 @@ if(isset($_GET['id'])){
             <th>ID</th>
             <th>Image</th>
             <th>Promotion Title</th>
-            <th>Scan QR</th>
-            <th>Edit</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <?php while($row  = mysqli_fetch_array($search_result)):?>
@@ -133,7 +133,7 @@ if(isset($_GET['id'])){
             <td><a href="promotionamount.php?id=<?php echo $_GET['id']; ?>"><?php echo '<img src="images/'.$row['promo_img'].'" alt="tealiveid" id="imginfo" style="width:300px;height:150px">'; ?></a></td>
             <td><?php echo $row['promo_title'];?></td>
             <td><a href="scanning.php?id=<?php echo $row['promo_id']; ?>" class="btn btn-success py-5 mt-3 w-100">Scan QR</a></td>
-            <td><a href="#" class="btn btn-warning py-5 mt-3 w-100 disabled">Edit</a></td>
+            <td><a href="promotionamount.php?id=<?php echo $row['promoter_id']; ?>" class="btn btn-warning py-5 mt-3 w-100">View Statistics</a></td>
         </tr>
         <?php endwhile; ?>
     </table>
@@ -153,22 +153,29 @@ if(isset($_GET['id'])){
     </div>
 <footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
-    <div class="row">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 1</h5>
-        <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-          repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-          harum esse fugiat. Itaque, culpa?</p>
+    <div class="row mx-auto">
+      
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-1"></div> 
+      <div class="col-md-5 mb-md-0 mb-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Contact Us</h5>
+          <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white">
+            <b>Jimsley Lim</b><br/>
+            +6016-889 7598
+            <br/>
+            <br/>
+            <b>Nicholas Bong</b><br/>
+            +6016-816 2962</p>
           <br/>
           <br/>
 
       </div>
-        <hr class="clearfix w-100 d-md-none pb-3">
-      <div class="col-md-6 mb-md-0 mb-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 2</h5>
-        <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-          commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-          excepturi hic.</p>
+        <div class="col-md-5 mt-md-0 mt-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Introducing Xense,</h5>
+            <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white"><b>A fusion of technology and human senses.</b><br/>From programmers to business developer, Xense comprises of talented and excellence-driven individuals with high enthusiasm in the development of technology solution. 
+        We aim high at embracing technology with a passion for sustainability, innovation and empowerment by using our creative gifts that drives this foundation.</p>
           <br/>
           <br/>
 
@@ -182,6 +189,15 @@ if(isset($_GET['id'])){
   </div>
   <!-- Copyright -->
 
-</footer>       
+</footer> 
+   <script>
+    function myLogout() {
+      var txt;
+      if (confirm("Are you sure you want to log out?")) {
+            window.location.href ="logout.php";
+      }
+      document.getElementById("demo").innerHTML = txt;
+    }
+    </script>    
 </body>
 </html>

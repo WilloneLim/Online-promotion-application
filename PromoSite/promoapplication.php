@@ -145,7 +145,7 @@ function test_input($data) {
         </a>
           <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Log Out</a>
+                    <a class="nav-link" onclick="myLogout()">Log Out</a>
                 </li>
             </ul>
             </div>
@@ -185,7 +185,7 @@ function test_input($data) {
             <h5 class="text-muted font-weight-normal">Please select a Promotion image</h5>
             <div class="custom-file mb-3">
               <input type="file" class="custom-file-input" id="customFileA" name="app_cover">
-              <label class="custom-file-label" for="customFileA">Choose Promotional Image (820 X 315)</label>
+              <label class="custom-file-label" for="customFileA">Choose Promotional Image (1200 X 630)</label>
             </div>
             <br/>
             <div class="form-group mt-3">
@@ -263,7 +263,45 @@ function test_input($data) {
 </div>
 </div>
 </div>
+<footer class="page-footer bg-secondary font-small mt-5 pt-4">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row mx-auto">
+      
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-1"></div> 
+      <div class="col-md-5 mb-md-0 mb-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Contact Us</h5>
+          <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white">
+            <b>Jimsley Lim</b><br/>
+            +6016-889 7598
+            <br/>
+            <br/>
+            <b>Nicholas Bong</b><br/>
+            +6016-816 2962</p>
+          <br/>
+          <br/>
 
+      </div>
+        <div class="col-md-5 mt-md-0 mt-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Introducing Xense,</h5>
+            <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white"><b>A fusion of technology and human senses.</b><br/>From programmers to business developer, Xense comprises of talented and excellence-driven individuals with high enthusiasm in the development of technology solution. 
+        We aim high at embracing technology with a passion for sustainability, innovation and empowerment by using our creative gifts that drives this foundation.</p>
+          <br/>
+          <br/>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-white bg-dark text-center py-3">© 2019 Copyright:
+    <a href="#"> Xense.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer> 
 <script>
     function preview(input,num) {
         var chk = 0;
@@ -318,5 +356,14 @@ $('#datepickerb').datepicker({
 });
 
 </script>
+       <script>
+    function myLogout() {
+      var txt;
+      if (confirm("Are you sure you want to log out?")) {
+            window.location.href ="logout.php";
+      }
+      document.getElementById("demo").innerHTML = txt;
+    }
+    </script> 
 </body>
 </html>

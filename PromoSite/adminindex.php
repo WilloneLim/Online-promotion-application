@@ -68,7 +68,7 @@ function filterTable($query)
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="signin.php">Sign Out</a>
+              <a class="nav-link" onclick="myLogout()">Log Out</a>
             </li>
           </ul>
             </div>
@@ -77,7 +77,7 @@ function filterTable($query)
 
 <div class="container">
 <hr class="w-75 mt-5 "/>
-<h1 class="text-center mb-2">Promoter View Application</h1>
+<h1 class="text-center mb-2">Promoter View</h1>
 <hr class="w-75"/>
 
 <form action="adminindex.php" method="POST">

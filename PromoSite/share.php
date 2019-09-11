@@ -47,11 +47,11 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:url"           content="<?php echo $url; ?>/Online-promotion-application/PromoSite/share.php?id=<?php echo $_GET['id']; ?>" />
+    <meta property="og:url"           content="<?php echo $url; ?>share.php?id=<?php echo $_GET['id']; ?>" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="PromoAlert - <?php echo $rowb['promo_title']; ?>" />
     <meta property="og:description"   content="Click me and start getting rewards for sharing" />
-    <meta property="og:image"         content="<?php echo $url; ?>/Online-promotion-application/PromoSite/images/<?php echo $rowb['promo_img']; ?>" />
+    <meta property="og:image"         content="<?php echo $url; ?>images/<?php echo $rowb['promo_img']; ?>" />
     <meta property="og:image:width"   content="1200" />
     <meta property="og:image:height"  content="628" />
     <!-- Bootstrap -->
@@ -81,6 +81,26 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
 <!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" href="css/main2.css">
+    
+    <style>
+        .header{
+            background-image: url('images/cp.png');
+            background-repeat:no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: black;
+            opacity: 0.9;
+            height: 310px;
+        }
+        #navover{
+            background-image: linear-gradient(to top, rgba(255,0,0,0), black);
+        }
+    
+        #navi{
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body ng-app="myApp">
 <div id="fb-root"></div>
@@ -95,36 +115,51 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
 
 
 
-    <div class="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="header">
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navover">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand m-0 p-0" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <?php
+              <li class="nav-item">
+                  <a class="nav-link text-light" href="proapplication.php" id="navi">Want to be a promoter? <b>APPLY HERE</b></a>
+                </li>
+                <li class="nav-item">
+                <?php
 
-                if ( isset( $_SESSION['cust_id'] ) ) {
-                    echo'<a class="nav-link" href="myaccount.php">My Account</a>';
-                } else {
-                    echo '<a class="nav-link" href="signin.php">Log In</a>';
-                }
+                    if ( isset( $_SESSION['cust_id'] ) ) {
+                        echo'<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" id="navi" href="myaccount.php">My Account</a>';
+                    } else {
+                        echo '<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" id="navi" href="signin.php">Log In</a>';
+                    }
 
-             ?>
-            </li>
-          </ul>
+                 ?>
+                </li>
+            </ul>
             </div>
         </nav>
+<!--
+        <h2 class="display-4 text-center text-light mt-5">Join as a promoter!!!</h2>
+        <h4 class="text-center  text-light font-weight-normal">Build your profile</h4>
+-->         <div class="col-md-5 mx-auto">
+            <div class="row mt-5 pt-5" id="mystepper">
+            <p class="stepper mx-auto active" id="s1">1</p>
+            <p class="stepper disabled" id="s2" disabled>2</p>
+            <p class="stepper mx-auto disabled" id="s3" disabled>3</p>
+            </div>
+    </div>
     </div>
 <div class="container">
 
-    <div class="row mt-4" id="mystepper">
-    <p class="stepper mx-auto active" id="s1">1</p>
-    <p class="stepper disabled" id="s2" disabled>2</p>
-    <p class="stepper mx-auto disabled" id="s3" disabled>3</p>
-    </div>
+    
 
+<!--
+    <div class="">
+    <img src="images/load.gif" alt="loading...">
+    </div>
+-->
+    
     <div class="border m-2" ng-view></div>
 
     <div class="modal fade" id="myModal">
@@ -151,7 +186,7 @@ if ( isset( $_SERVER['HTTP_REFERER'] ) && strstr( $_SERVER['HTTP_REFERER'], 'fac
             if ( isset( $_SESSION['cust_id'] ) ) {
 //                echo '<button id="share-button" title="Facebook" class="btn btn-facebook btn-lg border bg-primary text-light"><i class="fa fa-facebook fa-fw"></i>Facebook</button>';
                 echo '<p class=text-muted">If you do not see a link please wait or refresh the page</p>';
-                echo '<iframe src="https://www.facebook.com/plugins/share_button.php?href='.$url.'/Online-promotion-application/PromoSite/share.php?id='.$_GET['id'].'&layout=button_count&size=large&appId=388469038426420&width=84&height=28" width="84" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
+                echo '<iframe src="https://www.facebook.com/plugins/share_button.php?href='.$url.'share.php?id='.$_GET['id'].'&layout=button_count&size=large&appId=388469038426420&width=84&height=28" width="84" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
 
             }else{
                 echo '<a href="signin.php" class="btn btn-info mx-2 w-25" role="button">Log In</a>';
@@ -187,24 +222,31 @@ if (!isset($_GET['id'])){
 
 ?>
 <!-- Footer -->
-<footer class="page-footer bg-secondary font-small pt-4 mt-5 sticky-bottom">
+<footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
-    <div class="row">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 1</h5>
-        <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-          repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-          harum esse fugiat. Itaque, culpa?</p>
+    <div class="row mx-auto">
+      
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-1"></div> 
+      <div class="col-md-5 mb-md-0 mb-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Contact Us</h5>
+          <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white">
+            <b>Jimsley Lim</b><br/>
+            +6016-889 7598
+            <br/>
+            <br/>
+            <b>Nicholas Bong</b><br/>
+            +6016-816 2962</p>
           <br/>
           <br/>
 
       </div>
-        <hr class="clearfix w-100 d-md-none pb-3">
-      <div class="col-md-6 mb-md-0 mb-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 2</h5>
-        <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-          commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-          excepturi hic.</p>
+        <div class="col-md-5 mt-md-0 mt-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Introducing Xense,</h5>
+            <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white"><b>A fusion of technology and human senses.</b><br/>From programmers to business developer, Xense comprises of talented and excellence-driven individuals with high enthusiasm in the development of technology solution. 
+        We aim high at embracing technology with a passion for sustainability, innovation and empowerment by using our creative gifts that drives this foundation.</p>
           <br/>
           <br/>
 
@@ -218,7 +260,7 @@ if (!isset($_GET['id'])){
   </div>
   <!-- Copyright -->
 
-</footer>
+</footer> 
 <script>
 var app = angular.module("myApp", ["ngRoute"]);
 app.config(function($routeProvider) {

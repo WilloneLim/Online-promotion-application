@@ -131,23 +131,9 @@ function test_input($data) {
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="adminindex.php">
+        <a class="navbar-brand" href="PromoterActivity.php?id=<?php echo $_GET['id'];?>">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Applications
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="promoapplicantview.php">Promotions</a>
-                <a class="dropdown-item" href="applicantview.php">Promoters</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="signin.php">Sign Out</a>
-            </li>
-          </ul>
             </div>
         </nav>
     </div>

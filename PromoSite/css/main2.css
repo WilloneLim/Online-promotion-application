@@ -12,12 +12,12 @@
     transition-duration: 0.4s;
     background-color: white;
     color: darkslategray;
-    border: 2px solid #4CAF50;
+    border: 2px solid orange;
 }
 
 .stepper:hover, .active
 {
-    background-color: #4CAF50; /* Green */
+    background-color: orange; /* Green */
     color: white;
     text-decoration: none;
 }
@@ -36,4 +36,43 @@
 
 #Jhr {
     width: 50%;
+}
+
+#facebook-button{
+    color: #FFF;
+    width: 228px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#twitter-button{
+    color: #FFF;
+    width: 228px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#google-button{
+    color: #FFF;
+    width: 228px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.seperator{
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    color: #ccc;
+    width: 80%;
+    margin-left: 46px;
+}
+
+.seperator i{
+    padding: 0 10px;
+    margin-top: 20px;
+    background: #fff;
+    position: relative;
+    top: -11px;
+    z-index:1;
 }

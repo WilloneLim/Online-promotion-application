@@ -25,25 +25,42 @@ session_start();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        .header{
+            background-image: url('images/cp.png');
+            background-repeat:no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: black;
+            opacity: 0.9;
+            height: 450px;
+        }
+        #navover{
+            background-image: linear-gradient(to top, rgba(255,0,0,0), black);
+        }
+    
+    </style>
 </head>
 <body>
     <div class="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navover">
         <div class="container">
         <a class="navbar-brand" href="#">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
               <li class="nav-item mr-3">
-                    <a class="nav-link" href="proapplication.php">Promoter</a>
+                  <a class="nav-link text-light" href="proapplication.php">Want to be a promoter? <b>APPLY HERE</b></a>
                 </li>
                 <li class="nav-item">
                 <?php
 
                     if ( isset( $_SESSION['cust_id'] ) ) {
-                        echo'<a class="nav-link" href="myaccount.php">My Account</a>';
+                        echo'<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" href="myaccount.php">My Account</a>';
                     } else {
-                        echo '<a class="nav-link" href="signin.php">Log In</a>';
+                        echo '<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" href="signin.php">  Log In  </a>';
                     }
 
                  ?>
@@ -51,34 +68,11 @@ session_start();
             </ul>
             </div>
         </nav>
+        
+        <h2 class="display-4 text-center mt-5 pt-5 text-light">Reach your customers in a better way</h2>
+        <a href="proapplication.php" class="btn btn-warning font-weight-bold d-block mx-auto text-dark mt-4">Apply with us</a>
     </div>
 
-<div id="myCarousel" class="carousel slide bg-inverse w-100 ml-auto mr-auto" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="images/carol1.png" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/carol2.png" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/carol3.png" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 <div class="container">
 <!--<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>-->
 
@@ -147,24 +141,31 @@ session_start();
     <br/>
     <br/>
 <!-- Footer -->
-<footer class="page-footer bg-secondary font-small pt-4">
+<footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
-    <div class="row">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 1</h5>
-        <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-          repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-          harum esse fugiat. Itaque, culpa?</p>
+    <div class="row mx-auto">
+      
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-1"></div> 
+      <div class="col-md-5 mb-md-0 mb-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Contact Us</h5>
+          <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white">
+            <b>Jimsley Lim</b><br/>
+            +6016-889 7598
+            <br/>
+            <br/>
+            <b>Nicholas Bong</b><br/>
+            +6016-816 2962</p>
           <br/>
           <br/>
 
       </div>
-        <hr class="clearfix w-100 d-md-none pb-3">
-      <div class="col-md-6 mb-md-0 mb-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 2</h5>
-        <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-          commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-          excepturi hic.</p>
+        <div class="col-md-5 mt-md-0 mt-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Introducing Xense,</h5>
+            <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white"><b>A fusion of technology and human senses.</b><br/>From programmers to business developer, Xense comprises of talented and excellence-driven individuals with high enthusiasm in the development of technology solution. 
+        We aim high at embracing technology with a passion for sustainability, innovation and empowerment by using our creative gifts that drives this foundation.</p>
           <br/>
           <br/>
 
@@ -178,7 +179,7 @@ session_start();
   </div>
   <!-- Copyright -->
 
-</footer>
+</footer> 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

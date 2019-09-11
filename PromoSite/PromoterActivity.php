@@ -60,20 +60,9 @@ function filterTable($query)
     <div class="header">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="test.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <?php
-			     if ( isset( $_SESSION['admin'])){
-					 echo '<a class="nav-link" href="myaccount.php">My Account</a>';
-				 }else{
-					 echo '<a class="nav-link" href="signin.php">Log In</a>';
-				 }
-			  ?>
-            </li>
-          </ul>
             </div>
         </nav>
     </div>
@@ -94,7 +83,7 @@ function filterTable($query)
                  echo '<div class="col-sm-4">';
                  echo '</br>';
                  echo '</br>';
-				 echo '<img src="images/'.$row['promoter_profile'].'" alt="tealiveid" id="imginfo" class="w-75">';
+				 echo '<img src="images/'.$row['promoter_profile'].'" alt="profile_image" id="imginfo" class="w-75">';
 				 echo '</div>';
                  echo '<div class="col-sm-6">';
 	             echo '<hr class="w-100 mt-5" />';
@@ -114,7 +103,7 @@ function filterTable($query)
 
                  echo '</div>';
                  echo '<div class="col-sm-2">';
-                 echo  '<a href="adminindex.php"class="btn btn-primary float-right mb-3">';
+                 echo  '<a href="charts.php"class="btn btn-primary float-right mb-3">';
                  echo '<<';
                  echo '</a>';
 

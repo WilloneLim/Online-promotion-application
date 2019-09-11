@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            if(date("Y") <= $pieces[2] || ($age <= 10)){
                $msg = "Please select correct birthdate";
            }else{
-
+               
                $password = password_hash($password, PASSWORD_DEFAULT);
                $sql = "INSERT INTO customer (cust_username, cust_email, cust_password, cust_country, cust_city, cust_state, cust_bday) VALUES ('".$uname."', '".$email."', '".$password."', '".$country."', '".$city."', '".$state."', '".$date."')";
 
@@ -111,73 +111,13 @@ function test_input($data) {
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 	<style>
-	.ala {
-		display: block;
-        margin-bottom: -5px;
-        margin-left: 263px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-        text-transform: uppercase;
-	}
-
-
-    .apa:focus {
-       border-bottom: 2px solid #16a085;
-       color: #16a085;
-       transition: 0.2s ease;
-    }
-
-	.apa #country {
-		display: block;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        -webkit-transition: height 0.3s ease-in-out;
-        -o-transition: height 0.3s ease-in-out;
-        -moz-transition: height 0.3s ease-in-out;
-        transition: height 0.3s ease-in-out;
-
-	}
-
-
-
-	.apa #state {
-		display: block;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.2s ease;
-
-	}
-
-	.apa #city {
-		display: block;
-        margin-bottom: 20px;
-        margin-left: 260px;
-        width: 260px;
-        height: 32px;
-        border: none;
-        font-family: sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        transition: 0.5s ease;
-
-	}
+        body{
+            background-image: url('images/signinimg.png');
+            background-repeat:no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
     .error {
      color: red;
@@ -185,36 +125,25 @@ function test_input($data) {
      display: table;
    }
 
-
+    #up{
+        background-color: white;
+        opacity: 0.95;
+    }
+        
 	</style>
 
 
 </head>
 
-<body id="main">
+<body id="main" class="bg-dark">
 
-
-    <div class="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container">
-        <a class="navbar-brand" href="index.php">
-            <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
-        </a>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-
-            </li>
-          </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container my-5 ">
+    <div class="container my-5">
     <!-- Sign up form -->
     <form name="signupform" method="post"  action="signup.php" >
 
-        <div class="col-md-8 d-block mx-auto border shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="col-md-8 d-block mx-auto shadow-lg p-3 mb-5 rounded" id="up">
         <div class="row">
-        <img src="images/navlogo.png" alt="signuplogo" class="col-md-2 d-block mx-auto my-4">
+        <a href="index.php" class="d-block mx-auto my-4"><img src="images/navlogo.png" alt="signuplogo"></a>
         <h1 class="col-md-12 text-center"><b>Register</b></h1>
             <h5 class="col-md-6 text-center font-weight-normal text-danger d-block mx-auto mt-3"><?php echo $msg; ?></h5>
 
@@ -223,7 +152,7 @@ function test_input($data) {
         <div class= "col-md-8 d-block mx-auto">
         <div class="form-group">
         <input type="text" name="cust_username" class="form-control" placeholder="Username"/>
-
+        
         </div>
 
         <div class="form-group">
@@ -276,43 +205,43 @@ function test_input($data) {
     </script>
     <script>
         var emails = <?php echo json_encode($a_email); ?>;
-
+        
         document.getElementById("fname").onchange = function() {myFunction("email")};
-
-
+        
+        
         document.getElementById("password").onchange = function() {myFunction("password")};
         document.getElementById("ccpassword").onchange = function() {myFunction("password")};
-
+        
         document.getElementById("datepicker").onchange = function() {myFunction("date")};
-
-
+        
+        
 
         function myFunction(type) {
             var x = document.getElementById("fname");
             var y = document.getElementById("emailErr");
-
+            
             var chk1 = 0;
             var chk2 = 0;
-
+            
             var a = document.getElementById("password");
             var b = document.getElementById("ccpassword");
             var c = document.getElementById("pwordErr");
-
-
+            
+            
             var d = document.getElementById("datepicker");
             var e = document.getElementById("dateErr");
-
+            
             var array = d.value.split("/");
             var now = new Date().getFullYear();
-
+            
             var hasNumber = /\d/;
             var isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+            
             if(type == "email"){
                 if(!isEmail.test(x.value)){
                     y.innerHTML = "Please enter a valid email";
                 }else{
-                    for (i = 0; i < emails.length; i++) {
+                    for (i = 0; i < emails.length; i++) { 
                         if(x.value == emails[i]){
                             chk1 = 1;
                         }
@@ -323,7 +252,7 @@ function test_input($data) {
                         y.innerHTML = "";
                     }
                 }
-
+                
             }else if(type == "password"){
                 if(a.value.length < 6 || a.value.length > 18){
                     c.innerHTML = "Passwords must have 6 to 18 characters";
@@ -344,7 +273,7 @@ function test_input($data) {
                 }else{
                     e.innerHTML = "";
                 }
-
+                
             }
         }
     </script>

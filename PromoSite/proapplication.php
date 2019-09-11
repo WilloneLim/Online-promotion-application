@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_cpass = test_input($_POST["app_cpass"]);
 
     if($app_name=="" || $app_desp=="" || $app_email=="" || $app_pass=="" || $app_cpass==""){
-        $msg .= "<br/><h5 class='col-md-12 text-center bg-info text-white py-2'>Please Fill Every Box.</h5>";
+        $msg .= "<br/>Please Fill Every Box.";
     }else{
 
         if($app_pass != $app_cpass){
@@ -114,25 +114,44 @@ function test_input($data) {
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <style>
+        .header{
+            background-image: url('images/cp.png');
+            background-repeat:no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: black;
+            opacity: 0.9;
+            height: 310px;
+        }
+        #navover{
+            background-image: linear-gradient(to top, rgba(255,0,0,0), black);
+        }
+    
+        #navi{
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navover">
         <div class="container">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand m-0 p-0" href="index.php">
             <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
         </a>
           <ul class="navbar-nav">
-              <li class="nav-item mr-3">
-                    <a class="nav-link" href="proapplication.php">Promoter</a>
+              <li class="nav-item">
+                  <a class="nav-link text-light" href="proapplication.php" id="navi">Want to be a promoter? <b>APPLY HERE</b></a>
                 </li>
                 <li class="nav-item">
                 <?php
 
                     if ( isset( $_SESSION['cust_id'] ) ) {
-                        echo'<a class="nav-link" href="myaccount.php">My Account</a>';
+                        echo'<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" id="navi" href="myaccount.php">My Account</a>';
                     } else {
-                        echo '<a class="nav-link" href="signin.php">Log In</a>';
+                        echo '<a class="nav-link bg-warning text-dark w-100 px-4 font-weight-bold" id="navi" href="signin.php">Log In</a>';
                     }
 
                  ?>
@@ -140,12 +159,12 @@ function test_input($data) {
             </ul>
             </div>
         </nav>
+        <h2 class="display-4 text-center text-light mt-5">Join as a promoter!!!</h2>
+        <h4 class="text-center  text-light font-weight-normal">Build your profile</h4>
     </div>
 <div ng-app="">
 <div class="container">
-  <h2 class="text-center mt-5">Join as a promoter!!!</h2>
-    <h4 class="text-center font-weight-normal">Build your profile</h4>
-    <h4 class="text-center font-weight-normal"><?php echo $msg ?></h4>
+    <h4 class="text-center font-weight-normal text-danger"><?php echo $msg ?></h4>
 
     <?php if(!empty($response)) { ?>
     <div class="response <?php echo $response["type"]; ?>">
@@ -262,24 +281,31 @@ function test_input($data) {
 
 <br/>
 <br/>
-<footer class="page-footer bg-secondary font-small pt-4">
+<footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
-    <div class="row">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 1</h5>
-        <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-          repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-          harum esse fugiat. Itaque, culpa?</p>
+    <div class="row mx-auto">
+      
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-1"></div> 
+      <div class="col-md-5 mb-md-0 mb-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Contact Us</h5>
+          <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white">
+            <b>Jimsley Lim</b><br/>
+            +6016-889 7598
+            <br/>
+            <br/>
+            <b>Nicholas Bong</b><br/>
+            +6016-816 2962</p>
           <br/>
           <br/>
 
       </div>
-        <hr class="clearfix w-100 d-md-none pb-3">
-      <div class="col-md-6 mb-md-0 mb-3">
-        <h5 class="text-uppercase text-white font-weight-bold">Footer text 2</h5>
-        <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-          commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-          excepturi hic.</p>
+        <div class="col-md-5 mt-md-0 mt-3">
+        <h5 class="text-uppercase text-white font-weight-bold">Introducing Xense,</h5>
+            <hr class="bg-light w-50 ml-0"/>
+        <p class="text-white"><b>A fusion of technology and human senses.</b><br/>From programmers to business developer, Xense comprises of talented and excellence-driven individuals with high enthusiasm in the development of technology solution. 
+        We aim high at embracing technology with a passion for sustainability, innovation and empowerment by using our creative gifts that drives this foundation.</p>
           <br/>
           <br/>
 
@@ -293,7 +319,7 @@ function test_input($data) {
   </div>
   <!-- Copyright -->
 
-</footer>
+</footer> 
 <script>
     function preview(input,num) {
             if (input.files && input.files[0]) {

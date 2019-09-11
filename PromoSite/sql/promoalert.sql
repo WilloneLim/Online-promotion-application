@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2019 at 10:19 AM
+-- Generation Time: May 27, 2019 at 05:24 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -65,7 +65,8 @@ CREATE TABLE `application` (
 INSERT INTO `application` (`app_id`, `app_email`, `app_username`, `app_password`, `app_desp`, `app_profile`, `app_cover`, `app_key`, `app_date`) VALUES
 (1, 'we@admin.com', 'Wilson and co', 'nothinghere', 'desption', 'some.png', 'cover.png', 'key.png', '2019/09/10'),
 (4, 'jojojo@gmail.com', 'Square', '123', 'Cool stuff', '5.jpg', 'explore.jpg', ' drink clothes', '2019/05/16'),
-(5, 'thesquare@gmail.com', 'Explode', '123456', 'We sell stuff', '1.png', '6.png', ' clothes', '2019/05/27');
+(5, 'thesquare@gmail.com', 'Explode', '123456', 'We sell stuff', '1.png', '6.png', ' clothes', '2019/05/27'),
+(6, 'jojojo@gmail.com', 'My test Promoter', 'proper12', 'We sell clothes', '1.png', '5.png', ' clothes shoe', '2019/05/27');
 
 -- --------------------------------------------------------
 
@@ -116,16 +117,17 @@ CREATE TABLE `claims` (
 
 INSERT INTO `claims` (`tran_id`, `cust_id`, `promo_id`, `tran_sale`, `tran_date`) VALUES
 (5, 1, 4, '80.00', '2019/05/22'),
-(6, 1, 4, '10.00', '2019/05/22'),
-(7, 1, 4, '15.30', '2019/05/22'),
-(8, 1, 4, '15.30', '2019/05/22'),
-(9, 1, 4, '15.30', '2019/05/22'),
-(10, 1, 4, '12.35', '2019/05/22'),
+(6, 2, 4, '10.00', '2019/05/22'),
+(7, 7, 4, '15.30', '2019/05/22'),
+(8, 8, 4, '15.30', '2019/05/22'),
+(9, 5, 4, '15.30', '2019/05/22'),
+(10, 6, 4, '12.35', '2019/05/22'),
 (11, 1, 1, '12.30', '2019/05/26'),
 (12, 1, 6, '15.80', '2019/05/26'),
-(13, 1, 6, '15.60', '2019/05/26'),
-(14, 1, 1, '15.50', '2019/05/27'),
-(15, 1, 6, '15.23', '2019/05/27');
+(13, 2, 6, '15.60', '2019/05/26'),
+(14, 2, 1, '15.50', '2019/05/27'),
+(15, 5, 6, '15.23', '2019/05/27'),
+(16, 6, 6, '40.50', '2019/05/27');
 
 -- --------------------------------------------------------
 
@@ -217,7 +219,7 @@ INSERT INTO `promotion` (`promo_id`, `promo_img`, `promo_title`, `promo_desc`, `
 (1, 'promo7starbucks.png', '20% off new flavours', '2 new flavours', '25/5/19', '23/6/19', 'drinks', 7),
 (2, 'promo4pizza.png', 'RM5.55 for personal pizza', 'One per claim', '25/5/19', '23/6/19', 'food', 10),
 (3, 'promo8sephora.png', '20% off for membership', 'Look, makeup!', '5/5/19', '6/6/19', 'other', 12),
-(4, 'promo1.png', 'Buy stuff', 'Drinks', '23/5/19', '23/6/19', 'drinks', 13),
+(4, 'promo1.png', 'Buy 1 Free 1', 'Drinks', '23/5/19', '23/6/19', 'drinks', 13),
 (5, 'promo2mcd.png', 'RM1 for McChicken burger', 'One claim per person', '25/5/19', '23/6/19', 'food', 14),
 (6, 'promo5kfc.png', '20% discount at any kfc store', '1. One claim per customer\n2. Purchase must be RM 15 and above', '25/5/19', '23/6/19', 'food', 9),
 (7, 'promo6sketchers.png', '20% off on second pair', 'At sketchers', '25/5/19', '23/6/19', 'shoes', 8),
@@ -345,7 +347,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `application`
 --
 ALTER TABLE `application`
-  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `app_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `applypromo`
 --
@@ -355,7 +357,7 @@ ALTER TABLE `applypromo`
 -- AUTO_INCREMENT for table `claims`
 --
 ALTER TABLE `claims`
-  MODIFY `tran_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `tran_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `customer`
 --

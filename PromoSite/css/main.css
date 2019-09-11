@@ -1,3 +1,18 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+}
+
+
+.footer,
+.push {
+  height: 50px;
+}
+
 
 .filter {
     margin-top: 20px;
@@ -150,7 +165,7 @@ input[type="submit"]:active {
   color: #FFF;
   font-family: sans-serif;
   font-weight: 500;
-  margin-left: 106px;
+/*  margin-left: 106px;*/
   margin-top: 5px;
 
 }
@@ -161,7 +176,7 @@ input[type="submit"]:active {
     border-top: 1px solid #e5e5e5;
     color: #ccc;
     width: 80%;
-    margin-left: 46px;
+/*    margin-left: 46px;*/
 }
 
 .seperator i{
@@ -194,17 +209,11 @@ input[type="submit"]:active {
     cursor: pointer;
 }
 
-button.social-signin.facebook {
-  background: #32508E;
+.navbar2{
+    background-color: aqua;
+    
 }
 
-button.social-signin.twitter {
-  background: #55ACEE;
-}
-
-button.social-signin.google {
-  background: #DD4B39;
-}
 
 .text-center2{
   text-align: center;

@@ -237,7 +237,7 @@ margin: 30px 0px;
 			     <td><?php echo $row['app_id'];?></td>
 				 <td><?php echo $row['app_username'];?></td>
 				 <td><?php echo $row['app_email'];?></td>
-				 <td><a class="btn btn-success text-white w-100" href="addpromoteradmin.php?id=<?php echo $row['app_id'];?>" id="mylink"> View </a></td>
+				 <td><a class="btn btn-success text-white w-100" href="viewpromoterapplicant.php?id=<?php echo $row['app_id'];?>"  id="mylink"> View </a></td>
 				 <td><a href="javascript:delete_id(<?php echo $row['app_id'];?>)" class="btn btn-danger text-white w-100 remove" id="del_click">Delete</a></td>
 			  </tr>
 

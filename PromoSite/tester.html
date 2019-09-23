@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+  <title>Promo</title>
+</head>
+<body class="grey lighten-3">
+
+    
+<div class="container">
+    
+   
+<!--    Application modal-->
+    <div class="modal fade" id="myApply" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Application</h4>
+        </div>
+        <div class="modal-body">
+        <form method="post" id="myApplyForm" enctype="multipart/form-data">
+            <br/>
+            <h5 class="text-muted font-weight-normal">Please select a cover image</h5>
+            <div class="custom-file mb-3">
+              <input
+                     type="hidden" 
+                     class="custom-file-input" 
+                     id="customFileA" 
+                     name="app_cover"
+                     role="uploadcare-uploader"
+                     data-crop="820x315"
+                     >
+              <label class="custom-file-label" for="customFileA">Choose Cover Image (820 X 315)</label>
+            </div>
+            <br/>
+            <h5 class="text-muted font-weight-normal">Please select a profile image</h5>
+            <div class="custom-file mb-3">
+              <input type="hidden" 
+                     class="custom-file-input" 
+                     id="customFileB" 
+                     name="app_profile"
+                     role="uploadcare-uploader"
+                     data-crop="360x360"
+                     >
+              <label class="custom-file-label" for="customFileB">Choose Profile Image (360 X 360)</label>
+            </div>
+
+
+            <div class="form-group mt-3">
+            <label for="title">Username</label><small class="text-muted ml-2"> Brand Name</small>
+            <input class="form-control" id="title" type="text" placeholder="eg. KFC, Lazada" name="app_name" ng-model="title">
+            </div>
+            <div class="form-group mt-3">
+            <label for="desp">Description</label><small class="text-muted ml-2"> About Brand</small>
+            <textarea class="form-control" id="desp" ng-model="desp" placeholder="eg. Our brand sells..." name="app_desp" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="app_email">
+            <small class="text-muted ml-2"> You will receive a confirmation email once your application is validated</small>
+            </div>
+            <br/>
+            <br/>
+            <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="app_pass">
+            </div>
+            <div class="form-group">
+            <label for="cpassword">Confirm Password</label>
+            <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="app_cpass">
+            </div>
+            <br/>
+            <h5 class="font-weight-normal">Keywords</h5>
+            <hr class="w-50 ml-0 mt-1" />
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="food" name="app_key[]">
+              <label class="form-check-label" for="cbkeyf">Food</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="drink" name="app_key[]">
+              <label class="form-check-label" for="cbkeyd">Drinks</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="clothes" name="app_key[]">
+              <label class="form-check-label" for="cbkeyc">Clothes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="shoe" name="app_key[]">
+              <label class="form-check-label" for="cbkeys">Shoes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="bag" name="app_key[]">
+              <label class="form-check-label" for="cbkeyb">Bags</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input keyword" type="checkbox" value="other" name="app_key[]">
+              <label class="form-check-label" for="cbkeyo">Others</label>
+            </div>
+            
+            <input class="messageCheckbox" type="checkbox" value="3" name="mailId[]">
+            <input class="messageCheckbox" type="checkbox" value="1" name="mailId[]">
+
+            <br/>
+            <br/>
+            <p class="text-muted">Satisfied with what you see? Send us your application.</p>
+            <button type="submit" class="btn btn-warning btn-block mb-3" name="upload" value="upload">Submit Application</button>
+
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    
+    <form class="admin-form admina" style="display: block;">
+        <div class="form-group">
+
+          <label for="post-title">Admin Add</label>
+          <input type="text" class="form-control"  id="admin-add" required />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    
+    <form class="promoter-form promoter" style="display: none;">
+        <div class="form-group">
+
+          <label for="post-title">Promoter Add</label>
+          <input type="text" class="form-control"  id="promoter-add" required />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    
+    
+    <div class="promos"></div>
+    
+    
+  </div>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCRj6bM0H-DPSEtVVv_AIto_LKsYuE2ddY",
+            authDomain: "test-999fb.firebaseapp.com",
+            databaseURL: "https://test-999fb.firebaseio.com",
+            projectId: "test-999fb"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // make auth and firebase ref
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+        
+        
+        //UPLOADCARE
+        UPLOADCARE_LOCALE = "en";
+        UPLOADCARE_LIVE = "false";
+        UPLOADCARE_PUBLIC_KEY = "f49b7b74d9cfddb1eb86";
+        
+        
+        
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

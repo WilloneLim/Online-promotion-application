@@ -57,7 +57,7 @@ postForm.addEventListener('submit', (e) =>{
                  .then(() => {
                  console.log("complete");
                 
-                
+   
                     
             ref.set({
                 image: postForm['customFileA'].value,

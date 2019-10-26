@@ -12,7 +12,8 @@ signupForm.addEventListener('submit', (e) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         return db.collection('users').doc(cred.user.uid).set({
             username: signupForm['cust_username'].value,
-            wishlist: []
+            wishlist: [],
+            vault: []
             
         });
         

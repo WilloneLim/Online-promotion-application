@@ -3,6 +3,7 @@ const loggedIn = document.querySelectorAll('.loggedIn');
 const loggedOut = document.querySelectorAll('.loggedOut');
 const loggedBoth = document.querySelectorAll('.loggedBoth');
 const accountDetails = document.querySelector('.account-details');
+const recommend = document.querySelector('#recommended');
 const adminItems = document.querySelectorAll('.admin');
 var fil= "";
 var data;
@@ -95,8 +96,9 @@ function setPromotions(adata){
                     }
                 }
             }
-
+            
             const promo = doc.data();
+
             const card = `<div class="col-md-12 pb-5 grid-item">
              <div class="col-md-12 shadow-lg mx-auto p-2">
              <a href="share.html?id=${doc.id}">
@@ -104,7 +106,7 @@ function setPromotions(adata){
              </a>
              <h5 class="pt-2 pl-3">${promo.title}</h5>
 
-             <a href="promoterview.html?id=${doc.id}" class="text-muted pl 3">${doc.id}</a>'
+             <a href="promoterview.html?id=${promo.promoter}" class="text-muted pl-3">${promo.user}</a>
 
              <img class="float-right pb-3 pr-2" alt="${doc.id}" onclick="addtoWishlist('${doc.id}')" id="${doc.id}" style="cursor: pointer;" src="images/wishlist_${wished}.png" />
             <br/>
@@ -112,8 +114,9 @@ function setPromotions(adata){
             </div>
             </div> `;
 
+            html += card; 
 
-            html += card;
+            recommend.style.display = 'block';
         });
             
             elChild = document.createElement('div');
@@ -139,7 +142,6 @@ function setPromotions(adata){
 
 
 function loadNext(mydata){
-    
     
     if(mydata != undefined){
     let last = mydata[mydata.length - 1];
@@ -208,6 +210,9 @@ function addtoWishlist(id) {
     });
     
 }
+function offLoader(){
+    document.getElementById("loader").style.display = "none";
+}
 
 window.addEventListener("scroll", function (event) {
             var bot = document.body.scrollHeight - document.body.clientHeight;
@@ -215,7 +220,7 @@ window.addEventListener("scroll", function (event) {
             if (bot == scroll){
                 
                 if(!theend){
-                loadNext(data);
+                    loadNext(data);
                 }
                 
             }

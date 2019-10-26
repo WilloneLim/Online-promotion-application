@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin Dashboard</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>Promo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0" />
+    <!-- Bootstrap -->
+    
     <link rel="icon" type="image/png" href="images/Logo.png"/>
-
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css.map">
@@ -19,145 +20,183 @@
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
-    
-  <style>
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+   <link rel="stylesheet" type="text/css" href="css/main.css">
+   <link rel="stylesheet" type="text/css" href="css/main3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        *,
+        *::before,
+        *::after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-html, body {
-  height: 100vh;
-}
+        html, body {
+/*          height: 100vh;*/
+        }
 
-body {
-/*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
-  color: #333;
-  background: rgb(45,48,58);
-}
+        body {
+        /*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
+          color: #333;
+          background: rgb(45,48,58);
+        }
 
-.wrapper {
-  display: flex;
-  min-height: 100%;
-}
+        
 
-.sidebar {
-  position: absolute;
-  width: 220px;
-  padding: 20px;
-}
+        .buttonA {
+          cursor: pointer;
+        }
 
-.contentA {
-  flex: 1;
-  padding: 50px;
-  background: #fff;
-  box-shadow: 0 0 5px #000;
-  transform: translateX(0);
-  transition: transform .3s;
-}
+        .buttonA svg {
+          width: 40px;
+        }
 
-.contentA.isOpen {
-  transform: translateX(220px);
-}
+        .buttonA line {
+          stroke: black;
+          stroke-width: 5;
+        }
 
-.buttonA {
-  cursor: pointer;
-}
+        h1 {
+          margin-top: 25px;
+          font-size: 40px;
+          font-weight: 400;
+        }
 
-.buttonA svg {
-  width: 40px;
-}
+        .navA {
+          list-style: none;
+            padding-left: 20px;
+        }
 
-.buttonA line {
-  stroke: black;
-  stroke-width: 5;
-}
+        .navA li a {
+            font-size: 16px;
+            position: relative;
+            display: block;
+            padding: 16px 16px 16px 50px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-h1 {
-  margin-top: 25px;
-  font-size: 40px;
-  font-weight: 400;
-}
+        .navA li a:hover,
+        .navA li a.active {
+            
+          background: rgba(0,0,0,.3);
+        }
 
-.navA {
-  list-style: none;
-}
+        .navA li a::before {
+          font: 14px fontawesome;
+          position: absolute;
+          top: 15px;
+          left: 20px;
+        }
 
-.navA li a {
-    font-size: 16px;
-    position: relative;
-    display: block;
-    margin-bottom: 5px;
-    padding: 16px 0 16px 50px;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        .logo{
+          width: 100%;
+          margin: 30px 0px;
+        }
+        
+        .debtn{
+/*            background-color: #008CBA;*/
+            border: 2px solid #008CBA;
+            color: #008CBA;
+            padding: 15px;
+/*            text-align: center;*/
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-.navA li a:hover,
-.navA li a.active {
-  background: rgba(0,0,0,.3);
-}
+              /*my dropdown*/
 
-.navA li a::before {
-  font: 14px fontawesome;
-  position: absolute;
-  top: 15px;
-  left: 20px;
-}
-      
-.logo{
-  width: 100%;
-margin: 30px 0px;
-}
-      
-      /*my dropdown*/
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background: rgba(0,0,0,.3);
+            margin-top: 0;
+        /*  padding-left: 8px;*/
+        }
 
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-    background: rgba(0,0,0,.3);
-    margin-top: 0;
-/*  padding-left: 8px;*/
-}
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+          float: right;
+/*          padding-right: 8px;*/
+        }
+        
+        #dropdown-container {
+            background: rgba(0,0,0,.3);
+            margin-top: 0px;
+        }
+        
+        #dropdown-btn {
+            margin: 0px;
+        }
+        
+        
+        
+        
+        #comm {
+            width: 70px;
+            height: auto;
+            margin-top: 30px;
+            margin-left: 20px;
+        }
+        
+        #tran {
+            width: 70px;
+            height: auto;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        #sale {
+            width: 70px;
+            height: auto;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
 
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-/*      ~~~*/
+        /*      ~~~*/
 
-.navA li:nth-child(2) a::before { content: '\f00a'; }
-.navA li:nth-child(3) a::before { content: '\f012'; }
-.navA li:nth-child(4) a::before { content: '\f022'; }
-.navA li:nth-child(5) a::before { content: '\f02d'; }
-.navA li:nth-child(6) a::before { content: '\f085'; }
-.navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
-  </style>
+        .navA li:nth-child(2) a::before { content: '\f00a'; }
+        .navA li:nth-child(3) a::before { content: '\f012'; }
+        .navA li:nth-child(4) a::before { content: '\f022'; }
+        .navA li:nth-child(5) a::before { content: '\f02d'; }
+        .navA li:nth-child(6) a::before { content: '\f085'; }
+        .navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
+        
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet"/>
+    <!--from another tuts:s-->
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/7.1.0/firebase.js"></script>
+    <script language="javascript" type="text/javascript" src="promoamount.js"></script>
 </head>
-<body>
-
+<body id ="main" onload="read()">
     
 <div class="wrapper">
   <div class="sidebar">
     <ul class="navA">
         <li><img src="images/navnav.png" class="logo"></li>
         <li><a class="active text-light" href="adminconsole.html">Dashboard</a></li>
-        <li><a class="text-light" href="charts.php">Promoters</a></li>
+        <li><a class="text-light" href="admin_promoters.html">Promoters</a></li>
         <li>
-            <a class="text-light dropdown-btn">Applications<i class="fa fa-caret-down"></i></a>
+        <a class="text-light" id="dropdown-btn" onclick="openHI()">Applications<i class="fa fa-caret-down"></i></a>
 <!--        <button class="dropdown-btn">Dropdown </button>-->
-          <div class="dropdown-container">
+          <div id="dropdown-container" style="display:none;">
             <a href="viewapplicationsadmin.html">Account</a>
             <a href="viewpromoappsadmin.html">Promotion</a>
           </div>
@@ -168,25 +207,77 @@ margin: 30px 0px;
         <li><a class="text-light" href="" id="logout">Log Out</a></li>
     </ul>
   </div>
+    
   <div class="contentA isOpen">
-    <a class="buttonA">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <line x1="0" y1="20" x2="100" y2="20" />
-        <line x1="0" y1="50" x2="100" y2="50" />
-        <line x1="0" y1="80" x2="100" y2="80" />
-      </svg>
-    </a>
-    <h1>Welcome Admin</h1>
-    <hr class="w-50"/>
       
-      <h3>What would you like to view?</h3>
-    <div class="container mt-5 mx-auto">
-    <a href="admin_promoters.html" class="col-md-3 btn btn-warning btn-lg btn-block py-5 font-weight-bolder">Promoters</a>
-    <a href="viewapplicationsadmin.html" class="col-md-3 btn btn-warning mx-5 btn-lg btn-block py-5 font-weight-bolder">Applications</a>
-    <a href="admin_promoters.html" class="col-md-3 btn btn-warning btn-lg btn-block py-5 font-weight-bolder">Current Promoters</a>
-
-</div>     
-          <form class="admin-form" style="display: block;">
+      <div class="bg-white mt-0 mb-2 py-2 w-100 d-flex justify-content-between">
+          <h4 class="col-md-10 pl-4">Dashboard</h4>
+          <h4 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h4>
+          <h4 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h4>
+      </div>
+      
+      
+      <div class="container">
+        <div class="row">
+        <div id="prof" class="col-md-9 whitebg">
+            <div class="row">
+            <div id="chart" class="col-md-11">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-md-1">
+                <button class="download debtn" onclick="saveAsPDF();"><i class="fa fa-download"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12 whitebg pb-2">
+                    <div class="row">
+                    <div class="col-md-5">
+                        <p>Commision Rate</p>
+                        <h3>0.3%</h3>
+                    </div>
+                        <div class="col-md-5">
+                            <img id="comm" src="images/comm.png">
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12 whitebg pb-2">
+                    <div class="row">
+                    <div class="col-md-5">
+                        <p>Sales</p>
+                        <h3>15300</h3>
+                    </div>
+                        <div class="col-md-5">
+                            <img id="sale" src="images/Sales.png">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 whitebg pb-2">
+                    <div class="row">
+                    <div class="col-md-5">
+                        <p>Transactions</p>
+                        <h3>2457</h3>
+                    </div>
+                        <div class="col-md-5">
+                            <img id="tran" src="images/tran.png">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+      <div class="col-md-11 whitebg p-3">
+    <form class="admin-form" style="display: block;">
         <div class="form-group">
 
           <label for="post-title">Admin Add</label>
@@ -194,74 +285,66 @@ margin: 30px 0px;
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+      </div>
+      </div>
       
-      
-      
+      </div>
   </div>
 </div>
-        <script>
-    function myLogout() {
-      var txt;
-      if (confirm("Are you sure you want to log out?")) {
-            window.location.href ="logout.php";
-      }
-      document.getElementById("demo").innerHTML = txt;
-    }
-    </script>
     <script>
-    document.querySelector('.buttonA').addEventListener('click', () => {
-      document.querySelector('.contentA').classList.toggle('isOpen');
-    });
+//    document.querySelector('.buttonA').addEventListener('click', () => {
+//      document.querySelector('.contentA').classList.toggle('isOpen');
+//    });
         
         
         /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var dropdown = document.getElementById("dropdown-btn");
     var i;
+        
+        
+        var dropdownContent = document.getElementById("dropdown-container");
 
-    for (i = 0; i < dropdown.length; i++) {
-      dropdown[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var dropdownContent = this.nextElementSibling;
-      if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-      } else {
-      dropdownContent.style.display = "block";
-      }
-      });
-    }    
+//      dropdown.addEventListener("click", function() {
+//      this.classList.toggle("active");
+//      var dropdownContent = document.getElementById("dropdown-btn");
+      
+//      });  
     </script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyCA_sMgKuNxk2ngSqJRSX8aAvmrn80fBPo",
-            authDomain: "onlinepromoapp.firebaseapp.com",
-            databaseURL: "https://onlinepromoapp.firebaseio.com",
-            projectId: "onlinepromoapp"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        
-        // make auth and firebase ref
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const functions = firebase.functions();
-        
-        
-        //UPLOADCARE
-        UPLOADCARE_LOCALE = "en";
-        UPLOADCARE_LIVE = "false";
-        UPLOADCARE_PUBLIC_KEY = "f49b7b74d9cfddb1eb86";
-        
+    function openHI(){
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+    }
         
         
     </script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
-    <script src="scripts/auth.js"></script>
-    <script src="scripts/adminconsole.js"></script>
-</body>
+          
+
+    <script>
+   
+            function saveAsPDF() {
+            html2canvas(document.getElementById('prof')).then(canvas => {
+
+
+            var img = canvas.toDataURL("image/png", 1);
+
+            var doc = new jsPDF('L', 'pt', [canvas.width,canvas.height]);
+            doc.addImage(img, 'PNG', 10, 10, canvas.width,canvas.height);
+            doc.save('Statistics.pdf');
+        }).catch(function(e) {
+            console.log(e.message);
+        });
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+    </body>
 </html>

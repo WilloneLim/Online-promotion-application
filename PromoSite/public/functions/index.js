@@ -62,28 +62,24 @@ exports.addPromoterAccount = functions.https.onCall((data,context) => {
     });
     
 });
+
+exports.dailyChecks = functions.https.onRequest((req,res) => {
+    const currentTime = new Date().getTime();
+    const lyesterday = currentTime - 86400000;
+    const arr = []
     
+    db.collection("promotester").add({
+    name: "Tokyo",
+    country: "Japan"
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+})
     
-    
-    
-    
-//    
-//    return admin.auth().createUser({
-//          uid: data.id,
-//          email: data.email,
-//          password: data.password
-//         
-//         
-//    })
-//        .then(function(user) {
-//        // See the UserRecord reference doc for the contents of userRecord.
-////        console.log(userRecord.uid);
-//        return "Successfully added ";
-//      }).catch(function(error) {
-////        console.log('Error creating new user:', error);
-//        return "error:" + error;
-//      });
-//});
 
 
 

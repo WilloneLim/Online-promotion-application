@@ -21,7 +21,9 @@ auth.onAuthStateChanged(user => {
         if(window.location.href.indexOf("pending") > -1){
             setupUI(user);
         }
-
+        if(window.location.href.indexOf("showQR") > -1){
+            setupUI(user);
+        }
         
         if(window.location.href.indexOf("myaccount") > -1){
             db.collection('promotions').onSnapshot(snapshot =>{
@@ -30,34 +32,30 @@ auth.onAuthStateChanged(user => {
             },err => {
                 console.log(err.message);
             });
-        }
-        
-        if(window.location.href.indexOf("admin_promoters") > -1){
+        }else if(window.location.href.indexOf("admin_promoters") > -1){
             db.collection('promoters').onSnapshot(snapshot =>{
                 setupPromoter(snapshot.docs);
                 setupUI(user);
             },err => {
                 console.log(err.message);
             });
-        }
-        
-        
-        if(window.location.href.indexOf("viewapplicationsadmin") > -1){
+        }else if(window.location.href.indexOf("viewapplicationsadmin") > -1){
             db.collection('promoter_applications').onSnapshot(snapshot =>{
                 setupPromoterApp(snapshot.docs);
             },err => {
                 console.log(err.message);
             });
-        }
-        if(window.location.href.indexOf("viewpromoappsadmin") > -1){
+        }else if(window.location.href.indexOf("viewpromoappsadmin") > -1){
             db.collection('promo_applications').onSnapshot(snapshot =>{
                 setupPromoApp(snapshot.docs);
             },err => {
                 console.log(err.message);
             });
-        }
-        
-        if(window.location.href.indexOf("promoter") > -1){
+        }else if(window.location.href.indexOf("promoter") > -1){
+            
+            if(window.location.href.indexOf("promoterview") > -1){
+                setupUI(user);
+            }else{
             db.collection('promoters').doc(user.uid).onSnapshot(snapshot =>{
                 
                 promolist = snapshot.data().promotions;
@@ -75,12 +73,13 @@ auth.onAuthStateChanged(user => {
             },err => {
                 console.log(err.message);
             });
+            }
         }
         
     }else{
         setupUI();
         if(window.location.href.indexOf("index") > -1){
-        setupPromo([]);
+            offLoader();
         }
     }
 });
@@ -90,7 +89,7 @@ auth.onAuthStateChanged(user => {
 
 //logout user
 const logout = document.querySelector('#logout');
-    logout.addEventListener('click', (e) => {
+        logout.addEventListener('click', (e) => {
         e.preventDefault();
         auth.signOut();
         window.location.replace("signin.html");

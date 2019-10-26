@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    <link rel="stylesheet" href="css/main2.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!--    <link rel="stylesheet" href="css/main2.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -43,7 +43,7 @@
 <div ng-app="">
 <div class="container">
     <hr class="w-75 mt-5 "/>
-    <h1 class="text-center mt-0">Create new Promoter Account</h1>
+    <h1 class="text-center mt-0" id="titlecreate">Create new Promoter Account</h1>
     <hr class="w-75"/>
     
     <h4 class="text-center font-weight-normal"></h4>
@@ -57,6 +57,8 @@
         
         <form method="post" id="myPromoterForm" enctype="multipart/form-data">
             <br/>
+            <img src="#" id="coverimg"/>
+            
             <h5 class="text-muted font-weight-normal">Please select a cover image</h5>
             <div class="custom-file mb-3">
               <input
@@ -68,7 +70,10 @@
                      data-crop="820x315"
                      >
             </div>
+            
             <br/>
+            
+            <img src="#" id="profileimg"/>
             <h5 class="text-muted font-weight-normal">Please select a profile image</h5>
             <div class="custom-file mb-3">
               <input type="hidden" 
@@ -90,20 +95,22 @@
             <textarea class="form-control" id="desp" ng-model="desp" placeholder="eg. Our brand sells..." name="app_desp" rows="3"></textarea>
             </div>
             <div class="form-group">
-            <label for="promoter_email">Email address</label>
-            <input type="email" class="form-control" id="promoter_email" placeholder="name@example.com" name="app_email">
-            <small class="text-muted ml-2"> You will receive a confirmation email once your application is validated</small>
-            </div>
-            <br/>
-            <br/>
-            <div class="form-group">
-            <label for="promoter_password">Password</label>
-            <input type="password" class="form-control" id="promoter_password" placeholder="Password" name="app_pass">
-            </div>
-            <div class="form-group">
-            <label for="cpassword">Confirm Password</label>
-            <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="app_cpass">
-            </div>
+                <div id="emailinfo">
+                    <label for="promoter_email">Email address</label>
+                    <input type="email" class="form-control" id="promoter_email" placeholder="name@example.com" name="app_email">
+                    <small class="text-muted ml-2">You will receive a confirmation email once your application is validated</small>
+                
+                    <br/>
+                    <br/>
+                    <div class="form-group">
+                    <label for="promoter_password">Password</label>
+                    <input type="password" class="form-control" id="promoter_password" placeholder="Password" name="app_pass">
+                    </div>
+                    <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="app_cpass">
+                    </div>
+                </div>
             <br/>
             <h5 class="font-weight-normal">Keywords</h5>
             <hr class="w-50 ml-0 mt-1" />
@@ -136,10 +143,13 @@
 
             <br/>
             <br/>
-            <p class="text-muted">Satisfied with what you see? Send us your application.</p>
-            <button type="submit" class="btn btn-warning btn-block mb-3" name="upload" value="upload">Submit Application</button>
-
+                </div>
         </form>
+            <p class="text-muted">Satisfied with what you see? Send us your application.</p>
+            <button class="btn btn-warning btn-block mb-3" name="upload" value="upload" id="createpro" onclick="addpromoter()">Create Promoter</button>
+            
+            <button class="btn btn-warning btn-block m-5" name="update" value="update" id="updatepro" onclick="updatepromoter()">Update Promoter Information</button>
+            
         
     </div>
     
@@ -147,7 +157,6 @@
     
 </div>
 </div>
-    
 <br/>
 <br/>
     
@@ -181,7 +190,6 @@
     </script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
     
     <script>
         //UPLOADCARE

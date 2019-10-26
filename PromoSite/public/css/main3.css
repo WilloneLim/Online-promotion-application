@@ -37,3 +37,168 @@
       from {top:-300px; opacity:0}
       to {top:0; opacity:1}
     }
+
+    .whitebg{
+            background-color: white;
+            margin: 10px 20px;
+            border-radius: 10px;
+    }
+        
+    #notification {   
+/*            width:100px;*/
+        text-align:center;
+        vertical-align:middle;
+        position: relative;
+    }
+
+    #notification:hover {
+        color: orange;
+    }
+
+    #notification:after{
+        content:"2";
+        position: absolute;
+        background: red;
+        height:1.2rem;
+        left:1rem;
+        width:1.2rem;
+        text-align: center;
+        line-height: 1.2rem;;
+        font-size: 0.75rem;
+        border-radius: 50%;
+        color:white;
+        border:1px solid red;
+    }
+
+        .wrapper {
+          display: flex;
+            width: 83.7%;
+          min-height: 200%;
+            margin-bottom: 0;
+        }
+
+        .sidebar {
+          position: absolute;
+          width: 15%;
+/*          padding: 20px;*/
+        }
+
+        .contentA {
+          flex: 1;
+/*          padding-left: 20px;*/
+/*          padding-top: 20px;*/
+          background: #fff;
+          box-shadow: 0 0 5px #000;
+          transform: translateX(0);
+          transition: transform .3s;
+        }
+
+        .contentA.isOpen {
+        transform: translateX(220px);
+        background-color: #E3E3E3;
+        }
+
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+        *,
+        *::before,
+        *::after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+
+        .buttonA {
+          cursor: pointer;
+        }
+
+        .buttonA svg {
+          width: 40px;
+        }
+
+        .buttonA line {
+          stroke: black;
+          stroke-width: 5;
+        }
+
+        h1 {
+          margin-top: 25px;
+          font-size: 40px;
+          font-weight: 400;
+        }
+
+        .navA {
+          list-style: none;
+            padding-left: 20px;
+        }
+
+        .navA li a {
+            font-size: 16px;
+            position: relative;
+            display: block;
+            padding: 16px 16px 16px 50px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .navA li a:hover,
+        .navA li a.active {
+            
+          background: rgba(0,0,0,.3);
+        }
+
+        .navA li a::before {
+          font: 14px fontawesome;
+          position: absolute;
+          top: 15px;
+          left: 20px;
+        }
+
+        .logo{
+          width: 100%;
+        margin: 30px 0px;
+        }
+        
+        .debtn{
+/*            background-color: #008CBA;*/
+            border: 2px solid #008CBA;
+            color: #008CBA;
+            padding: 15px;
+/*            text-align: center;*/
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+              /*my dropdown*/
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background: rgba(0,0,0,.3);
+            margin-top: 0;
+        /*  padding-left: 8px;*/
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+          float: right;
+/*          padding-right: 8px;*/
+        }
+        
+        #dropdown-container {
+            background: rgba(0,0,0,.3);
+            margin-top: 0px;
+        }
+        
+        #dropdown-btn {
+            margin: 0px;
+        }
+        
+        
+        
+        

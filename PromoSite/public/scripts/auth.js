@@ -92,6 +92,11 @@ const logout = document.querySelector('#logout');
         logout.addEventListener('click', (e) => {
         e.preventDefault();
         auth.signOut();
+            firebase.auth().signOut().then(function() {
+                console.log("done");
+            }).catch(function(error) {
+                console.log(error);
+            });
         window.location.replace("signin.html");
     });
 

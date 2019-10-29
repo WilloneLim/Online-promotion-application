@@ -55,10 +55,10 @@ exports.addPromoterAccount = functions.https.onCall((data,context) => {
          })
     .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
-        return 'Successfully created new user:' + userRecord.uid;
+        return userRecord.uid;
     })
     .catch(function(error) {
-        return 'Error creating new user:' + error;
+        return 'Error';
     });
     
 });

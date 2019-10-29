@@ -69,31 +69,51 @@ let getDoc = ref.get()
         document.getElementById("loader").style.display = "none";
     } else {
         
-        db.collection("promoters").add({
-            coverimg: doc.data().coverimg,
-            desc: doc.data().desc,
-            email: doc.data().email,
-            profileimg: doc.data().profileimg,
-            promotions: [],
-            username: doc.data().username
-            
-        }).then(function(docRef){
-            
-                db.collection("promoter_applications").doc(c).delete().then(function() {
-                    console.log("Document successfully deleted!");
+        db.collection("promoter_applications").doc(c).delete().then(function() {
+                    const addPromoterRole = functions.httpsCallable('addPromoterAccount');
+                    addPromoterRole({ email: doc.data().email}).then(result => {
+                        
+                        if(result.data == "Error"){
+                            
+                            window.alert(result.data);
+                        }else{
+                            
+                            
+                            db.collection("promoters").doc(result.data).set({
+                                coverimg: doc.data().coverimg,
+                                desc: doc.data().desc,
+                                email: doc.data().email,
+                                profileimg: doc.data().profileimg,
+                                promotions: [],
+                                username: doc.data().username
+
+                            }).then(function(docRef){
+                                console.log(docRef);
+
+                            }).catch(function(error){
+                                console.log(error);
+                            });
+
+                        }
+                        
+                         
+                        
+                    }).then(function() {
+                        
+                        const addPromoterRole = functions.httpsCallable('addPromoterRole');
+                        addPromoterRole({ email: doc.data().email}).then(result => {
+                            console.log(result.data);
+                        }).then(function() {
+                            console.log("Done");
+                            console.log("Document successfully deleted!");
                     
-            
-                    window.alert("Successfully Accepted Applicant: " + docRef);
-                    window.location.href = "viewapplicationsadmin.html";
-                    
+//                            window.location.href = "viewapplicationsadmin.html";
+                        });
+                        
+                    });
                 }).catch(function(error) {
                     console.error("Error removing document: ", error);
                 });
-            
-            
-        }).catch(function(error){
-            console.log(error);
-        });
         
     }
     })

@@ -22,7 +22,7 @@ loginForm.addEventListener('submit', (e) => {
         loginForm.reset(); 
         loginForm.querySelector('.error').innerHTML = "";
         
-        loginRedirect();
+        chkStatus();
         
     }).catch(err => {
         loginForm.querySelector('.error').innerHTML = err.message;

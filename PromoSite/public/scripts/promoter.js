@@ -3,8 +3,8 @@ const promoList = document.querySelector('#promoList');
 
 const setupUI = (user) => {
     if (user){
-        console.log("no");
-        db.collection('users').doc(user.uid).get().then(doc => {
+//        console.log("no");
+        db.collection('promoters').doc(user.uid).get().then(doc => {
 //            const html = `<h2>${user.email}</h2><p>${doc.data().bio}</p><h3>${user.admin ? 'Admin' : ''}</h3>`;
 //            const html2 = `<h3>${user.promoter ? 'Promoter' : ''}</h3>`;
 //            accountDetails.innerHTML = html + html2;

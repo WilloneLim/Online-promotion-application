@@ -41,7 +41,7 @@ const setupPromoterApp = (data) => {
 //        promoterList.innerHTML = html;
 
     }else{
-        console.log("<h5>Please log in to view promotions!</h5>");
+        console.log("<h5>No applications!</h5>");
     }
     
 }

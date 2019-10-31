@@ -18,17 +18,23 @@ const setupUI = (user) => {
         loggedIn.forEach(item => item.style.display = 'block');
         loggedOut.forEach(item => item.style.display = 'none');
         
+        document.getElementById("newuser").style.display = "none";
+        
+        
+        setupPromotion("");
+        
         
     }else{
         //hide profile
         adminItems.forEach(item => item.style.display = 'none');
 //        accountDetails.innerHTML = '';
         
+        document.getElementById("mySort").style.display = "none";
+        
         loggedIn.forEach(item => item.style.display = 'none');
         loggedOut.forEach(item => item.style.display = 'block');
     }
     
-    setupPromotion("");
     
 }
 

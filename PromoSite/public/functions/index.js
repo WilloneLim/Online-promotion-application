@@ -62,23 +62,26 @@ exports.addPromoterAccount = functions.https.onCall((data,context) => {
     });
     
 });
+//
+//exports.dailyChecks = functions.https.onRequest((req,res) => {
+//    const currentTime = new Date().getTime();
+//    const lyesterday = currentTime - 86400000;
+//    const arr = []
+//    
+//    db.collection("promotester").add({
+//    name: "Tokyo",
+//    country: "Japan"
+//    })
+//    .then(function(docRef) {
+//        console.log("Document written with ID: ", docRef.id);
+//    })
+//    .catch(function(error) {
+//        console.error("Error adding document: ", error);
+//    });
+//})
+//
+//
 
-exports.dailyChecks = functions.https.onRequest((req,res) => {
-    const currentTime = new Date().getTime();
-    const lyesterday = currentTime - 86400000;
-    const arr = []
-    
-    db.collection("promotester").add({
-    name: "Tokyo",
-    country: "Japan"
-    })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
-})
     
 
 

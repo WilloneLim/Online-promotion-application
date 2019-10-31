@@ -47,6 +47,13 @@
             background-image: linear-gradient(to top, rgba(255,0,0,0), black);
         }
         
+        #foximg{
+            width: 200px;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     
     </style>
       
@@ -141,9 +148,14 @@
     <button class="stext p-2" id="filter-other" onclick="setupPromotion('other')">Other</button>
   </div>
     <br/>
-    <div class="row grid col-md-8 mx-auto">
+<!--    <div class="row grid border mx-auto">-->
         
         <div class="promos m-auto"></div>
+        <div id="newuser" class="border m-5 py-5">
+        <h2 class="text-center">Log in or Register</h2>
+            <p class="text-center text-muted font-weight-bold"> to view promotions</p>
+        <img src="images/loginpls.jpg" id="foximg">
+        </div>
         <div class="col-md-12 pb-5">
             <div class="col-md-12 text-center mx-auto p-2">
             <img class="img-fluid mx-auto" id="loader" style="width:400px;" src="images/loader.gif"/>
@@ -152,7 +164,7 @@
         
     </div>
     
-</div>
+<!--</div>-->
 
     <br/>
     <br/>

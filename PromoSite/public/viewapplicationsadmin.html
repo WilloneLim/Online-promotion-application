@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
+   <link rel="stylesheet" type="text/css" href="css/main3.css">
     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -45,85 +46,7 @@ body {
   background: rgb(45,48,58);
 }
 
-.wrapper {
-  display: flex;
-  min-height: 100%;
-width: 83.7%;
-}
 
-.sidebar {
-  position: absolute;
-  width: 220px;
-  padding: 20px;
-}
-
-.contentA {
-  flex: 1;
-  padding: 50px;
-  background: #fff;
-  box-shadow: 0 0 5px #000;
-  transform: translateX(0);
-  transition: transform .3s;
-}
-
-.contentA.isOpen {
-  transform: translateX(220px);
-}
-
-.buttonA {
-  cursor: pointer;
-}
-
-.buttonA svg {
-  width: 40px;
-}
-
-.buttonA line {
-  stroke: black;
-  stroke-width: 5;
-}
-
-h1 {
-  margin-top: 25px;
-  font-size: 40px;
-  font-weight: 400;
-}
-
-.navA {
-  list-style: none;
-}
-
-.navA li a {
-    font-size: 16px;
-    position: relative;
-    display: block;
-    margin-bottom: 5px;
-    padding: 16px 0 16px 50px;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.navA li a:hover,
-.navA li a.active {
-  background: rgba(0,0,0,.3);
-}
-
-.navA li a::before {
-  font: 14px fontawesome;
-  position: absolute;
-  top: 15px;
-  left: 20px;
-}
-      
-.logo{
-  width: 100%;
-margin: 30px 0px;
-}
-      
-#mylink, #del_click{
-    font-size:16px;
-}
       
       /*my dropdown*/
 
@@ -141,9 +64,6 @@ margin: 30px 0px;
   padding-right: 8px;
 }
       
-      tr {
-          font-size: 16px;
-      }
 /*      ~~~*/
 
 .navA li:nth-child(2) a::before { content: '\f00a'; }
@@ -177,17 +97,12 @@ margin: 30px 0px;
     </ul>
   </div>
   <div class="contentA isOpen">
-    <a class="buttonA">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <line x1="0" y1="20" x2="100" y2="20" />
-        <line x1="0" y1="50" x2="100" y2="50" />
-        <line x1="0" y1="80" x2="100" y2="80" />
-      </svg>
-    </a>
-
-<hr class="w-100 mt-5 "/>
-<h1 class="text-center mb-2">Account Applications</h1>
-<hr class="w-75 mx-auto"/>      
+    <div class="bg-white mt-0 mb-2 py-2 d-flex justify-content-between">
+          <h4 class="col-md-10 pl-4">Account Applications</h4>
+          <h4 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h4>
+          <h4 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h4>
+      </div>
+<div class="container">
 <form action="applicantview.php" method="POST">
 
 
@@ -214,7 +129,7 @@ margin: 30px 0px;
   </div>
  </form>
       
-      
+      </div>
   </div>
 </div>
     <script>

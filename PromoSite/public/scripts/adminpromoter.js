@@ -1,15 +1,15 @@
 const promoterTable = document.querySelector('#promotertable');
 
-const proForm = document.querySelector('.pro-form');
-proForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const proEmail = document.querySelector('#pro-add').value;
-    const addPromoterRole = functions.httpsCallable('addPromoterRole');
-    addPromoterRole({ email: proEmail}).then(result => {
-        window.alert(result.data);
-        proForm.reset();
-    })
-})
+//const proForm = document.querySelector('.pro-form');
+//proForm.addEventListener('submit', (e) => {
+//    e.preventDefault();
+//    const proEmail = document.querySelector('#pro-add').value;
+//    const addPromoterRole = functions.httpsCallable('addPromoterRole');
+//    addPromoterRole({ email: proEmail}).then(result => {
+//        window.alert(result.data);
+//        proForm.reset();
+//    })
+//})
 
 const setupPromoter = (data) => {
 

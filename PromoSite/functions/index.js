@@ -1,5 +1,3 @@
-
-
 const functions = require('firebase-functions');
 
 const admin = require('firebase-admin');
@@ -7,15 +5,12 @@ const admin = require('firebase-admin');
 const promoter = require('firebase-admin');
 
 
-admin.initializeApp();
-
-const db = admin.firestore();
-
 const runtimeOpts = {
-  timeoutSeconds: 300,
+  timeoutSeconds: 540,
   memory: '1GB'
 }
 
+admin.initializeApp();
 
 exports.addAdminRole = functions.https.onCall((data,context) => {
     
@@ -59,20 +54,22 @@ exports.addPromoterRole = functions.https.onCall((data,context) => {
 
 
 exports.addPromoterAccount = functions.https.onCall((data,context) => {
+    
     return admin.auth().createUser({
           uid: data.uid,
           email: data.email,
-          password: '123123'
+          password: data.pass
          })
     .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
-        return 'Successfully created new user:' + userRecord.uid;
+        return userRecord.uid;
     })
     .catch(function(error) {
-        return 'Error creating new user:' + error;
+        return 'Error';
     });
     
 });
+
 
 exports.dailyChecks = functions.runWith(runtimeOpts).https.onRequest((req,res) => {
     
@@ -89,7 +86,7 @@ exports.dailyChecks = functions.runWith(runtimeOpts).https.onRequest((req,res) =
     let date1 = new Date(today);
     
     
-    db.collection("promotions").get().then(function(querySnapshot) {
+    admin.firestore().collection("promotions").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         let date2 = new Date(doc.data().enddate);
         const diffTime = Math.abs(date2 - date1);
@@ -127,12 +124,14 @@ exports.dailyChecks = functions.runWith(runtimeOpts).https.onRequest((req,res) =
         });
         
     }).then(function() {
-        return "";
+        return "11";
     }).catch(function(error) {
         return 'Error creating new user:' + error;
     });
 
 });
+
+
     
 
 

@@ -24,6 +24,12 @@ auth.onAuthStateChanged(user => {
         if(window.location.href.indexOf("showQR") > -1){
             setupUI(user);
         }
+        if(window.location.href.indexOf("admin_settings") > -1){
+            setupUI(user);
+        }
+        if(window.location.href.indexOf("admin_transactions") > -1){
+            setupUI(user);
+        }
         
         if(window.location.href.indexOf("myaccount") > -1){
             db.collection('promotions').onSnapshot(snapshot =>{
@@ -35,7 +41,7 @@ auth.onAuthStateChanged(user => {
         }else if(window.location.href.indexOf("admin_promoters") > -1){
             db.collection('promoters').onSnapshot(snapshot =>{
                 setupPromoter(snapshot.docs);
-                setupUI(user);
+//                setupUI(user);
             },err => {
                 console.log(err.message);
             });

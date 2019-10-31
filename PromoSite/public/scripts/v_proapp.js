@@ -8,6 +8,7 @@ const promodisplay = document.querySelector('#promos');
 var url_string = window.location.href;
 var url = new URL(url_string);
 var c = url.searchParams.get("id");
+
 setupPromoter()
 //const setupUI = (user) => {
 //    loggedBoth.forEach(item => item.style.display = 'block');
@@ -71,46 +72,59 @@ let getDoc = ref.get()
         
         db.collection("promoter_applications").doc(c).delete().then(function() {
                     const addPromoterRole = functions.httpsCallable('addPromoterAccount');
-                    addPromoterRole({ email: doc.data().email}).then(result => {
-                        
-                        if(result.data == "Error"){
-                            
-                            window.alert(result.data);
-                        }else{
-                            
-                            
-                            db.collection("promoters").doc(result.data).set({
-                                coverimg: doc.data().coverimg,
-                                desc: doc.data().desc,
-                                email: doc.data().email,
-                                profileimg: doc.data().profileimg,
-                                promotions: [],
-                                username: doc.data().username
-
-                            }).then(function(docRef){
-                                console.log(docRef);
-
-                            }).catch(function(error){
-                                console.log(error);
-                            });
-
-                        }
-                        
-                         
-                        
-                    }).then(function() {
-                        
-                        const addPromoterRole = functions.httpsCallable('addPromoterRole');
-                        addPromoterRole({ email: doc.data().email}).then(result => {
-                            console.log(result.data);
-                        }).then(function() {
-                            console.log("Done");
-                            console.log("Document successfully deleted!");
                     
-//                            window.location.href = "viewapplicationsadmin.html";
-                        });
-                        
-                    });
+                    var reff = db.collection("settings").doc("passcode");
+            
+                    reff.get().then(function(adoc) {
+                        if (doc.exists) {
+                    
+                            console.log(doc.data().password);
+                            console.log(adoc.data().value);
+                            var decrypted = CryptoJS.AES.decrypt(doc.data().password, adoc.data().value);
+                            
+                            console.log(decrypted);
+                            let decry = decrypted.toString(CryptoJS.enc.Utf8);
+                            console.log(decry);
+                            
+                            addPromoterRole({ email: doc.data().email},{pass: decry}).then(result => {
+                                if(result.data == "Error"){
+                                    window.alert(result.data);
+                                }else{
+                                    db.collection("promoters").doc(result.data).set({
+                                        coverimg: doc.data().coverimg,
+                                        desc: doc.data().desc,
+                                        email: doc.data().email,
+                                        profileimg: doc.data().profileimg,
+                                        promotions: [],
+                                        username: doc.data().username
+
+                                    }).then(function(docRef){
+                                        console.log(docRef);
+
+                                    }).catch(function(error){
+                                        console.log(error);
+                                    });
+                                } 
+
+                            }).then(function() {
+
+                                const addPromoterRole = functions.httpsCallable('addPromoterRole');
+                                addPromoterRole({ email: doc.data().email}).then(result => {
+                                    console.log(result.data);
+                                }).then(function() {
+                                    console.log("Done");
+                                    console.log("Document successfully deleted!");
+
+                                    window.location.href = "viewapplicationsadmin.html";
+                                });
+
+                            });
+                            
+                        } else {
+                            console.log("No such document!");
+                        }
+                    })
+
                 }).catch(function(error) {
                     console.error("Error removing document: ", error);
                 });

@@ -6,34 +6,78 @@ const accountDetails = document.querySelector('.account-details');
 const adminItems = document.querySelectorAll('.admin');
 
 
+    var cimg = document.getElementById('customFileA').value;
+    var pimg = document.getElementById('customFileB').value;
+    var tit = document.getElementById('title').value;
+    var des = document.getElementById('desp').value;
+    
+    
+    var pass = document.getElementById('promoter_password');
+    var cpass = document.getElementById('cpassword');
+
+    
+    
+
+cpass.addEventListener('blur', (e) => {
+    
+    if(pass.value != cpass.value){
+        document.getElementById('perror').innerHTML = "Passwords do not match";
+    }
+})
+
+
 const promoterForm = document.querySelector('#applyPromoter');
 
 promoterForm.addEventListener('submit', (e) => {
     e.preventDefault();
-//get user input
-    const pro_email = promoterForm['promoter_email'].value;
-    const pro_password = promoterForm['promoter_password'].value;
+    
+    var docRef = db.collection("settings").doc("passcode");
 
-            db.collection('promoter_applications').add({
-                coverimg: promoterForm['customFileA'].value,
-                profileimg: promoterForm['customFileB'].value,
-                username: promoterForm['title'].value,
-                desc: promoterForm['desp'].value,
-                email: pro_email
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            let passcode = doc.data().value;
+            
+            if(cimg != "" || pimg != "" || tit != "" || des != "" || pass.value != "" || cpass.value != ""){
+                let encrypted = CryptoJS.AES.encrypt(cpass.value, passcode);
 
-            }).then(() => {
-                //reset form
-                promoterForm.reset(); 
-                window.alert('Application Sent');
-                window.location.replace("index.html");
-                
+                    let encry = encrypted.toString();
 
-                
+                    const pro_email = promoterForm['promoter_email'].value;
+                    const pro_password = promoterForm['promoter_password'].value;
 
-            }).catch(err => {
-                promoterForm.querySelector('.error').innerHTML = err.message;
-            });
-        
+                        db.collection('promoter_applications').add({
+                            coverimg: promoterForm['customFileA'].value,
+                            profileimg: promoterForm['customFileB'].value,
+                            username: promoterForm['title'].value,
+                            desc: promoterForm['desp'].value,
+                            email: pro_email,
+                            password: encry
+
+                        }).then(() => {
+                            //reset form
+                            promoterForm.reset(); 
+                            window.alert('Application Sent');
+                            window.location.replace("index.html");
+
+
+
+
+                        }).catch(err => {
+                            promoterForm.querySelector('.error').innerHTML = err.message;
+                        });
+                }else{
+                    window.alert("Please fill every box");
+                }
+            
+            
+            
+            
+        } else {
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
         
     });
            

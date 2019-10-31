@@ -23,6 +23,17 @@
    <link rel="stylesheet" type="text/css" href="css/main.css">
    <link rel="stylesheet" type="text/css" href="css/main3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.4"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style>
         @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
@@ -173,28 +184,24 @@
         .navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
         
     </style>
-    
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.4"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
-    
-    <!--from another tuts:s-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-  <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/7.1.0/firebase.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/7.1.0/firebase.js"></script>
+    
 </head>
 <body id ="main">
     
 <div class="wrapper">
   <div class="sidebar">
     <ul class="navA">
-        <li><img src="images/navnav.png" id="logo"></li>
+        <li><img src="images/navnav.png" class="logo"></li>
         <li><a class="active text-light" href="adminconsole.html">Dashboard</a></li>
         <li><a class="text-light" href="admin_promoters.html">Promoters</a></li>
         <li>
@@ -206,15 +213,15 @@
           </div>
         </li>
         
-        <li><a class="text-light" href="admin_transactions.html">Transactions</a></li>
-        <li><a class="text-light" href="admin_settings.html">Settings</a></li>
-        <li><a class="text-light" id="logout">Log Out</a></li>
+        <li><a class="text-light">Transactions</a></li>
+        <li><a class="text-light" href="test.php">Settings</a></li>
+        <li><a class="text-light" href="" id="logout">Log Out</a></li>
     </ul>
   </div>
     
   <div class="contentA isOpen">
       
-      <div class="bg-white mt-0 mb-2 py-2 d-flex justify-content-between">
+      <div class="bg-white mt-0 mb-2 py-2 w-100 d-flex justify-content-between">
           <h4 class="col-md-10 pl-4">Dashboard</h4>
           <h4 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h4>
           <h4 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h4>
@@ -223,16 +230,14 @@
       
       <div class="container">
         <div class="row">
-        <div class="col-md-9 whitebg">
+        <div id="prof" class="col-md-9 whitebg">
             <div class="row">
-                <div id="prof" class="col-md-11">
-                    <div id="chart" class="col-md-12">
-                        <canvas id="myChart"></canvas>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button class="download debtn" onclick="saveAsPDF();"><i class="fa fa-download"></i></button>
-                </div>
+            <div id="chart" class="col-md-11">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-md-1">
+                <button class="download debtn" onclick="saveAsPDF();"><i class="fa fa-download"></i></button>
+            </div>
             </div>
         </div>
         <div class="col-md-2">
@@ -280,6 +285,21 @@
                 </div>
             </div>
         </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-9">
+                <table class="table table-striped table-hover" id="promoList">
+                    <tr>
+                        <th>Date</th>
+                        <th>Profit</th>
+                    </tr>
+                    <tr>
+                        <td>Date here</td>
+                        <td>Amount here</td>
+                    </tr>
+             </table>
+            </div>
         </div>
         <div class="row">
       <div class="col-md-11 whitebg p-3">
@@ -345,142 +365,43 @@
         });
     }
     </script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
+      <script>
+          var firebaseConfig = {
+              apiKey: "AIzaSyCA_sMgKuNxk2ngSqJRSX8aAvmrn80fBPo",
+              authDomain: "onlinepromoapp.firebaseapp.com",
+              databaseURL: "https://onlinepromoapp.firebaseio.com",
+              projectId: "onlinepromoapp"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          
+          // make auth and firebase ref
+          const auth = firebase.auth();
+          const db = firebase.firestore();
+          const functions = firebase.functions();
+          
+          
+          //UPLOADCARE
+          UPLOADCARE_LOCALE = "en";
+          UPLOADCARE_LIVE = "false";
+          UPLOADCARE_PUBLIC_KEY = "f49b7b74d9cfddb1eb86";
+          
+          
+          
+      </script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+      <script src="scripts/auth.js"></script>
+      <script src="scripts/chartUI.js"></script>
+      <script src="scripts/adminconsole.js"></script>
+
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyCA_sMgKuNxk2ngSqJRSX8aAvmrn80fBPo",
-            authDomain: "onlinepromoapp.firebaseapp.com",
-            databaseURL: "https://onlinepromoapp.firebaseio.com",
-            projectId: "onlinepromoapp"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        
-        // make auth and firebase ref
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const functions = firebase.functions();
-        
         
     </script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-    
-    <script>
-        //UPLOADCARE
-        UPLOADCARE_LOCALE = "en";
-        UPLOADCARE_LIVE = "false";
-        UPLOADCARE_PUBLIC_KEY = "566cf60ccd0f048ca3df";
-    </script>
-    
-    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
-    <script src="scripts/auth.js"></script>
-    <script>
-
-var labelsArray = [];
-var dataArray = [];
-
-db.collection('transaction').orderBy('Created','asc').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        var item = doc.data();
-
-        var price = item.Amount;
-        dataArray.push(price);
-
-        var date = item.Created;
-        labelsArray.push(date);
-    });
-});
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-type: 'line',
-data: {
-    labels: labelsArray,
-    datasets: [{
-        label: 'TRANSACTIONS PROMOAPPLICATION',
-        data: dataArray , 
-          backgroundColor: [
-                'rgba(255,255,51,0.2)'
-            ],
-            borderColor: [
-                'rgba(255,153,0,1)'
-                
-            ],
-        
-    }]
-},
-options: {
-    scales: {
-        xAxes: [{
-            scaleLabel: {
-                display: true,
-                labelString: 'Date'
-            }
-        }],
-        
-        yAxes: [{
-            ticks: {
-                beginAtZero: true
-            },
-            scaleLabel: {
-					display: true,
-					labelString: 'Profit (RM)'
-				}
-        }]
-    },
-    //add tooltips
-    tooltips: {
-        mode: 'nearest',
-        intersect: false
-    },
-    hover: {
-			mode: 'nearest',
-			intersect: false
-    },
-    // Container for pan options
-    pan: {
-        // Boolean to enable panning
-        enabled: true,
-
-        // Panning directions. 
-        mode: 'x',
-       
-        speed: 5,
-      threshold: 5
-    },
-
-    // Container for zoom options
-    zoom: {
-        // enable zooming
-        enabled: true,                      
-        // Zooming directions. 
-        mode: 'x',
-        
-        }
-    }
-});
-
-setInterval(function() { myChart.update();}, 1000); 
-   
-//$('#reset_zoom').click(function(){
-//    myChart.resetZoom();
-//    console.log(myChart);
-//});
-
-//$('#disable_zoom').click(function(){
-//    myChart.ctx.canvas.removeEventListener('wheel', myChart._wheelHandler);
-//});
-//
-//$('#enable_zoom').click(function(){
-//    myChart.ctx.canvas.addEventListener('wheel', myChart._wheelHandler);
-//});
-
-</script>
-   
     </body>
 </html>

@@ -1,11 +1,17 @@
 const promoTable = document.querySelector('#promotable');
 
-const setupPromoApp = (data) => {
+const setupUI = (user) => {
+    
+    setupPromoApp();
+    console.log("hi");
 
-    if (data.length){
-    let html = '';
-    data.forEach(doc => {
-        const promo = doc.data();
+}
+
+function setupPromoApp(){
+
+    db.collection("promo_applications").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            const promo = doc.data();
         
         console.log(doc.id);
 
@@ -47,19 +53,28 @@ const setupPromoApp = (data) => {
 
             }
             })
-        
-
-        // Insert a cell in the row at index 0
-        
-        
-    });
-
-//        promoterList.innerHTML = html;
-
-    }else{
-        console.log("<h5>Please log in to view promotions!</h5>");
-    }
+            
+            
+        })
+    })
     
+//    if (data.length){
+//    let html = '';
+//    data.forEach(doc => {
+//        
+//        
+//
+//        // Insert a cell in the row at index 0
+//        
+//        
+//    });
+//
+////        promoterList.innerHTML = html;
+//
+//    }else{
+//        document.getElementById("empty").style.display = "block";
+//    }
+//    
 }
 
 function viewpromoapp(a){

@@ -4,20 +4,10 @@
 <head>
     <title>Promo</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    
-<!-- Open Graph-->
-    <meta name="twitter:card"         content="summary" />
-    <meta property="og:url"           content="https://onlinepromoapp.firebaseapp.com/sharing.html" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="PromoAlert" />
-    <meta property="og:description"   content="Get Exclusive Promotions for sharing your love for your favourite brands" />
-    <meta property="og:image"         content="https://onlinepromoapp.firebaseapp.com/images/defaultpromotionimg.png" />
-
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0" />
     <!-- Bootstrap -->
-    <!--test-->
-    <!--#######################################    -->
+
     <link rel="icon" type="image/png" href="images/Logo.png"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
@@ -29,50 +19,58 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css.map">
     <link rel="stylesheet" href="css/bootstrap.css.map">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
+<!--    <link rel="stylesheet" href="css/main2.css">-->
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/main.css">
     
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <style>
-/*
-        .header{
-            background-image: url('images/cp.png');
-            background-repeat:no-repeat;
-            background-size: 100% auto;
-            background-position: center;
-            background-attachment: fixed;
-            background-color: black;
-            opacity: 0.9;
-            height: 310px;
+        body {
+	       margin: 16px;
         }
-        #navover{
-            background-image: linear-gradient(to top, rgba(255,0,0,0), black);
+
+        p {
+            margin: 8px 0;
         }
-    
-        #navi{
-            font-size: 0.9em;
+
+        code {
+          font-family: monospace;
         }
-*/
+
+        .image-preview-single {
+          padding: 10px 0;
+        }
+        .image-preview-single > img {
+          width: 128px;
+          height: 96px;
+          vertical-align: middle;
+/*          visibility: hidden;*/
+          display: inline-block;
+        }
+
         
     </style>
+    <script>
+        //UPLOADCARE
+        UPLOADCARE_LOCALE = "en";
+        UPLOADCARE_LIVE = "false";
+        UPLOADCARE_PUBLIC_KEY = "f49b7b74d9cfddb1eb86";
+    </script>
+
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    
 </head>
-<body ng-app="myApp">
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-<div class="header">
+<body>
+ <div class="header">
     <div id="navup" class="d-flex justify-content-end">
     <ul class="list-group list-group-horizontal">
       <li class="list-group-item bg-transparent border-0 p-0 m-0"><p class="text-light m-0"><i class="fa fa-mobile fa-lg" aria-hidden="true"> </i> <a href="#" style="color: white;"> Get the App</a></p></li>
@@ -114,36 +112,47 @@
     <ul class="list-group list-group-horizontal container">
       <li class="list-group-item border-0"><a class="text-muted" href="#">Featured</a></li>
       <li class="list-group-item border-0"><a class="text-muted" href="#">Promoters</a></li>
-      <li class="list-group-item border-0"><a class="text-muted" href="#">Promotions</a></li>
+      <li class="list-group-item border-0"><a class="text-muted" href="mypromotions.html">Promotions</a></li>
       <li class="list-group-item border-0"><a class="text-muted" href="#">About</a></li>
     </ul>
     </div>
     
     </div>
-    
+<div ng-app="">
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-5 mx-auto border text-center" id="success" style="display:none;">
-            <h3 class="mt-5">You have successfully claimed this promotion!!!</h3>
-            <div class="p-5 mx-5" id="qrcode"></div>
-            <p class="font-weight-bold mb-1">Take this code to your nearest corresponding store to claim.</p>
-            <p class="text-muted">This code will be saved to your QR vault in 'My Account'</p>
-            <a class="btn btn-warning btn-lg btn-block mb-4" role="button" href="myaccount.html" aria-disabled="true">Go to My Account</a>
-        </div>
-        <div class="col-md-5 mx-auto border bg-light text-center" id="fail" style="display:none;">
-            <h3 class="mt-5">Please log in to proceed</h3>
-            <a class="btn btn-warning btn-block w-100 mb-4" role="button" href="signin.html" aria-disabled="true">Sign In</a>
-        </div>
-        <div class="col-md-5 mx-auto border text-center" id="collected" style="display:none;">
-            <h3 class="mt-5">I appears you have already claimed this promotion</h3>
-            <p>Please check your QR Vault for the QR code</p>
-            <a class="btn btn-warning btn-lg btn-block mb-4" role="button" href="myaccount.html" aria-disabled="true">Go to My Account</a>
-        </div>
-    </div>
+<div>
+  <div class="image-preview-single">
+    <img src="" alt="" class="border"/>
+    <input
+      type="hidden"
+      role="uploadcare-uploader"
+      data-clearable
+      data-images-only
+      data-public-key="1c86ca998ba22e75fbc6"
+      value="a15a0473-5262-48c7-82e3-2fefcd14e293"
+    />
+  </div>
+<!--
+  <div class="image-preview-single">
+    <img src="" alt="" class="border"/>
+    <input
+      role="uploadcare-uploader"
+      data-clearable
+      data-images-only
+      data-public-key="1c86ca998ba22e75fbc6"
+      value="9dd2f080-cc52-442d-aa06-1d9eec7f40d1"
+    />
+  </div>
+-->
 </div>
 
+    
+    
+</div>
+</div>
 
-<!-- Footer -->
+<br/>
+<br/>
 <footer class="page-footer bg-secondary font-small mt-5 pt-4">
   <div class="container-fluid text-center text-md-left">
     <div class="row mx-auto">
@@ -183,47 +192,61 @@
   <!-- Copyright -->
 
 </footer> 
-<script src="js/jquery.min.js"></script>
-<script src="js/qrcode.min.js"></script>
+    
+    <script>
+    
+        
+    function installWidgetPreviewSingle(widget, img) {
+          widget.onChange(function(file) {
+//            img.css('visibility', 'hidden')
+            img.attr('src', '')
+            if (file) {
+              file.done(function(fileInfo) {
+                var size = '' + img.width() * 2 + 'x' + img.height() * 2
+                var previewUrl = fileInfo.cdnUrl + '-/scale_crop/' + size + '/center/'
+                console.log(previewUrl);
+                img.attr('src', previewUrl)
+                img.css('visibility', 'visible')
+              })
+            }
+          })
+        }
 
-<script>
+        $('.image-preview-single').each(function() {
+          installWidgetPreviewSingle(uploadcare.SingleWidget($(this).children('input')), $(this).children('img'))
+        })
 
+    </script>
 
-
-</script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
-<script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyCA_sMgKuNxk2ngSqJRSX8aAvmrn80fBPo",
-        authDomain: "onlinepromoapp.firebaseapp.com",
-        databaseURL: "https://onlinepromoapp.firebaseio.com",
-        projectId: "onlinepromoapp"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // make auth and firebase ref
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const functions = firebase.functions();
-
-
-    //UPLOADCARE
-    UPLOADCARE_LOCALE = "en";
-    UPLOADCARE_LIVE = "false";
-    UPLOADCARE_PUBLIC_KEY = "f49b7b74d9cfddb1eb86";
-
-
-
-</script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
-<script src="scripts/auth.js"></script>
-<script src="scripts/sharing.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-functions.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCA_sMgKuNxk2ngSqJRSX8aAvmrn80fBPo",
+            authDomain: "onlinepromoapp.firebaseapp.com",
+            databaseURL: "https://onlinepromoapp.firebaseio.com",
+            projectId: "onlinepromoapp"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // make auth and firebase ref
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+        
+        
+      
+        
+        
+        
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>-->
+<!--    <script src="scripts/auth.js"></script>-->
+<!--    <script src="scripts/applypromoter.js"></script>-->
 </body>
 </html>

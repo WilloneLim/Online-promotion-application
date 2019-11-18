@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+<!--    HI-->
   <head>
-     <title>PromoAlert - Home</title>
+     <title>PromoAlert - Promotions</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
@@ -43,9 +44,20 @@
             background-color: #F2F2F3;
         }
         .header{
+/*            background-image: url('images/cp.png');*/
+/*
+            background-repeat:no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            background-attachment: fixed;
+*/
+/*            background-color: black;*/
+/*            opacity: 0.9;*/
+/*            height: 450px;*/
             border-bottom: 1px solid lightgrey;
         }
         #navover{
+/*            background-image: linear-gradient(to top, rgba(255,0,0,0), black);*/
             background-color: #A56527;
         }
         #navup{
@@ -71,19 +83,6 @@
               width: 100%;
               height: 100%;
           }
-        
-        #dayleft{
-            background-color: coral;
-            border-radius: 10%;
-            font-family: "Arial", Sans-serif;
-            padding-top: 2px;
-            height: 20px;
-            width: 30%;
-            font-size: 12px;
-            margin-right: 60%;
-            text-align: center;
-            opacity: 0.8;
-        }
     
     </style>
       
@@ -124,9 +123,14 @@
                 <li class="nav-item mr-3 loggedBoth" style="display: none;">
                   <form class="form-inline" action="/action_page.php">
                     <input class="form-control col-md-9" type="text" placeholder="Search">
-                    <button type="button" class="btn btn-success col-md-1 ml-1 my-auto" id="search" ><i class="fa fa-search p-0"></i></button>
+                    <button type="button" class="btn btn-success col-md-1 ml-1 my-auto" id="search" ><i class="fa fa-search"></i></button>
                   </form>
                 </li>
+<!--
+                <li class="nav-item mr-3 loggedBoth" style="display: none;">
+                  <a class="nav-link text-light" href="proapplication.html">Apply for promoter account</a>
+                </li>
+-->
                 <li class="nav-item loggedIn" style="display: none;">
                     <a class="nav-link text-light font-weight-bold"  href="myaccount.html" id="account">My Account</a>
                 </li>
@@ -143,12 +147,12 @@
             </div>
         
         </nav>
-    <div style="background-color: white;">
+    <div class="bg-light">
     <ul class="list-group list-group-horizontal container">
-      <li class="list-group-item border-0"><a class="text-muted" href="#">Featured</a></li>
-      <li class="list-group-item border-0"><a class="text-muted" href="#">Promoters</a></li>
-      <li class="list-group-item border-0"><a class="text-muted" href="mypromotions.html">Promotions</a></li>
-      <li class="list-group-item border-0"><a class="text-muted" href="#">About</a></li>
+      <li class="list-group-item bg-light border-0 text-muted">Featured</li>
+      <li class="list-group-item bg-light border-0 text-muted">Promoters</li>
+      <li class="list-group-item bg-light border-0 text-muted">Promotions</li>
+      <li class="list-group-item bg-light border-0 text-muted">About</li>
     </ul>
     </div>
     
@@ -190,115 +194,65 @@
 </div>
 </div>
 </div>
-    
-
-
-
-      
-      <div class="row mt-5">
-        <div class="col-md-3">
-            <h5>Popular categories</h5>
-            <div class="list-group bg-light">
-                <div class="list-group-item list-group-item-action">
-                    <img class="my-0" src="images/icon_food.png" height="35px" width="35px">
-                    <a href="#" class="col-md-8 text-muted my-0" >Food</a>
-                </div>
-                <div class="list-group-item list-group-item-action">
-                    <img class="my-0" src="images/icon_drink.png" height="35px" width="35px">
-                    <a href="#" class="col-md-8 text-muted my-0">Drink</a>
-                </div>
-                <div class="list-group-item list-group-item-action">
-                    <img class="my-0" src="images/icon_travel.png" height="35px" width="35px">
-                    <a href="#" class="col-md-8 text-muted my-0">Travel</a>
-                </div>
-                <div class="list-group-item list-group-item-action">
-                    <img class="my-0" src="images/icon_bag.png" height="35px" width="35px">
-                    <a href="#" class="col-md-8 text-muted my-0">Bags</a>
-                </div>
-                <div class="list-group-item list-group-item-action">
-                    <img class="my-0" src="images/icon_shoe.png" height="35px" width="35px">
-                    <a href="#" class="col-md-8 text-muted my-0">Shoes</a>
-                </div>
-            </div>
-        </div>
-          
-        <div class="col-md-9">
-            <h5>Recommended promotions</h5>
-            <div class="row border" style="background-color: white;">
-                <div class="col-md-7 py-3">
-                    <img class="img-fluid my-2" src="https://ucarecdn.com/580d99c1-c146-4f13-a540-48188758e29f/-/crop/269x142/173,134/" style="width: 800px;" alt="IMG-PRODUCT">
-                </div>
-                <div class="col-md-5 pt-3">
-                    <h3>Free small hot coffee </h3>
-                    <p class="text-muted font-weight-bold">7 Eleven</p>
-                    <p class="text-muted">Description<br/>1....<br/>2....<br/>3. ...<br/></p>
-                    <br/>
-                    <button type="button" class="btn btn-success btn-block w-100 mb-2">View Details</button>
-                    
-                    <br/>
-                </div>
-            
-            </div>
-        </div>
-      </div>
-    
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="row mt-2">
-                    <h5 class="font-weight-normal col-md-10">Top Promoters</h5>
-                    <a href="mypromotions.html" class="col-md-2 text-right text-muted">View More</a>
-                </div>
-                <div class="row">
-                    <div class="card col-md-2 p-0 mx-auto">
-                        <img class="card-img-top" src="images/profiledomi.png"/>
-                    </div>
-                    <div class="card col-md-2 p-0 mx-auto" >
-                        <img class="card-img-top" src="images/profilekfc.png"/>
-                    </div>
-                    <div class="card col-md-2 p-0 mx-auto">
-                        <img class="card-img-top" src="images/profilesep.png"/>
-                    </div>
-                    <div class="card col-md-2 p-0 mx-auto">
-                        <img class="card-img-top" src="images/profiletea.png"/>
-                    </div>
-                    <div class="card col-md-2 p-0 mx-auto">
-                        <img class="card-img-top" src="images/profilestar.png"/>
-                    </div>
-<!--
-                    <div class="card col-md-2 p-0 mx-auto">
-                        <img class="card-img-top" src="images/profilesketch.png"/>
-                    </div>
--->
-                </div>
-            </div>
-        </div>
    
       
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-<div class="row mt-5">
-<h5 class="font-weight-normal col-md-10">Our Promotions</h5>
-    <a href="mypromotions.html" class="col-md-2 text-right text-muted">View More</a>
-</div>
-
-    <div id="recommended" style="display: none;">
-    <div class="d-flex justify-content-center">
     
-    <div class="col-md-6 pb-5 grid-item">
-         <div class="col-md-12 shadow-lg mx-auto p-2">
-             <h3 class="text-center text-muted pt-3">Recommended</h3>
-             <a href="share.html?id=${doc.id}">
-             <img class="img-fluid p-2 mt-2" src="https://ucarecdn.com/580d99c1-c146-4f13-a540-48188758e29f/-/crop/269x142/173,134/" style="width: 800px;" alt="IMG-PRODUCT">
-             </a>
-             <h5 class="pt-2 pl-3">Free small hot coffee </h5>
-
-             <a href="promoterview.html?id=6lO75PNQlvX7AMYMB54L" class="text-muted pl-3">7 Eleven</a>
-
-            <br/>
-            <br/>
+<div class="row mt-5">
+    <div class=" col-md-3">
+        
+        <div class="row m-0 p-0">
+            <h5 class="font-weight-normal col-md-6">Filter</h5>
+            <button onclick="fillPromo()" type="button" class="btn btn-link text-primary p-0 m-0 col-md-6">Reset Filter</button>
+        </div>
+        
+        <div class="border p-3 mt-3" style="background-color: white;">
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('food')" type="checkbox" value="food" id="chkfood">
+          <label class="form-check-label" for="food">
+            Food
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('drink')" type="checkbox" value="drink" id="chkdrink">
+          <label class="form-check-label" for="drink">
+            Beverages
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('clothes')" type="checkbox" value="clothes" id="chkclothes">
+          <label class="form-check-label" for="clothes">
+            Clothes
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('bags')" type="checkbox" value="bag" id="chkbags">
+          <label class="form-check-label" for="bags">
+            Bags
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('shoe')" type="checkbox" value="shoe" id="chkshoe">
+          <label class="form-check-label" for="drink">
+            Shoes
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="filterchk form-check-input" onclick="filterPromos('other')" type="checkbox" value="other" id="chkothers">
+          <label class="form-check-label" for="others">
+            Others
+          </label>
+        </div>
+            
         </div>
     </div>
+    <div class=" col-md-9">
+        <h5 class="font-weight-normal">Our Promotions</h5>
+        
+        <div class="row" id="tester"></div>
+    
     </div>
-    </div>
+</div>
     
 <!--
   <div class="filter d-flex justify-content-center" id="mySort">
@@ -313,31 +267,10 @@
 -->
       
       
-<div class="row" id="tester">
     <br/>
     <div class="row grid border mx-auto">
         <div class="promos border"></div>
     </div>
-<!--
-        <div id="newuser" class="row border m-5 py-5">
-        <h2 class="text-center">Log in or Register</h2>
-            <p class="text-center text-muted font-weight-bold"> to view promotions</p>
-        <img src="images/loginpls.jpg" id="foximg">
-        </div>
--->
-<!--
-    <div class="row">
-        <div class="col-md-12 pb-5">
-            <div class="col-md-12 text-center mx-auto p-2">
-            <img class="img-fluid mx-auto" id="loader" style="width:400px;" src="images/loader.gif"/>
-            </div>
-        </div>
-    </div>
--->
-        
-    </div>
-    
-<!--</div>-->
 
     <br/>
     <br/>
@@ -499,7 +432,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     <script src="scripts/auth.js"></script>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/mypromotions.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥

@@ -5,7 +5,7 @@ var timeFormat = "MM/DD/YYYY HH:mm";
 // var id = user.uid;
 // console.log(id);
 
-db.collection('transaction').orderBy('Created','asc').get().then((snapshot) => {
+db.collection('transaction').orderBy('Created','desc').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         var item = doc.data();
 

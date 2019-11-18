@@ -42,7 +42,7 @@
         }
 
         body {
-        /*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
+          font: 500 1.2rem/1 'Avenir Next', sans-serif;
           color: #333;
           background: rgb(45,48,58);
         }
@@ -97,18 +97,13 @@
             margin: 0px;
         }
         
-      #comrate{
-          font-size:16px;
-      }
+        
         
       
-      #promotertable{
+      #transtable{
           font-size: 16px;
       }
         
-      #btm{
-          margin-bottom: 20%;
-      }
 
         /*      ~~~*/
 
@@ -126,20 +121,20 @@
 <div class="wrapper">
   <div class="sidebar">
     <ul class="navA">
-        <li><img src="images/navnav.png" id="logo"></li>
+        <li><img src="images/navnav.png" class="logo"></li>
         <li><a class="text-light" href="adminconsole.html">Dashboard</a></li>
-        <li><a class="active text-light" href="admin_promoters.html">Promoters</a></li>
+        <li><a class="text-light" href="admin_promoters.html">Promoters</a></li>
         <li>
-            <a class="text-light dropdown-btn">Applications<i class="fa fa-caret-down"></i></a>
+        <a class="text-light" id="dropdown-btn" onclick="openHI()">Applications<i class="fa fa-caret-down"></i></a>
 <!--        <button class="dropdown-btn">Dropdown </button>-->
-          <div class="dropdown-container">
-            <a href="viewapplicationsadmin.php">Account</a>
-            <a href="viewpromoappsadmin.php">Promotion</a>
+          <div id="dropdown-container" style="display:none;">
+            <a href="viewapplicationsadmin.html">Account</a>
+            <a href="viewpromoappsadmin.html">Promotion</a>
           </div>
         </li>
         
-        <li><a class="text-light">Transactions</a></li>
-        <li><a class="text-light" href="test.php">Settings</a></li>
+        <li><a class="text-light" href="admin_transactions.html">Transactions</a></li>
+        <li><a class="active text-light" href="admin_settings.html">Settings</a></li>
         <li><a class="text-light" id="logout">Log Out</a></li>
     </ul>
   </div>
@@ -155,7 +150,7 @@
         <form id="settings">
         <div class="whitebg p-5 row">
 <!--            <h1 class="col-md-12 mb-5 text-center">General</h1>-->
-            <h4 class="col-md-9 mb-4">General Commision Rate</h4><h4 class="col-md-3"><input type="text" class="form-control" id="comrate"></h4>
+            <h4 class="col-md-9 mb-4">General Commision Rate (%)</h4><h4 class="col-md-3"><input type="text" class="form-control" id="comrate"></h4>
             <h4 class="col-md-9 my-5"><i class="fa fa-info-circle pr-3" aria-hidden="true"></i>Loyalty Points</h4>
             <h4 class="col-md-3 my-5">
             <label class="switch">
@@ -179,7 +174,7 @@
                         </div>
                         </div>
                     </div>
-                    <img src="images/defaultpromotionimg.png" class="col-md-6" id="imga">
+                    <img src="images/1carol.png" class="col-md-6" id="imga">
                 </div>
             <div class="border col-md-12 mt-3">
                     <div class="col-md-6">
@@ -196,7 +191,7 @@
                         </div>
                         </div>
                     </div>
-                    <img src="images/defaultpromotionimg.png" class="col-md-6" id="imgb">
+                    <img src="images/2carol.png" class="col-md-6" id="imgb">
                 </div>
                 <div class="border col-md-12 mt-3">
                         <div class="col-md-6">
@@ -213,7 +208,7 @@
                             </div>
                             </div>
                         </div>
-                        <img src="images/defaultpromotionimg.png" class="col-md-6" id="imgc">
+                        <img src="images/3carol.png" class="col-md-6" id="imgc">
                     </div>
         </div>
             
@@ -235,33 +230,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <!--    <script src="js/main.js"></script>-->
     <script src="js/isotope.pkgd.min.js"></script>
-    <script>
-      var $grid = $('.grid').isotope({
-        itemSelector: '.grid-item',
-        layoutMode: 'fitRows',
-        getSortData: {
-          name: function (element) {
-            return $(element).text();
-          }
-        }
-      });
-      $('.filter button').on("click", function () {
-        var value = $(this).attr('data-name');
-          $grid.isotope({
-            filter: value
-          });
-        $('.filter button').removeClass('active');
-        $(this).addClass('active');
-      })
-      $('.sort button').on("click", function () {
-        var value = $(this).attr('data-name');
-        $grid.isotope({
-          sortBy: value
-        });
-        $('.sort button').removeClass('active');
-        $(this).addClass('active');
-      })
-    </script>
+    
 
     <!-- JS script for click function-->
 	<script>
@@ -283,14 +252,23 @@ function delete_id(id)
 }
 </script>
     <script>
-    function myLogout() {
-      var txt;
-      if (confirm("Are you sure you want to log out?")) {
-            window.location.href ="logout.php";
-      }
-      document.getElementById("demo").innerHTML = txt;
-    }
+    var dropdown = document.getElementById("dropdown-btn");
+    var i;
+    var dropdownContent = document.getElementById("dropdown-container");
+        
     </script>
+    <script>
+    function openHI(){
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+    }
+        
+        
+    </script>
+    
     <script>
 //    document.querySelector('.buttonA').addEventListener('click', () => {
 //      document.querySelector('.contentA').classList.toggle('isOpen');

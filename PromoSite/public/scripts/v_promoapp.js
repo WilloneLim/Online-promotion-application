@@ -143,7 +143,7 @@ function rejectpro(){
     db.collection("promo_applications").doc(c).delete().then(function() {
         console.log("Document successfully deleted!");
         window.alert("Successfully Rejected Applicant");
-        window.location.href = "viewapplicationsadmin.html";
+        window.location.href = "viewpromoappsadmin.html";
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });

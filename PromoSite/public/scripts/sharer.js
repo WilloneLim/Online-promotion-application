@@ -22,7 +22,7 @@ const setupUI = (user) => {
         
     }else{
         //hide profile
-        adminItems.forEach(item => item.style.display = 'none');
+//        adminItems.forEach(item => item.style.display = 'none');
         
         loggedIn.forEach(item => item.style.display = 'none');
         loggedOut.forEach(item => item.style.display = 'block');
@@ -61,18 +61,21 @@ if (c != null){
 }
 
 function fbshareCurrentPage(){
-    
+    console.log("location");
     newwindow = window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("https://onlinepromoapp.firebaseapp.com/sharing.html?id="+c)+"&t="+document.title, '', 
     'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
     location = "pending.html?id="+c;
-    setTimeout(function(){ window.location.href = location; }, 3000);
+    setTimeout(function(){ window.location.href=location; }, 3000);
     
-    return false; 
+    modal.style.display = "none"
+//    return false; 
 }
 
 function twshareCurrentPage(){
+    console.log("location");
     
-    window.open("http://twitter.com/share?text=Im Sharing on Twitter&url=https://stackoverflow.com/users/2943186/youssef-subehi&hashtags=stackoverflow,example,youssefusf");
-    return false; 
+    window.open("http://twitter.com/share?text=Im Sharing on Twitter&url=https://onlinepromoapp.firebaseapp.com/sharing.html?id=" + c + "&hashtags=promoalert");
+    location = "pending.html?id="+c;
+    setTimeout(function(){ window.location.href=location; }, 3000);
 }
 

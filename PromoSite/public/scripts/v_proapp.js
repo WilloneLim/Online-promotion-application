@@ -115,7 +115,7 @@ let getDoc = ref.get()
                                     console.log("Done");
                                     console.log("Document successfully deleted!");
 
-                                    window.location.href = "viewapplicationsadmin.html";
+//                                    window.location.href = "viewapplicationsadmin.html";
                                 });
 
                             });

@@ -1,0 +1,118 @@
+const promoList = document.querySelector('.promos');
+const loggedIn = document.querySelectorAll('.loggedIn');
+const loggedOut = document.querySelectorAll('.loggedOut');
+const loggedBoth = document.querySelectorAll('.loggedBoth');
+const filterbtns = document.querySelectorAll('.filterchk');
+const accountDetails = document.querySelector('.account-details');
+const recommend = document.querySelector('#recommended');
+
+var theuser = "";
+const test = document.querySelector('#tester');
+
+const setupUI = (user) => {
+    loggedBoth.forEach(item => item.style.display = 'block');
+    if (user){
+
+        loggedIn.forEach(item => item.style.display = 'block');
+        loggedOut.forEach(item => item.style.display = 'none');
+        
+        theuser = user.uid;
+        console.log(theuser);
+        fillPromo();
+        
+    }else{
+        
+        loggedIn.forEach(item => item.style.display = 'none');
+        loggedOut.forEach(item => item.style.display = 'block');
+        
+        fillPromo();
+    }
+    
+}
+
+function fillPromo(){
+        
+        for(i=0 ;i < filterbtns.length ; i++){
+            filterbtns[i].checked = false;
+        }
+    
+        var cl = "";
+        var r = 0;
+        db.collection("promotions").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            r += 1;
+            // doc.data() is never undefined for query doc snapshots
+            if(r <= 8){
+            cl += `<div class="col-md-4 bg-light mx-auto p-2 bg-transparent card-deck my-2">
+                <div class="card p-0 m-0">
+                 <a href="share.html?id=${doc.id}">
+                 <img class="card-img-top" src="${doc.data().image}" alt="IMG-PRODUCT">
+                 </a>
+                <div class="card-body">
+                 <h6 class="card-title">${doc.data().title}</h6>
+
+                 <a href="promoterview.html?id=${doc.data().promoter}" class="card-text text-muted">${doc.data().user}</a>
+                </div>
+                <br/>
+                <br/>
+                </div>
+                </div> `;
+
+            }
+
+    //        console.log(doc.id, " => ", doc.data());
+        });
+            test.innerHTML = cl;
+    });
+}
+
+function filterPromos(filter){
+        var cl = "";
+        var r = 0;
+    var i = 0;
+    var t = [];
+    for(i=0 ;i < filterbtns.length ; i++){
+        if (filterbtns[i].checked){
+            t.push(filterbtns[i].value);
+        }
+    }
+    console.log(t);
+    if (t.length == 0){
+        console.log("here");
+        fillPromo();
+        
+    }else{
+        console.log("there");
+        
+        db.collection('promotions')
+        .where('keys', 'array-contains-any',t)
+        .orderBy('title')
+        .get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                cl += `<div class="col-md-4 bg-light mx-auto p-2 bg-transparent card-deck my-2">
+                    <div class="card p-0 m-0">
+                     <a href="share.html?id=${doc.id}">
+                     <img class="card-img-top" src="${doc.data().image}" alt="IMG-PRODUCT">
+                     </a>
+                    <div class="card-body">
+                     <h6 class="card-title">${doc.data().title}</h6>
+
+                     <a href="promoterview.html?id=${doc.data().promoter}" class="card-text text-muted">${doc.data().user}</a>
+                    </div>
+                    <br/>
+                    <br/>
+                    </div>
+                    </div> `;
+
+
+            });
+
+         console.log(t);
+         test.innerHTML = cl;
+
+         });
+        
+    }
+     
+}

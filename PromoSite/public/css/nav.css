@@ -1,0 +1,42 @@
+body{
+    background-color: #F2F2F3;
+}
+.header{
+    border-bottom: 1px solid lightgrey;
+}
+#navover{
+    background-color: #A56527;
+}
+#navup{
+    background-color: #D39F49;
+    text-align: right;
+}
+
+#search{
+    background-color: #D39F49;
+    color: #A56527;
+    font-weight: 600;
+}
+
+#foximg{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+/*skeleton*/
+
+
+
+
+/*......*/

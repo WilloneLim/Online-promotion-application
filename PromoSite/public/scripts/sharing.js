@@ -29,14 +29,10 @@ const setupUI = (user) => {
                 if(doc.data().promotion == c && doc.data().user == user.uid){
                     approved = true;
                     
-                    
-                    
                     db.collection("claiming").doc(myId).set({
                         promotion: c,
                         user: user.uid
                     });
-
-                    
                     
                     deletePending(doc.id);
                 }else{

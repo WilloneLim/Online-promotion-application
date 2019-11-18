@@ -54,15 +54,16 @@ exports.addPromoterRole = functions.https.onCall((data,context) => {
 
 
 exports.addPromoterAccount = functions.https.onCall((data,context) => {
-    
+//    console.log(data.pass);
     return admin.auth().createUser({
           uid: data.uid,
           email: data.email,
-          password: data.pass
+          password: '123123'
          })
     .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
-        return userRecord.uid;
+//        console.log("Successfully made user " + userRecord)
+        return userRecord;
     })
     .catch(function(error) {
         return 'Error';

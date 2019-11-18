@@ -1,5 +1,6 @@
 
 const postForm = document.querySelector('#promoform');
+var promoterUsername = "";
 
 //create new promotion
 
@@ -33,7 +34,7 @@ postForm.addEventListener('submit', (e) =>{
         //reset form
         postForm.reset(); 
         window.alert('Application Sent');
-        window.location.replace("index.html");
+        window.location.replace("promoter.html");
 
 
 
@@ -43,4 +44,8 @@ postForm.addEventListener('submit', (e) =>{
     });
     
 })
+
+
+
+
     

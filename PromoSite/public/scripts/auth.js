@@ -31,6 +31,20 @@ auth.onAuthStateChanged(user => {
             setupUI(user);
         }
         
+        if(window.location.href.indexOf("mypromotions") > -1){
+            setupUI(user);
+        }
+        if(window.location.href.indexOf("apply_promotion") > -1){
+            setupUI(user);
+        }
+//        if(window.location.href.indexOf("viewapplicationsadmin") > -1){
+//            db.collection('promoter_applications').onSnapshot(snapshot =>{
+////                setupPromoterApp(snapshot.docs);
+//            },err => {
+//                console.log(err.message);
+//            });
+//        }
+        
         if(window.location.href.indexOf("myaccount") > -1){
             db.collection('promotions').onSnapshot(snapshot =>{
                 setupUI(user);
@@ -46,17 +60,14 @@ auth.onAuthStateChanged(user => {
                 console.log(err.message);
             });
         }else if(window.location.href.indexOf("viewapplicationsadmin") > -1){
-            db.collection('promoter_applications').onSnapshot(snapshot =>{
-                setupPromoterApp(snapshot.docs);
-            },err => {
-                console.log(err.message);
-            });
+            setupUI(user);
+//            db.collection('promoter_applications').onSnapshot(snapshot =>{
+//                setupPromoterApp(snapshot.docs);
+//            },err => {
+//                console.log(err.message);
+//            });
         }else if(window.location.href.indexOf("viewpromoappsadmin") > -1){
-            db.collection('promo_applications').onSnapshot(snapshot =>{
-                setupPromoApp(snapshot.docs);
-            },err => {
-                console.log(err.message);
-            });
+            setupUI(user);
         }else if(window.location.href.indexOf("promoter") > -1){
             
             if(window.location.href.indexOf("promoterview") > -1){
@@ -83,9 +94,22 @@ auth.onAuthStateChanged(user => {
         }
         
     }else{
+        if(window.location.href.indexOf("admin_promoters") > -1){
+            db.collection('promoters').onSnapshot(snapshot =>{
+                setupPromoter(snapshot.docs);
+//                setupUI(user);
+            },err => {
+                console.log(err.message);
+            });
+        }else if(window.location.href.indexOf("adminconsole") > -1){
+            console.log("Hi");
+        }else{
+            
+        
         setupUI();
         if(window.location.href.indexOf("index") > -1){
             offLoader();
+        }
         }
     }
 });

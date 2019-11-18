@@ -42,7 +42,7 @@ let getDoc = ref.get()
         let html = `<div class="row">
                     <img class="img-responsive" style="width:100%" src="${doc.data().coverimg}"/>
                     </div>
-                    <div class="row border">
+                    <div class="row border bg-white">
                     <img class="col-md-2 m-3" src="${doc.data().profileimg}"/>
                     <div class="row col-md-8 m-3">
                     <h3 class="col-md-12" >${doc.data().username}</h3>
@@ -90,15 +90,12 @@ let getDoc = ref.get()
                         }
 
                         const card = `<div class="col-md-12 pb-5 grid-item">
-                         <div class="col-md-12 shadow-lg mx-auto p-2">
+                         <div class="col-md-12 bg-white shadow-lg mx-auto p-2">
                          <a href="share.html?id=${doc.id}">
                          <img class="img-fluid p-2 mt-2" src="${doc.data().image}" style="width: 800px;" alt="IMG-PRODUCT">
                          </a>
                          <h5 class="pt-2 pl-3">${doc.data().title}</h5>
 
-                         <a href="promoterview.html?id=${doc.id}" class="text-muted pl 3">${doc.id}</a>'
-
-                         <img class="float-right pb-3 pr-2" alt="${doc.id}" onclick="addtoWishlist('${doc.id}')" id="${doc.id}" style="cursor: pointer;" src="images/wishlist_${wished}.png" />
                         <br/>
                         <br/>
                         </div>

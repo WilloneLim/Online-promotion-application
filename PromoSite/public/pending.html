@@ -31,11 +31,13 @@
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
-    <link rel="stylesheet" href="css/main3.css">
+<!--    <link rel="stylesheet" href="css/main3.css">-->
+    <link rel="stylesheet" href="css/nav.css">
     
 
     
     <style>
+/*
         .header{
             background-image: url('images/cp.png');
             background-repeat:no-repeat;
@@ -53,6 +55,7 @@
         #navi{
             font-size: 0.9em;
         }
+*/
         
     </style>
 </head>
@@ -68,17 +71,23 @@
 
 
 
-
+       
 <div class="header">
+    <div id="navup" class="d-flex justify-content-end">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item bg-transparent border-0 p-0 m-0"><p class="text-light m-0"><i class="fa fa-mobile fa-lg" aria-hidden="true"> </i> <a href="#" style="color: white;"> Get the App</a></p></li>
+      <li class="list-group-item bg-transparent border-0 p-0 m-0"><p class="mx-2 mb-0" style="color: white;"><b> | </b> </p></li>
+      <li class="list-group-item bg-transparent border-0 p-0 m-0"><p class="text-light m-0 mr-5"> <a href="proapplication.html" style="color: white;"> Apply for promoter account</a></p></li>
+      
+    </ul>
+    </div>
     <nav class="navbar navbar-expand-sm navbar-dark" id="navover">
         <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="images/navnav.png" height="30" alt="PromoAlert Logo">
+        <a class="navbar-brand" href="#">
+            <img src="images/navy.png" height="30" alt="PromoAlert Logo">
         </a>
+            
           <ul class="navbar-nav">
-              <li class="nav-item mr-3 loggedBoth" style="display: none;">
-                  <a class="nav-link text-light" href="proapplication.html">Apply for promoter account</a>
-                </li>
                 <li class="nav-item loggedIn" style="display: none;">
                     <a class="nav-link text-light font-weight-bold"  href="myaccount.html" id="account">My Account</a>
                 </li>
@@ -93,8 +102,17 @@
                 </li>
             </ul>
             </div>
+        
         </nav>
-    <h2 class="display-4 text-center mt-5 pt-5 text-light">Share and Claim</h2>
+    <div style="background-color: white;">
+    <ul class="list-group list-group-horizontal container">
+      <li class="list-group-item border-0"><a class="text-muted" href="#">Featured</a></li>
+      <li class="list-group-item border-0"><a class="text-muted" href="#">Promoters</a></li>
+      <li class="list-group-item border-0"><a class="text-muted" href="mypromotions.html">Promotions</a></li>
+      <li class="list-group-item border-0"><a class="text-muted" href="#">About</a></li>
+    </ul>
+    </div>
+    
     </div>
     
 <div class="container">

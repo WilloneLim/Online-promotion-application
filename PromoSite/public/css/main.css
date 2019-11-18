@@ -234,6 +234,7 @@ input[type="submit"]:active {
     padding: 23px;
 }
 
+/*
 #promoimg{
   position: relative;
   margin: auto;
@@ -243,6 +244,7 @@ input[type="submit"]:active {
   border-radius: 5px;
   box-shadow: 0 9px 9px rgba(0, 0, 0, 0.4);
 }
+*/
 
 .title{
    padding: 40px 50px 0px 50px;

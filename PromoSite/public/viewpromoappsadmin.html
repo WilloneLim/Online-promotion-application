@@ -20,140 +20,112 @@
     <link rel="stylesheet" href="css/bootstrap.css.map">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
+   <link rel="stylesheet" type="text/css" href="css/main3.css">
     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     
     
   <style>
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        *,
+        *::before,
+        *::after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-html, body {
-  height: 100vh;
-}
+        html, body {
+/*          height: 100vh;*/
+        }
 
-body {
-/*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
-  color: #333;
-  background: rgb(45,48,58);
-}
+        body {
+/*          font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
+          color: #333;
+          background: rgb(45,48,58);
+        }
 
-.wrapper {
-  display: flex;
-  min-height: 100%;
-  width: 83.7%;
-}
 
-.sidebar {
-  position: absolute;
-  width: 220px;
-  padding: 20px;
-}
+        h1 {
+          margin-bottom:12px;
+            margin-top: 8px;
+          font-size: 25px;
+          font-weight: 500;
+        }
 
-.contentA {
-  flex: 1;
-  padding: 50px;
-  background: #fff;
-  box-shadow: 0 0 5px #000;
-  transform: translateX(0);
-  transition: transform .3s;
-}
+        
 
-.contentA.isOpen {
-  transform: translateX(220px);
-}
+        
+        .debtn{
+/*            background-color: #008CBA;*/
+            border: 2px solid #008CBA;
+            color: #008CBA;
+            padding: 15px;
+/*            text-align: center;*/
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-.buttonA {
-  cursor: pointer;
-}
+              /*my dropdown*/
 
-.buttonA svg {
-  width: 40px;
-}
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background: rgba(0,0,0,.3);
+            margin-top: 0;
+        /*  padding-left: 8px;*/
+        }
 
-.buttonA line {
-  stroke: black;
-  stroke-width: 5;
-}
-
-h1 {
-  margin-top: 25px;
-  font-size: 40px;
-  font-weight: 400;
-}
-
-.navA {
-  list-style: none;
-}
-
-.navA li a {
-    font-size: 16px;
-    position: relative;
-    display: block;
-    margin-bottom: 5px;
-    padding: 16px 0 16px 50px;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.navA li a:hover,
-.navA li a.active {
-  background: rgba(0,0,0,.3);
-}
-
-.navA li a::before {
-  font: 14px fontawesome;
-  position: absolute;
-  top: 15px;
-  left: 20px;
-}
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+          float: right;
+/*          padding-right: 8px;*/
+        }
+        
+        #dropdown-container {
+            background: rgba(0,0,0,.3);
+            margin-top: 0px;
+        }
+        
+        #dropdown-btn {
+            margin: 0px;
+        }
+        
+        
+        
       
-.logo{
-  width: 100%;
-margin: 30px 0px;
-}
-      
-#mylink, #del_click{
-    font-size:16px;
-}
-      
-#promotable {
-  font-size: 16px;
-}
-      
-      /*my dropdown*/
+      #promotable{
+          font-size: 17px;
+      }
+        
+      #ddd{
+          min-height: 1000px;
+          margin-left: 35px;
+          margin-top: 18px;
+      }
+      .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 200px;
+        }
 
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-    background: rgba(0,0,0,.3);
-    margin-top: 0;
-/*  padding-left: 8px;*/
-}
+        /*      ~~~*/
 
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-/*      ~~~*/
-
-.navA li:nth-child(2) a::before { content: '\f00a'; }
-.navA li:nth-child(3) a::before { content: '\f012'; }
-.navA li:nth-child(4) a::before { content: '\f022'; }
-.navA li:nth-child(5) a::before { content: '\f02d'; }
-.navA li:nth-child(6) a::before { content: '\f085'; }
-.navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
-  </style>
+        .navA li:nth-child(2) a::before { content: '\f00a'; }
+        .navA li:nth-child(3) a::before { content: '\f012'; }
+        .navA li:nth-child(4) a::before { content: '\f022'; }
+        .navA li:nth-child(5) a::before { content: '\f02d'; }
+        .navA li:nth-child(6) a::before { content: '\f085'; }
+        .navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
+        
+    </style>
 </head>
 <body>
 
@@ -162,41 +134,31 @@ margin: 30px 0px;
   <div class="sidebar">
     <ul class="navA">
         <li><img src="images/navnav.png" class="logo"></li>
-        <li><a class="text-light" href="test.php">Dashboard</a></li>
-        <li><a class="text-light" href="charts.php">Promoters</a></li>
+        <li><a class="text-light" href="adminconsole.html">Dashboard</a></li>
+        <li><a class="text-light" href="admin_promoters.html">Promoters</a></li>
         <li>
-            <a class="active text-light dropdown-btn">Applications<i class="fa fa-caret-down"></i></a>
+        <a class="active text-light" id="dropdown-btn" onclick="openHI()">Applications<i class="fa fa-caret-down"></i></a>
 <!--        <button class="dropdown-btn">Dropdown </button>-->
-          <div class="dropdown-container">
-            <a href="viewapplicationsadmin.php">Account</a>
-            <a href="viewapplicationsadmin.php" class="active">Promotion</a>
+          <div id="dropdown-container" style="display:none;">
+            <a href="viewapplicationsadmin.html">Account</a>
+            <a href="viewpromoappsadmin.html">Promotion</a>
           </div>
         </li>
         
-        <li><a class="text-light">Transactions</a></li>
-        <li><a class="text-light" href="test.php">Settings</a></li>
+        <li><a class="text-light" href="admin_transactions.html">Transactions</a></li>
+        <li><a class="text-light" href="admin_settings.html">Settings</a></li>
         <li><a class="text-light" id="logout">Log Out</a></li>
     </ul>
   </div>
   <div class="contentA isOpen">
+      <div class="bg-white mt-0 mb-2 py-2 d-flex justify-content-between">
+          <h1 class="col-md-10 pl-4">Applications - Promotions</h1>
+          <h1 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h1>
+          <h1 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h1>
+      </div>
 
-<hr class="w-75 mt-5 mx-auto"/>
-<h1 class="text-center mb-2">New Promotions Applications</h1>
-<hr class="w-75 mx-auto"/>
-
-<form action="applicantview.php" method="POST">
-
-<!--<a href="addpromoadmin.html"  id="mylink" class="btn btn-primary float-right mb-3">+</a>-->
-
-<!--
-<div class="input-group mb-3">
-  <input type="text" class="form-control" name="valueToSearch" id="mylink" placeholder="Search for #ID, or #Title" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="submit" name="search" id="mylink" value="Search">Search</button>
-  </div>
-</div>
--->
-  <!-- Table -->
+<form>
+<div class="whitebg p-2" id="ddd">
   <div class="table-responsive">
        <table class="table table-striped table-hover" id="promotable">
 	       <thead>
@@ -210,7 +172,13 @@ margin: 30px 0px;
 		   </thead>
 
 	   </table>
+      
+               <div id="empty" style="display:none;">
+               <h3 class="text-center my-5 py-5">No promotion applications. Check back later.</h3>
+                    <img src="images/sleepypanda.png" class="center">
+                </div>
   </div>
+</div>
  </form>
 
 
@@ -241,6 +209,23 @@ margin: 30px 0px;
 //      }
 //      });
 //    }    
+    </script>
+    <script>
+    var dropdown = document.getElementById("dropdown-btn");
+    var i;
+    var dropdownContent = document.getElementById("dropdown-container");
+        
+    </script>
+    <script>
+    function openHI(){
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+    }
+        
+        
     </script>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -278,6 +263,6 @@ margin: 30px 0px;
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     <script src="scripts/auth.js"></script>
     <script src="scripts/promoapplication.js"></script>
-
+<!---->
 </body>
 </html>

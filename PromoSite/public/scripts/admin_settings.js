@@ -31,9 +31,9 @@ const setupUI = (user) => {
         if (doc.exists) {
             console.log("Document data:", doc.data().value);
             let a =  doc.data().value;
-            imga.src = a[0];
-            imgb.src = a[1];
-            imgc.src = a[2];
+//            imga.src = a[0];
+//            imgb.src = a[1];
+//            imgc.src = a[2];
             
             setform['customFileA'].value= a[0];
             setform['customFileB'].value= a[1];

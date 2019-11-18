@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Admin - Applications</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -26,53 +26,106 @@
     
     
   <style>
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        *,
+        *::before,
+        *::after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-html, body {
-  height: 100vh;
-}
+        html, body {
+/*          height: 100vh;*/
+        }
 
-body {
-/*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
-  color: #333;
-  background: rgb(45,48,58);
-}
+        body {
+        /*  font: 500 1.2rem/1 'Avenir Next', sans-serif;*/
+          color: #333;
+          background: rgb(45,48,58);
+        }
 
 
+        h1 {
+          margin-bottom:12px;
+            margin-top: 8px;
+          font-size: 25px;
+          font-weight: 500;
+        }
+
+        
+
+        
+        .debtn{
+/*            background-color: #008CBA;*/
+            border: 2px solid #008CBA;
+            color: #008CBA;
+            padding: 15px;
+/*            text-align: center;*/
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+              /*my dropdown*/
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background: rgba(0,0,0,.3);
+            margin-top: 0;
+        /*  padding-left: 8px;*/
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+          float: right;
+/*          padding-right: 8px;*/
+        }
+        
+        #dropdown-container {
+            background: rgba(0,0,0,.3);
+            margin-top: 0px;
+        }
+        
+        #dropdown-btn {
+            margin: 0px;
+        }
+        
+        
+        
       
-      /*my dropdown*/
+      #promotertable{
+          font-size: 16px;
+      }
+    
+        
+      #ddd{
+          min-height: 1000px;
+          margin-left: 35px;
+          margin-top: 18px;
+      }
+      .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 200px;
+        }
 
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-    background: rgba(0,0,0,.3);
-    margin-top: 0;
-/*  padding-left: 8px;*/
-}
+        /*      ~~~*/
 
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-      
-/*      ~~~*/
-
-.navA li:nth-child(2) a::before { content: '\f00a'; }
-.navA li:nth-child(3) a::before { content: '\f012'; }
-.navA li:nth-child(4) a::before { content: '\f022'; }
-.navA li:nth-child(5) a::before { content: '\f02d'; }
-.navA li:nth-child(6) a::before { content: '\f085'; }
-.navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
-  </style>
+        .navA li:nth-child(2) a::before { content: '\f00a'; }
+        .navA li:nth-child(3) a::before { content: '\f012'; }
+        .navA li:nth-child(4) a::before { content: '\f022'; }
+        .navA li:nth-child(5) a::before { content: '\f02d'; }
+        .navA li:nth-child(6) a::before { content: '\f085'; }
+        .navA li:nth-child(7) a::before { content: '\f023'; left: 23px; }
+        
+    </style>
 </head>
 <body>
 
@@ -81,38 +134,44 @@ body {
   <div class="sidebar">
     <ul class="navA">
         <li><img src="images/navnav.png" class="logo"></li>
-        <li><a class="text-light" href="test.php">Dashboard</a></li>
-        <li><a class="text-light" href="charts.php">Promoters</a></li>
+        <li><a class="text-light" href="adminconsole.html">Dashboard</a></li>
+        <li><a class="text-light" href="admin_promoters.html">Promoters</a></li>
         <li>
-        <a class="active text-light dropdown-btn">Applications<i class="fa fa-caret-down"></i></a>
-          <div class="dropdown-container">
-            <a href="viewapplicationsadmin.php" class="active">Account</a>
-            <a href="viewpromoappsadmin.php">Promotion</a>
+        <a class="active text-light" id="dropdown-btn" onclick="openHI()">Applications<i class="fa fa-caret-down"></i></a>
+<!--        <button class="dropdown-btn">Dropdown </button>-->
+          <div id="dropdown-container" style="display:none;">
+            <a href="viewapplicationsadmin.html">Account</a>
+            <a href="viewpromoappsadmin.html">Promotion</a>
           </div>
         </li>
         
-        <li><a class="text-light">Transactions</a></li>
-        <li><a class="text-light" href="test.php">Settings</a></li>
+        <li><a class="text-light" href="admin_transactions.html">Transactions</a></li>
+        <li><a class="text-light" href="admin_settings.html">Settings</a></li>
         <li><a class="text-light" id="logout">Log Out</a></li>
     </ul>
   </div>
   <div class="contentA isOpen">
+      
     <div class="bg-white mt-0 mb-2 py-2 d-flex justify-content-between">
-          <h4 class="col-md-10 pl-4">Account Applications</h4>
-          <h4 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h4>
-          <h4 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h4>
+          <h1 class="col-md-10 pl-4">Applications - Promoters</h1>
+          <h1 class="col-md-1"><i class="fa fa-envelope" id="notification"></i></h1>
+          <h1 class="col-md-1"><i class="fa fa-user"  id="notification"></i></h1>
       </div>
+      
 <div class="container">
 <form action="applicantview.php" method="POST">
 
 
+<!--
 <div class="input-group mb-3">
   <input type="text" class="form-control" id="mylink" name="valueToSearch" placeholder="Search for #ID, or #Username" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" id="mylink" type="submit" name="search" value="Search">Search</button>
   </div>
 </div>
+-->
   <!-- Table -->
+    <div class="whitebg p-2" id="ddd">
   <div class="table-responsive">
        <table class="table table-striped table-hover" id="promotertable">
 	       <thead>
@@ -124,8 +183,14 @@ body {
                    <th></th>
 			   </tr>
 		   </thead>
+           
 		   
 	   </table>
+                <div id="empty" style="display:none;">
+               <h3 class="text-center my-5 py-5">No promoter applications. Check back later.</h3>
+                    <img src="images/sleepypanda.png" class="center">
+                </div>
+  </div>
   </div>
  </form>
       
@@ -133,9 +198,6 @@ body {
   </div>
 </div>
     <script>
-    document.querySelector('.buttonA').addEventListener('click', () => {
-      document.querySelector('.contentA').classList.toggle('isOpen');
-    });
         
         
         /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
@@ -154,6 +216,24 @@ body {
       });
     }    
     </script>
+    <script>
+    var dropdown = document.getElementById("dropdown-btn");
+    var i;
+    var dropdownContent = document.getElementById("dropdown-container");
+        
+    </script>
+    <script>
+    function openHI(){
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+    }
+        
+        
+    </script>
+    
 <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>

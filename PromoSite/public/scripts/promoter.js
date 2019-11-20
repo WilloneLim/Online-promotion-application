@@ -11,24 +11,23 @@ const setupUI = (user) => {
             console.log(user.uid);
             
             const img = `
-                        <div class="row col-md-11 border mx-auto ">
-                        <div class="col-md-12">
-                            <img class="img-fluid w-100" src="${doc.data().coverimg}" alt="promoterIMG" style="margin-top:20px;">
+                        <div class="row col-md-12 mx-auto ">
+                         <div class="col-md-12">
+                            <img class="img-fluid" src="${doc.data().profileimg}" alt="promoterIMG">
+                            <h5 class="my-3" >${doc.data().username}</h5>
                         </div>
-                         <div class="col-md-2">
-                            <img class="img-fluid m-3" src="${doc.data().profileimg}" alt="promoterIMG" style="margin-top:20px;">
-                            <h3>${doc.data().username}</h3>
-                        </div>
-                        <div class="col-md-7 title m-3 border" style="margin-top:20px;">
-                          <p>${doc.data().desc}</p>
+                        <div class="col-md-12 title border">
+                          <p id="mesmall">${doc.data().desc}</p>
                       </div>
-                        <div class="col-md-2 mt-3">
-                              <a href="apply_promotion.html" class="btn btn-primary btn-block">Apply for new promotion</a>
-                              <a href="#" class="btn btn-primary btn-block disabled">View / Edit Customer View</a>
-
+                        <div class="col-md-12 mt-3">
+                              <a href="apply_promotion.html" class="btn btn-primary btn-block" id="mesmall">Apply for new promotion</a>
+                              <a href="#" class="btn btn-primary btn-block disabled" id="mesmall">View / Edit Customer View</a>
                           </div>
                       </div>`;
             accountDetails.innerHTML = img;
+            
+            
+            openCity(event, 'London');
             
         })
         

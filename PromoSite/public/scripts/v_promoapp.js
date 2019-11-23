@@ -92,42 +92,27 @@ let getDoc = ref.get()
     } else {
         let pref = db.collection('promoters').doc(doc.data().promoter);
         let getPDoc = pref.get().then(pdoc => {
-        
+            console.log(pdoc.data().username);
+        addnewpromo(doc.id, pdoc.data().promotions);
         
             db.collection("promotions").add({
                 desc: doc.data().desc,
                 enddate: doc.data().enddate,
                 image: doc.data().image,
-                keys: doc.data().keys,
+                keys: ["other"],
                 promoter: doc.data().promoter,
                 startdate: doc.data().startdate,
                 title: doc.data().title,
                 user: pdoc.data().username
-
-            }).then(function(docRef){
-
-                    db.collection("promo_applications").doc(c).delete().then(function() {
-                        let r = pdoc.data().promotions;
-                        r.push(doc.id);
-                        
-                        db.collection("promoters").doc(doc.data().promoter).update({
-                            promotions: r
-                            
-                        }).then(function() {
-                            
-                            console.log("Document successfully deleted!");
-                            window.alert("Successfully Accepted Applicant: " + docRef);
-                            window.location.href = "viewpromoappsadmin.html";
-                            
-                        })
-
-                    }).catch(function(error) {
-                        console.error("Error removing document: ", error);
-                    });
-
-
-            }).catch(function(error){
-                console.log(error);
+                
+            })
+            .then(function(docRefa) {
+                console.log("Document written with ID: ", docRefa.id);
+                addnewpromo(docRefa.id, pdoc.data().promotions,doc.data().promoter);
+                
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
             });
             
         });
@@ -137,6 +122,33 @@ let getDoc = ref.get()
     
     
 }
+
+function addnewpromo(promo, arr, uid){
+    let r = arr;
+    r.push(promo);
+    
+    console.log(r);
+    
+    db.collection("promo_applications").doc(c).delete().then(function() {
+        
+        console.log("Document successfully deleted!");
+        
+        db.collection("promoters").doc(uid).update({
+            promotions: r
+
+        }).then(function() {
+            console.log("Document successfully deleted!");
+            window.alert("Successfully Accepted Applicant: " );
+            window.location.href = "viewpromoappsadmin.html";
+        })
+        
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    
+    
+}
+
 
 function rejectpro(){
     

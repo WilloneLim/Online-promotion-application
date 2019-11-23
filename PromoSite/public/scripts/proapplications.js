@@ -13,7 +13,8 @@ function setupPromoterAp(){
         querySnapshot.forEach(function(doc) {
             console.log(doc.data());
             const promoter = doc.data();
-
+            
+            document.getElementById("loader").style.display = "none";
             a += 1;
             // Insert a row in the table at the last row
             var newRow   = promoterTable.insertRow();
@@ -45,6 +46,7 @@ function setupPromoterAp(){
             
         });
         if (a == 0){
+            document.getElementById("loader").style.display = "none";
             document.getElementById("empty").style.display = "block";
         }
     });

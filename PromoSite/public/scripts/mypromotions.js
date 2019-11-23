@@ -8,6 +8,7 @@ const recommend = document.querySelector('#recommended');
 
 var theuser = "";
 const test = document.querySelector('#tester');
+var wishlist = [];
 
 const setupUI = (user) => {
     loggedBoth.forEach(item => item.style.display = 'block');
@@ -17,6 +18,31 @@ const setupUI = (user) => {
         loggedOut.forEach(item => item.style.display = 'none');
         
         theuser = user.uid;
+        
+        var docRef = db.collection("users").doc(theuser);
+
+        docRef.get().then(function(doc) {
+            if (doc.data().wishlist == undefined){
+                docRef.update({
+                    wishlist: []
+                })
+                .then(function() {
+                    console.log("Document successfully updated!");
+                })
+                .catch(function(error) {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+            }else{
+                wishlist = doc.data().wishlist;
+            }
+
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+                
+        
+        
         console.log(theuser);
         fillPromo();
         
@@ -42,7 +68,6 @@ function fillPromo(){
         querySnapshot.forEach(function(doc) {
             r += 1;
             // doc.data() is never undefined for query doc snapshots
-            if(r <= 8){
             cl += `<div class="col-md-4 bg-light mx-auto p-2 bg-transparent card-deck my-2">
                 <div class="card p-0 m-0">
                  <a href="share.html?id=${doc.id}">
@@ -52,18 +77,65 @@ function fillPromo(){
                  <h6 class="card-title">${doc.data().title}</h6>
 
                  <a href="promoterview.html?id=${doc.data().promoter}" class="card-text text-muted">${doc.data().user}</a>
+                
+            
+                </div>`;
+            
+//            if(theuser == ""){
+//                cl += `<div class="card-footer bg-white border-0 text-muted">
+//                        <div class="row">
+//                            <img class="col-md-1 p-0 mr-2 ml-auto" onclick="editwishlist(${doc.id})" src="images/wishlist_false.png" >
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                </div> `;
+//                
+//            }else{
+//                
+//                cl += `<div class="card-footer bg-white border-0 text-muted">
+//                        <div class="row">
+//                            <img class="col-md-1 p-0 mr-2 ml-auto" onclick="editwishlist(${doc.id})" src="images/wishlist_true.png" >
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                </div> `;
+//                
+//            }
+                    
+            
+            
+            if(theuser == ""){
+                console.log("1");
+                cl += `<div class="card-footer bg-white border-0 text-muted">
+                        <div class="row">
+                            <img class="col-md-1 p-0 mr-2 ml-auto" onclick="editwishlist(${doc.id})" src="images/wishlist_false.png" >
+                        </div>
+                    </div>
                 </div>
-                <br/>
-                <br/>
-                </div>
-                </div> `;
 
+                </div> `;
+            }else{
+                cl += `<div class="card-footer bg-white border-0 text-muted">
+                        <div class="row">
+                            <img class="col-md-1 p-0 mr-2 ml-auto" onclick="editwishlist('${doc.id}')" src="images/wishlist_false.png" >
+                        </div>
+                    </div>
+                </div>
+
+                </div> `;
+                
             }
 
-    //        console.log(doc.id, " => ", doc.data());
+
         });
             test.innerHTML = cl;
     });
+}
+
+function editwishlist(id){
+    console.log(id);
 }
 
 function filterPromos(filter){

@@ -9,10 +9,12 @@ const setupUI = (user) => {
 
 function setupPromoApp(){
 
+    var a=0;
     db.collection("promo_applications").get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             const promo = doc.data();
         
+            a += 1;
         console.log(doc.id);
 
         // Insert a row in the table at the last row
@@ -27,7 +29,8 @@ function setupPromoApp(){
             if (!doc.exists) {
               console.log('No such document!');
             } else {
-
+                
+                document.getElementById("loader").style.display = "none";
                 var name  = newRow.insertCell(0);
                 var desc  = newRow.insertCell(1);
                 var email  = newRow.insertCell(2);
@@ -56,6 +59,11 @@ function setupPromoApp(){
             
             
         })
+        
+        if (a == 0){
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("empty").style.display = "block";
+        }
     })
     
 //    if (data.length){

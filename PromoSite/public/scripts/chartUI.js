@@ -50,6 +50,7 @@ options: {
         }],
         xAxes:[{
             ticks: {
+                display: false,
                 beginAtZero: true
         },    
    }]

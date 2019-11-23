@@ -81,13 +81,13 @@ let getDoc = ref.get()
                     
                     let ahtml = '';
                         var wished = "false";
-                        if (wishlist.length !== 0){
-                            for (i = 0; i < wishlist.length; i++) {
-                                if(wishlist[i] == doc.id){
-                                    wished = "true";
-                                }
-                            }
-                        }
+//                        if (wishlist.length !== 0){
+//                            for (i = 0; i < wishlist.length; i++) {
+//                                if(wishlist[i] == doc.id){
+//                                    wished = "true";
+//                                }
+//                            }
+//                        }
 
                         const card = `<div class="col-md-12 pb-5 grid-item">
                          <div class="col-md-12 bg-white shadow-lg mx-auto p-2">

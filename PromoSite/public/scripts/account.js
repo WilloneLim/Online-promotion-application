@@ -83,7 +83,7 @@ if (wishlist.length !== 0){
                  </a>
                  <h5 class="pt-2 pl-3">${promo.title}</h5>
 
-                 <a href="promoterview.html?id=${doc.id}" class="text-muted pl 3">${doc.id}</a>'
+                 <a href="promoterview.html?id=${doc.id}" class="text-muted pl 3">${promo.user}</a>'
 
                  <img class="float-right pb-3 pr-2" alt="${doc.id}" onclick="addtoWishlist('${doc.id}')" id="${doc.id}" style="cursor: pointer;" src="images/wishlist_true.png" />
                 <br/>

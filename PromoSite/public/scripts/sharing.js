@@ -26,6 +26,8 @@ const setupUI = (user) => {
         db.collection("pending").get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 console.log(c + "==" + doc.data().promotion);
+                console.log(doc.data().user + "==" + user.uid);
+                
                 if(doc.data().promotion == c && doc.data().user == user.uid){
                     approved = true;
                     
@@ -80,7 +82,22 @@ const setupUI = (user) => {
         
         loggedIn.forEach(item => item.style.display = 'none');
         loggedOut.forEach(item => item.style.display = 'block');
-        fail.style.display = "block";
+        
+        var docRef = db.collection("pending").doc(c);
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                window.location.href = "share.html?id=" + doc.data().promotion;
+                
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            window.location.href = "index.html";
+        });
+        
+        login.style.display = "block";
     }
     
 }

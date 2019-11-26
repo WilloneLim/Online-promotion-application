@@ -13,7 +13,7 @@
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="PromoAlert" />
     <meta property="og:description"   content="Get Exclusive Promotions for sharing your love for your favourite brands" />
-    <meta property="og:image"         content="https://onlinepromoapp.firebaseapp.com/images/defaultpromotionimg.png" />
+    <meta property="og:image"         content="<?php echo $_GET['image'];?>"/>
 
     <!-- Bootstrap -->
     <!--test-->
@@ -123,22 +123,21 @@
     
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-5 mx-auto border bg-white text-center" id="success" style="display:none;">
+        <div class="col-md-5 mx-auto border text-center" id="success" style="display:none;">
             <h3 class="mt-5">You have successfully claimed this promotion!!!</h3>
             <div class="p-5 mx-5" id="qrcode"></div>
             <p class="font-weight-bold mb-1">Take this code to your nearest corresponding store to claim.</p>
             <p class="text-muted">This code will be saved to your QR vault in 'My Account'</p>
-            <a href="myaccount.html" class="btn btn-warning btn-block border w-100 mb-3">Go to My Account</a>
+            <a class="btn btn-warning btn-lg btn-block mb-4" role="button" href="myaccount.html" aria-disabled="true">Go to My Account</a>
         </div>
         <div class="col-md-5 mx-auto border bg-light text-center" id="fail" style="display:none;">
             <h3 class="mt-5">Please log in to proceed</h3>
-            <a class="btn btn-warning btn-block border w-100 mb-3" href="signin.html">Sign In</a>
+            <a class="btn btn-warning btn-block w-100 mb-4" role="button" href="signin.html" aria-disabled="true">Sign In</a>
         </div>
-        <div class="col-md-5 mx-auto border bg-white text-center" id="collected" style="display:none;">
+        <div class="col-md-5 mx-auto border text-center" id="collected" style="display:none;">
             <h3 class="mt-5">I appears you have already claimed this promotion</h3>
             <p>Please check your QR Vault for the QR code</p>
-<!--            <a class="btn btn-warning btn-lg btn-block mb-4" href="myaccount.html" aria-disabled="true">Go to My Account</a>-->
-            <a href="myaccount.html" class="btn btn-warning btn-block border w-100 mb-3">Go to My Account</a>
+            <a class="btn btn-warning btn-lg btn-block mb-4" role="button" href="myaccount.html" aria-disabled="true">Go to My Account</a>
         </div>
     </div>
 </div>

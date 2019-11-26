@@ -4,6 +4,7 @@ const loggedBoth = document.querySelectorAll('.loggedBoth');
 var url_string = window.location.href;
 var url = new URL(url_string);
 var c = url.searchParams.get("id");
+var d = url.searchParams.get("sm");
 
 const setupUI = (user) => {
     loggedBoth.forEach(item => item.style.display = 'block');
@@ -23,6 +24,16 @@ const setupUI = (user) => {
         .catch(function(error) {
             console.error("Error adding document: ", error);
         });
+        
+        if (d == "fb"){
+            document.getElementById("fbview").style.display = "block";
+            console.log(d);
+            
+        }else{
+            document.getElementById("twview").style.display = "block";
+            console.log(d);
+        }
+            
 
         
         

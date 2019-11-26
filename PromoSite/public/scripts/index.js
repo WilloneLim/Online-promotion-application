@@ -16,14 +16,20 @@ var wishlist = [];
 var theend = false;
 var limit = 3;
 
+
 const setupUI = (user) => {
     loggedBoth.forEach(item => item.style.display = 'block');
+    setCarousel()
     if (user){
 
         loggedIn.forEach(item => item.style.display = 'block');
         loggedOut.forEach(item => item.style.display = 'none');
         
 //        document.getElementById("newuser").style.display = "none";
+        db.collection('users').doc(user.uid).get().then(doc => {
+            getrecommendation(doc.data().reco);
+        })
+        checkrec(user.uid);
         
         filltester();
 //        setupPromotion("");
@@ -43,6 +49,72 @@ const setupUI = (user) => {
     }
     
     
+}
+
+function setCarousel(){
+    var docRef = db.collection("settings").doc("carousel");
+
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            
+            document.getElementById("carol1").src = doc.data().value[0];
+            document.getElementById("carol2").src = doc.data().value[1];
+            document.getElementById("carol3").src = doc.data().value[2];
+            
+            console.log("Document data:", doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
+
+function getrecommendation(ar){
+    var map;
+    
+    var recoarr=[];
+    
+    if (ar == undefined){
+        m = new Map([['food', 0], ['drink', 0], ['clothes', 0], ['shoe', 0],['bag', 0],['other', 0]]);
+    }else{
+        m = new Map([['food', ar.food], ['drink', ar.drink], ['clothes',ar.clothes], ['shoe',ar.shoe],['bag',ar.bag],['other',ar.other]]);
+    }
+    
+    
+    let a = [...m.entries()].reduce((a, e ) => e[1] > a[1] ? e : a);
+    console.log(a[0]);
+    let length = 0;
+    db.collection("promotions").where('keys', 'array-contains', a[0]).get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                recoarr.push(doc);
+                length += 1;
+                console.log(doc.id + " => " + doc.data());
+            });
+            let t = Math.floor(Math.random() * length) + 1;
+            console.log(t-1);
+            
+    document.getElementById("rec_title").innerHTML = recoarr[t-1].data().title;
+    document.getElementById("rec_desc").innerHTML = recoarr[t-1].data().desc;
+    document.getElementById("rec_pro").innerHTML = recoarr[t-1].data().user;
+    document.getElementById("rec_img").src = recoarr[t-1].data().image;
+    document.getElementById("rec_link").href = "share.html?id=" + recoarr[t-1].id;
+        
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    
+}
+
+function printRec(r){
+    document.getElementById("rec_img").src = r.image;
+    document.getElementById("rec_title").innerHTML = r.title;
+    document.getElementById("rec_desc").innerHTML = r.desc;
+    document.getElementById("rec_pro").innerHTML = r.user;
 }
 
 
@@ -67,7 +139,7 @@ function filltester(){
             var date2 = new Date();
             var diffTime = Math.abs(date2 - date1);
             var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            console.log("wahhhhh" + diffDays);
+//            console.log("wahhhhh" + diffDays);
             
             let i = 0;
             
@@ -100,7 +172,7 @@ function filltester(){
                             break;
 
                     }
-                console.log(doc.data().keys[i]);
+//                console.log(doc.data().keys[i]);
             }
             
             
@@ -293,6 +365,25 @@ function addtoWishlist(id) {
 function offLoader(){
 //    document.getElementById("loader").style.display = "none";
     console.log("no");
+}
+
+function checkrec(uid){
+    db.collection('users').doc(uid).get().then(doc => {
+        if (doc.data().transactions == undefined){
+            var wRef = db.collection("users").doc(uid);
+            return wRef.update({
+                transactions: 0,
+                reco: {'drink': 0,'food': 0,'shoe':0,'clothes':0,'bag':0,'other':0}
+            })
+            .then(function() {
+                console.log("Document successfully updated!");
+            })
+            .catch(function(error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
+        }
+    })
 }
 
 window.addEventListener("scroll", function (event) {

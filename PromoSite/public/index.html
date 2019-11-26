@@ -116,7 +116,7 @@
     </div>
     <nav class="navbar navbar-expand-sm navbar-dark" id="navover">
         <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
             <img src="images/navy.png" height="30" alt="PromoAlert Logo">
         </a>
             
@@ -170,13 +170,13 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/1carol.png" alt="1" width="1500" height="300">
+      <img src="images/1carol.png" id="carol1" alt="1" width="1500" height="300">
     </div>
     <div class="carousel-item">
-      <img src="images/2carol.png" alt="2" width="1500" height="300">
+      <img src="images/2carol.png" id="carol2" alt="2" width="1500" height="300">
     </div>
     <div class="carousel-item">
-      <img src="images/3carol.png" alt="3" width="1500" height="300">
+      <img src="images/3carol.png" id="carol3" alt="3" width="1500" height="300">
     </div>
   </div>
   
@@ -226,14 +226,16 @@
             <h5>Recommended promotions</h5>
             <div class="row border" style="background-color: white;">
                 <div class="col-md-7 py-3">
-                    <img class="img-fluid my-2" src="https://ucarecdn.com/580d99c1-c146-4f13-a540-48188758e29f/-/crop/269x142/173,134/" style="width: 800px;" alt="IMG-PRODUCT">
+                    <img id="rec_img" class="img-fluid pb-1 my-2" src="images/defaultpromotionimg.png" style="width: 800px;" alt="IMG-PRODUCT">
+                    <br/>
                 </div>
                 <div class="col-md-5 pt-3">
-                    <h3>Free small hot coffee </h3>
-                    <p class="text-muted font-weight-bold">7 Eleven</p>
-                    <p class="text-muted">Description<br/>1....<br/>2....<br/>3. ...<br/></p>
+                    <h3 id="rec_title">...</h3>
+                    <p id="rec_pro" class="text-muted font-weight-bold">...</p>
+                    <p id="rec_desc" class="text-muted">Description<br/>1....<br/>2....<br/>3. ...<br/></p>
                     <br/>
-                    <button type="button" class="btn btn-success btn-block w-100 mb-2">View Details</button>
+                    <br/>
+                    <a id="rec_link" class="btn btn-success text-white btn-block w-100 mt-5 mb-0">View Details</a>
                     
                     <br/>
                 </div>

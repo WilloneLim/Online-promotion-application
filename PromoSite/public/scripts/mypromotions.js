@@ -6,7 +6,7 @@ const filterbtns = document.querySelectorAll('.filterchk');
 const accountDetails = document.querySelector('.account-details');
 const recommend = document.querySelector('#recommended');
 
-var theuser = "";
+var c = "";
 const test = document.querySelector('#tester');
 var wishlist = [];
 
@@ -119,7 +119,7 @@ function fillPromo(){
             }else{
                 cl += `<div class="card-footer bg-white border-0 text-muted">
                         <div class="row">
-                            <img class="col-md-1 p-0 mr-2 ml-auto" onclick="editwishlist('${doc.id}')" src="images/wishlist_false.png" >
+                            <img class="col-md-1 p-0 mr-2 ml-auto" id="wl${doc.id}" onclick="editwishlist('${doc.id}')" src="images/wishlist_false.png" >
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,86 @@ function fillPromo(){
 }
 
 function editwishlist(id){
-    console.log(id);
+    let s = "wl" + id;
+    var docRef = db.collection("users").doc(theuser);
+    
+//    var n = str.includes("world");
+    if( document.getElementById(s).src.includes("images/wishlist_false.png")){
+        document.getElementById(s).src = "images/wishlist_true.png";
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                
+                let arr = doc.data().wishlist;
+                arr.push(id);
+                
+                docRef.update({
+                    wishlist: arr
+                })
+                .then(function() {
+                    console.log("Document successfully updated!");
+                })
+                .catch(function(error) {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+
+                
+                
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
+        
+        
+        
+        
+    }else{
+        document.getElementById(s).src = "images/wishlist_false.png";
+        
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                
+                let arr = doc.data().wishlist;
+                
+                var index = arr.indexOf(id);
+                if (index > -1) {
+                  arr.splice(index, 1);
+                }
+                
+                docRef.update({
+                    wishlist: arr
+                })
+                .then(function() {
+                    console.log("Document successfully updated!");
+                })
+                .catch(function(error) {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+
+                
+                
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+        
+        
+        
+        
+    }
+    console.log(document.getElementById(s).src);
 }
 
 function filterPromos(filter){

@@ -52,7 +52,9 @@ loginForm.addEventListener('submit', (e) => {
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-            
+//            if(errorCode == "auth/account-exists-with-different-credential"){
+//               firebase.auth().currentUser.linkWithCredential(error.credential);
+//            }
             console.log(error);
           // ...
         });

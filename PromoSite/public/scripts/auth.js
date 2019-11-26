@@ -37,6 +37,9 @@ auth.onAuthStateChanged(user => {
         if(window.location.href.indexOf("apply_promotion") > -1){
             setupUI(user);
         }
+        if(window.location.href.indexOf("adminconsole") > -1){
+            setupUI(user);
+        }
 //        if(window.location.href.indexOf("viewapplicationsadmin") > -1){
 //            db.collection('promoter_applications').onSnapshot(snapshot =>{
 ////                setupPromoterApp(snapshot.docs);

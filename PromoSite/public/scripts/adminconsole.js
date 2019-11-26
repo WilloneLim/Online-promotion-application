@@ -21,6 +21,20 @@ db.collection('transaction').get().then((snapshot)=>{
     })
 })
 
+
+const setupUI = (user) => {
+    user.getIdTokenResult().then(idTokenResult => {
+            user.admin = idTokenResult.claims.admin;
+            user.promoter = idTokenResult.claims.promoter;
+        
+            if(!user.admin){
+                window.location.href = "index.html";
+                console.log("GET OUT");
+            }
+        });
+    
+}
+
 const setupPromoList = (data) => {
      
 

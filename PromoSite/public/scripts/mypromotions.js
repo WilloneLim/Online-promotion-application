@@ -131,7 +131,28 @@ function fillPromo(){
 
         });
             test.innerHTML = cl;
+            chkwished()
     });
+}
+
+function chkwished(){
+    if(theuser != ""){
+    var docRef = db.collection("users").doc(theuser);
+    docRef.get().then(function(doc) {
+        
+        let w = doc.data().wishlist;
+        let i = 0;
+        for(i = 0; i< w.length; i++){
+            
+            let s = "wl" + w[i];
+            document.getElementById(s).src = "images/wishlist_true.png";
+            
+        }
+        
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    }
 }
 
 function editwishlist(id){
